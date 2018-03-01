@@ -1,27 +1,32 @@
-#' stamp algorithm
+#' Stamp algorithm
 #'
-#' This function executes an example of stamp algorithm.
+#' 
 #'
 #' 
 #' @return A matrix profile 
 #' @export
 
-double_me <- function(){
-  shared_library <-system.file("extdata","libmylib-unified.dylib",package="tsa")
-  print(shared_library)
+stamp <- function(first_time_series, second_time_series, subsequence_length){
+  
+  shared_library <-system.file("extdata","libTSALIB.0.0.1.dylib",package="tsa")
+  
   dyn.load(shared_library)
+  
   library("bit64")
-  a <- as.double(c(1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10))
-  b <- as.double(c(5,6,7,8,9,10,11,12,13,14,5,6,7,8,9,10,11,12,13,14))
-  c <- as.integer64(5)
-  d <- as.integer(20)
-  e <- as.double(seq(length=15,from=0,to=0))
-  f <- as.integer(seq(length=15,from=0,to=0))
+
   try(
-     out <- .C("stamp",a,b,c,d,g=e,h=f,PACKAGE='libmylib-unified.dylib')
+     out <- .C("stamp",
+               as.double(first_time_series),
+               as.double(second_time_series),
+               as.integer(length(first_time_series)),
+               as.integer(length(second_time_series)),
+               as.integer64(subsequence_length),
+               p = as.double(seq(length = (length(second_time_series) - subsequence_length + 1), from = 0, to = 0)),
+               i = as.integer(seq(length = (length(second_time_series) - subsequence_length + 1), from = 0, to = 0)),
+               PACKAGE='libTSALIB.0.0.1.dylib')
   )
-  print(out$g)
-  print(out$h)
-  newList <- list("profile" = out$g, "index" = out$h)
+  
+  newList <- list("profile" = out$p, "index" = out$i)
+  
   return(newList)
 }
