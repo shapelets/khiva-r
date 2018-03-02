@@ -2,13 +2,17 @@
 % Please edit documentation in R/stamp.R
 \name{stamp}
 \alias{stamp}
-\title{stamp algorithm}
+\title{Stamp algorithm
+STAMP algorithm to calculate the matrix profile between 'ta' and 'tb' using a subsequence length
+of 'm'.}
 \usage{
-stamp()
+stamp(first_time_series, second_time_series, subsequence_length)
 }
 \value{
 A matrix profile
 }
 \description{
-This function executes an example of stamp algorithm.
+Stamp algorithm
+STAMP algorithm to calculate the matrix profile between 'ta' and 'tb' using a subsequence length
+of 'm'.
 }

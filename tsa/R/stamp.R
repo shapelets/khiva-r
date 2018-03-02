@@ -1,10 +1,11 @@
-#' Stamp algorithm
-#'
+#'Stamp algorithm
+#'STAMP algorithm to calculate the matrix profile between 'ta' and 'tb' using a subsequence length
+#'of 'm'.
 #' 
 #'
 #' 
 #' @return A matrix profile 
-#' @export
+#' @export 
 
 stamp <- function(first_time_series, second_time_series, subsequence_length){
   

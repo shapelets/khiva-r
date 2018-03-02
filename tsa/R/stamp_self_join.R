@@ -1,5 +1,6 @@
 #' Stamp self join algorithm
-#'
+#'STAMP algorithm to calculate the matrix profile between 't' and itself using a subsequence length
+#'of 'm'. This method filters the trivial matches.
 #' 
 #'
 #' 
