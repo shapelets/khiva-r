@@ -14,21 +14,21 @@
 #' @return A matrix profile 
 #' @export
 
-stomp_self_join <- function(first_time_series,subsequence_length){
+StompSelfJoin <- function(first.time.series,subsequence.length){
   
-  shared_library <-system.file("extdata","libTSALIB.dylib",package="tsa")
+  shared.library <-system.file("extdata","libTSALIB.dylib",package="tsa")
   
-  dyn.load(shared_library)
+  dyn.load(shared.library)
   
   library("bit64")
   
   try(
     out <- .C("stomp_self_join",
-              as.double(first_time_series),
-              as.integer(length(first_time_series)),
-              as.integer64(subsequence_length),
-              p = as.double(seq(length=(length(first_time_series) - subsequence_length + 1), from = 0, to = 0)),
-              i = as.integer(seq(length=(length(first_time_series) - subsequence_length + 1), from = 0, to = 0)),
+              as.double(first.time.series),
+              as.integer(length(first.time.series)),
+              as.integer64(subsequence.length),
+              p = as.double(seq(length=(length(first.time.series) - subsequence.length + 1), from = 0, to = 0)),
+              i = as.integer(seq(length=(length(first.time.series) - subsequence.length + 1), from = 0, to = 0)),
               PACKAGE='libTSALIB.dylib')
   )
   

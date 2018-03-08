@@ -15,22 +15,22 @@
 #' @return A matrix profile 
 #' @export 
 
-stomp <- function(first_time_series, second_time_series, subsequence_length){
+Stomp <- function(first.time.series, second.time.series, subsequence.length){
   
-  shared_library <-system.file("extdata","libTSALIB.dylib",package="tsa")
-  dyn.load(shared_library,PACKAGE='libTSALIB.dylib')
+  shared.library <-system.file("extdata","libTSALIB.dylib",package="tsa")
+  dyn.load(shared.library,PACKAGE='libTSALIB.dylib')
   
   library("bit64")
 
   try(
      out <- .C("stomp",
-               as.double(first_time_series),
-               as.double(second_time_series),
-               as.integer(length(first_time_series)),
-               as.integer(length(second_time_series)),
-               as.integer64(subsequence_length),
-               p = as.double(seq(length = (length(second_time_series) - subsequence_length + 1), from = 0, to = 0)),
-               i = as.integer(seq(length = (length(second_time_series) - subsequence_length + 1), from = 0, to = 0)),
+               as.double(first.time.series),
+               as.double(second.time.series),
+               as.integer(length(first.time.series)),
+               as.integer(length(second.time.series)),
+               as.integer64(subsequence.length),
+               p = as.double(seq(length = (length(second.time.series) - subsequence.length + 1), from = 0, to = 0)),
+               i = as.integer(seq(length = (length(second.time.series) - subsequence.length + 1), from = 0, to = 0)),
                PACKAGE='libTSALIB.dylib')
   )
   
