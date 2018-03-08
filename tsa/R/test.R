@@ -10,4 +10,5 @@ library(bit64)
 m  <- as.integer64(3)
 out <- stomp(ta,tb,m)
 out1 <- stomp_self_join(tb,m)
-
+out2 <- find_best_n_motifs(out$profile, out$index, 5)
+out3 <- find_best_n_discords(out$profile, out$index, 5)

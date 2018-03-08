@@ -18,8 +18,7 @@
 stomp <- function(first_time_series, second_time_series, subsequence_length){
   
   shared_library <-system.file("extdata","libTSALIB.dylib",package="tsa")
-  
-  dyn.load(shared_library)
+  dyn.load(shared_library,PACKAGE='libTSALIB.dylib')
   
   library("bit64")
 

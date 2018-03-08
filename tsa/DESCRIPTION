@@ -1,7 +1,7 @@
 Package: tsa
 Title: TSA-R library.
 Version: 0.0.0.9000
-Authors@R: Grumpy Catf Software S.L.
+Authors: Grumpy Cat Software S.L.
 Description: This Package is the R wrapper of the original TSA C++ Library.
 Depends: R (>= 3.4.3)
 License: Mozilla Public License
