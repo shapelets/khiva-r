@@ -17,12 +17,7 @@
 #' @export 
 
 Stomp <- function(first.time.series, second.time.series, subsequence.length) {
-  
-  shared.library <-system.file("extdata","libTSALIB.dylib",package="tsa")
-  dyn.load(shared.library,PACKAGE='libTSALIB.dylib')
-  
-  library("bit64")
-  
+
   try(
     out <- .C("stomp",
               as.double(first.time.series),
@@ -50,13 +45,7 @@ Stomp <- function(first.time.series, second.time.series, subsequence.length) {
 #' @export
 
 StompSelfJoin <- function(first.time.series,subsequence.length) {
-  
-  shared.library <-system.file("extdata","libTSALIB.dylib",package="tsa")
-  
-  dyn.load(shared.library)
-  
-  library("bit64")
-  
+
   try(
     out <- .C("stomp_self_join",
               as.double(first.time.series),
@@ -83,13 +72,7 @@ StompSelfJoin <- function(first.time.series,subsequence.length) {
 #' @export
 
 FindBestNDiscords <- function(profile,index,n) {
-  
-  shared.library <-system.file("extdata","libTSALIB.dylib",package="tsa")
-  
-  dyn.load(shared.library)
-  
-  library("bit64")
-  
+
   try(
     out <- .C("find_best_n_discords",
               as.double(profile),
@@ -121,12 +104,6 @@ FindBestNDiscords <- function(profile,index,n) {
 #' @export
 
 FindBestNMotifs <- function(profile,index,n) {
-  
-  shared.library <-system.file("extdata","libTSALIB.dylib",package="tsa")
-  
-  dyn.load(shared.library)
-  
-  library("bit64")
   
   try(
     out <- .C("find_best_n_motifs",

@@ -12,14 +12,9 @@
 #' @export 
 
 AbsEnergy <- function(time.series) {
-  
-  shared.library <-system.file("extdata","libTSALIB.dylib",package="tsa")
-  dyn.load(shared.library,PACKAGE='libTSALIB.dylib')
-  
-  library("bit64")
-  
+
   time.series.length <- as.integer64(length(time.series[[1]]))
-  concatenated.time.series <- as.double(apply( cbind( time.series ), 1 ,unlist))
+  concatenated.time.series <- as.double(apply( cbind( time.series ), 1, unlist))
   number.of.time.series <- as.integer64(length(time.series))
   
   try(
@@ -44,12 +39,7 @@ AbsEnergy <- function(time.series) {
 #' @export 
 
 AbsoluteSumOfChanges <- function(time.series) {
-  
-  shared.library <-system.file("extdata","libTSALIB.dylib",package="tsa")
-  dyn.load(shared.library,PACKAGE='libTSALIB.dylib')
-  
-  library("bit64")
-  
+
   time.series.length <- as.integer64(length(time.series[[1]]))
   concatenated.time.series <- as.double(apply( cbind( time.series ), 1 ,unlist))
   number.of.time.series <- as.integer64(length(time.series))
@@ -76,12 +66,7 @@ AbsoluteSumOfChanges <- function(time.series) {
 #' @export 
 
 C3 <- function(tss, lag) {
-  
-  shared.library <- system.file("extdata", "libTSALIB.dylib", package = "tsa")
-  dyn.load(shared.library, PACKAGE = 'libTSALIB.dylib')
-  
-  library("bit64")
-  
+
   tss.length <- as.integer64(length(tss[[1]]))
   tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
   tss.number.of.ts <- as.integer64(length(tss))
@@ -109,12 +94,7 @@ C3 <- function(tss, lag) {
 #' @export 
 
 CidCe <- function(tss, z.normalize) {
-  
-  shared.library <- system.file("extdata", "libTSALIB.dylib", package="tsa")
-  dyn.load(shared.library, PACKAGE = 'libTSALIB.dylib')
-  
-  library("bit64")
-  
+
   tss.length <- as.integer64(length(tss[[1]]))
   tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
   tss.number.of.ts <- as.integer64(length(tss))

@@ -38,8 +38,23 @@ Execute next command in the R console:
 ```
 devtools::install()
 ```
+### Executing the tests:
 
+Set as the working directory the directory corresponding to the tests by using:
 
+```
+setwd("<tests-directory>")
+```
+Execute the next line for running the tests:
+
+```
+test_results <- test_dir("./", reporter="summary")
+```
+See the results:
+
+```
+test_results
+```
 ### Contribution guidelines ###
 
 * Writing tests

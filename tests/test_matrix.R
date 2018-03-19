@@ -38,7 +38,7 @@ test_that("Test findBestNMotifs", {
   expect_equal(out$motif.index[1], 0)
   expect_equal(out$motif.index[2], 0)
   expect_equal(out$subsequence.index[1], 0)
-  expect_equal(a$subsequence.index[2], 10)
+  expect_equal(out$subsequence.index[2], 10)
 })
 
 test_that("Test findBestNDiscords", {
