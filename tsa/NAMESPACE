@@ -5,7 +5,7 @@
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-useDynLib(libTSALIB.dylib)
+useDynLib(libtsa_c)
 export(Stomp)
 export(StompSelfJoin)
 export(FindBestNMotifs)
@@ -14,6 +14,13 @@ export(AbsoluteSumOfChanges)
 export(AbsEnergy)
 export(C3)
 export(CidCe)
+export(ApproximateEntropy)
+export(CrossCovariance)
+export(AutoCovariance)
+export(CrossCorrelation)
 export(Info)
 export(SetDevice)
 export(SetBackend)
+export(GetDevice)
+export(GetBackend)
+export(GetBackends)

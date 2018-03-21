@@ -5,11 +5,16 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-
 test_that("Test stomp", {
-  ta <- as.double(c(10, 10, 10, 11, 12, 11, 10, 10, 11, 12, 11, 10, 10, 10))
-  tb <- as.double(c(10, 10, 10, 11, 12, 11, 10, 10, 11, 12, 11, 10, 10, 10))
-  expected.index <- as.integer(c(11, 1, 2, 8, 9, 10, 1, 2, 8, 9, 10, 11))
+  SetBackend(4)
+  SetDevice(0)
+  
+  ta <-
+    as.double(c(10, 10, 10, 11, 12, 11, 10, 10, 11, 12, 11, 10, 10, 10))
+  tb <-
+    as.double(c(10, 10, 10, 11, 12, 11, 10, 10, 11, 12, 11, 10, 10, 10))
+  expected.index <-
+    as.integer(c(11, 1, 2, 8, 9, 10, 1, 2, 8, 9, 10, 11))
   out <- Stomp(ta, tb, 3)
   
   for (i in 1:length(expected.index)) {
@@ -19,8 +24,13 @@ test_that("Test stomp", {
 })
 
 test_that("Test stompSelJoin", {
-  ta <- as.double(c(10, 10, 10, 11, 12, 11, 10, 10, 11, 12, 11, 10, 10, 10))
-  expected.index <- as.integer(c(11, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 0))
+  SetBackend(4)
+  SetDevice(0)
+  
+  ta <-
+    as.double(c(10, 10, 10, 11, 12, 11, 10, 10, 11, 12, 11, 10, 10, 10))
+  expected.index <-
+    as.integer(c(11, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 0))
   out <- StompSelfJoin(ta, 3)
   
   for (i in 1:length(expected.index)) {
@@ -30,10 +40,16 @@ test_that("Test stompSelJoin", {
 })
 
 test_that("Test findBestNMotifs", {
-  ta <- as.double(c(10, 11, 10, 10, 10, 10, 9, 10, 10, 10, 10, 10, 11, 10))
-  tb <- as.double(c(10, 11, 10, 300, 20, 30, 40, 50, 60, 70, 80, 90, 80, 90))
+  SetBackend(4)
+  SetDevice(0)
+  
+  ta <-
+    as.double(c(10, 11, 10, 10, 10, 10, 9, 10, 10, 10, 10, 10, 11, 10))
+  tb <-
+    as.double(c(10, 11, 10, 300, 20, 30, 40, 50, 60, 70, 80, 90, 80, 90))
   stomp.results <- Stomp(ta, tb, 3)
-  out <- FindBestNMotifs(stomp.results$profile, stomp.results$index, 3)
+  out <-
+    FindBestNMotifs(stomp.results$profile, stomp.results$index, 3)
   
   expect_equal(out$motif.index[1], 0)
   expect_equal(out$motif.index[2], 0)
@@ -42,10 +58,16 @@ test_that("Test findBestNMotifs", {
 })
 
 test_that("Test findBestNDiscords", {
-  ta <- as.double(c(10, 11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 10))
-  tb <- as.double(c(10, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 10))
+  SetBackend(4)
+  SetDevice(0)
+  
+  ta <-
+    as.double(c(10, 11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 10))
+  tb <-
+    as.double(c(10, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 10))
   stomp.results <- Stomp(ta, tb, 3)
-  out <- FindBestNDiscords(stomp.results$profile, stomp.results$index, 3)
+  out <-
+    FindBestNDiscords(stomp.results$profile, stomp.results$index, 3)
   
   expect_equal(out$subsequence.index[1], 0)
   expect_equal(out$subsequence.index[2], 11)

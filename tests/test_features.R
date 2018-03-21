@@ -44,3 +44,55 @@ test_that("Test absoluteSumOfChanges", {
   expect_equal(out$result[2], 6)
   expect_equal(out$result[3], 9)
 })
+
+test_that("Test crossCorrelation", {
+  ta <- as.double(c(1, 2, 3, 4))
+  tb <- as.double(c(4, 6, 8, 10, 12))
+  out <- CrossCorrelation(list(ta), list(tb), FALSE)
+  
+  expect_equal(out$result[1], 0.790569415)
+  expect_equal(out$result[2], 0.790569415)
+  expect_equal(out$result[3], 0.079056941)
+  expect_equal(out$result[4],-0.395284707)
+  expect_equal(out$result[5],-0.474341649)
+})
+
+test_that("Test autoCovariance", {
+  ta <- as.double(c(0, 1, 2, 3))
+  tb <- as.double(c(10, 11, 12, 13))
+  out <- AutoCovariance(list(ta, tb), FALSE)
+  
+  expect_equal(out$result[1], 1.25)
+  expect_equal(out$result[2], 0.3125)
+  expect_equal(out$result[3],-0.375)
+  expect_equal(out$result[4],-0.5625)
+  expect_equal(out$result[5], 1.25)
+  expect_equal(out$result[6], 0.3125)
+  expect_equal(out$result[7],-0.375)
+  expect_equal(out$result[8],-0.5625)
+})
+
+test_that("Test CrossCovariance", {
+  ta <- as.double(c(0, 1, 2, 3))
+  tb <- as.double(c(10, 11, 12, 13))
+  tc <- as.double(c(4, 6, 8, 10, 12))
+  td <- as.double(c(14, 16, 18, 20, 22))
+  out <- CrossCovariance(list(ta, tb), list(tc, td), FALSE)
+  
+  for (i in 0:3) {
+    expect_equal(out$result[(i * 5) + 1], 2.5)
+    expect_equal(out$result[(i * 5) + 2], 2.5)
+    expect_equal(out$result[(i * 5) + 3], 0.25)
+    expect_equal(out$result[(i * 5) + 4],-1.25)
+    expect_equal(out$result[(i * 5) + 5],-1.5)
+  }
+})
+
+test_that("Test ApproximateEntropy", {
+  ta <- as.double(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+  tb <- as.double(c(11, 12, 13, 14, 15, 16, 17, 18, 19, 20))
+  
+  out <- ApproximateEntropy(list(ta, tb), 4, 0.5)
+  expect_equal(out$result[1], 0.13484275341033936, 1e-6)
+  expect_equal(out$result[2], 0.13484275341033936, 1e-6)
+})
