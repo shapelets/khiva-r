@@ -1,55 +1,59 @@
 test_that("Test SetBackend", {
   out1 <- GetBackends()
   backends <- out1$result
-  cuda <- bitwAnd(backends, 2)
-  opencl <- bitwAnd(backends, 4)
-  cpu <- bitwAnd(backends, 1)
+  cuda <- bitwAnd(backends, TSABackend()$TSA_BACKEND_CUDA)
+  opencl <- bitwAnd(backends, TSABackend()$TSA_BACKEND_OPENCL)
+  cpu <- bitwAnd(backends, TSABackend()$TSA_BACKEND_CPU)
   
   if (cuda) {
-    SetBackend(2)
+    SetBackend(TSABackend()$TSA_BACKEND_CUDA)
     out <- GetBackend()
-    expect_equal(out$result, 2)
+    expect_equal(out[[1]], TSABackend()$TSA_BACKEND_CUDA)
   }
   if (opencl) {
-    SetBackend(4)
+    SetBackend(TSABackend()$TSA_BACKEND_OPENCL)
     out <- GetBackend()
-    expect_equal(out$result, 4)
+    expect_equal(out[[1]], TSABackend()$TSA_BACKEND_OPENCL)
   }
   if (cpu) {
-    SetBackend(1)
+    SetBackend(TSABackend()$TSA_BACKEND_CPU)
     out <- GetBackend()
-    expect_equal(out$result, 1)
+    expect_equal(out[[1]], TSABackend()$TSA_BACKEND_CPU)
   }
-  
 })
 
-test_that("Test GetDevice", {
+test_that("Test GetDeviceID", {
   out1 <- GetBackends()
   backends <- out1$result
-  cuda <- bitwAnd(backends, 2)
-  opencl <- bitwAnd(backends, 4)
-  cpu <- bitwAnd(backends, 1)
+  cuda <- bitwAnd(backends, TSABackend()$TSA_BACKEND_CUDA)
+  opencl <- bitwAnd(backends, TSABackend()$TSA_BACKEND_OPENCL)
+  cpu <- bitwAnd(backends, TSABackend()$TSA_BACKEND_CPU)
   
   if (cuda) {
-    SetBackend(2)
-    SetDevice(0)
-    out <- GetDevice(0)
-    expect_equal(out$result, 0)
+    SetBackend(TSABackend()$TSA_BACKEND_CUDA)
+    device.count <- GetDeviceCount()
+    for (i in 0:(device.count$result - 1)) {
+      SetDevice(i)
+      out <- GetDeviceID()
+      expect_equal(out$result, i)
+    }
   }
   if (opencl) {
-    SetBackend(4)
-    SetDevice(0)
-    out <- GetDevice()
-    expect_equal(out$result, 0)
-    SetDevice(1)
-    out <- GetDevice()
-    expect_equal(out$result, 1)
+    SetBackend(TSABackend()$TSA_BACKEND_OPENCL)
+    device.count <- GetDeviceCount()
+    for (i in 0:(device.count$result - 1)) {
+      SetDevice(i)
+      out <- GetDeviceID()
+      expect_equal(out$result, i)
+    }
   }
   if (cpu) {
-    SetBackend(1)
-    SetDevice(0)
-    out <- GetDevice()
-    expect_equal(out$result, 0)
+    SetBackend(TSABackend()$TSA_BACKEND_CPU)
+    device.count <- GetDeviceCount()
+    for (i in 0:(device.count$result - 1)) {
+      SetDevice(i)
+      out <- GetDeviceID()
+      expect_equal(out$result, i)
+    }
   }
-  
 })

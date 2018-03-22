@@ -28,6 +28,33 @@ if (platform == 'Linux') {
 
 library("bit64")
 
+TSABackend <- function() {
+  list(
+    TSA_BACKEND_DEFAULT = 0,
+    TSA_BACKEND_CPU = 1,
+    TSA_BACKEND_CUDA = 2,
+    TSA_BACKEND_OPENCL = 4
+  )
+}
+
+TSABackendFromOrdinal <- function(number) {
+  switch(
+    toString(number),
+    "0" = {
+      return(TSABackend()[1])
+    },
+    "1" = {
+      return(TSABackend()[2])
+    },
+    "2" = {
+      return(TSABackend()[3])
+    },
+    "4" = {
+      return(TSABackend()[4])
+    }
+  )
+}
+
 #' @brief Get the device info.
 #'
 #' @export
@@ -58,9 +85,7 @@ GetBackend <- function() {
                 )),
                 PACKAGE = library))
   
-  newList <- list("result" = out$result)
-  
-  return(newList)
+  return(TSABackendFromOrdinal(out$result))
 }
 
 #' @brief Get the active available backends.
@@ -95,8 +120,25 @@ SetDevice <- function(device) {
 #'
 #' @param device The active device.
 #' @export
-GetDevice <- function() {
-  try(out <- .C("get_device",
+GetDeviceID <- function() {
+  try(out <- .C("get_device_id",
+                result = as.integer(seq(
+                  length = 1,
+                  from = 0,
+                  to = 0
+                )),
+                PACKAGE = library))
+  newList <- list("result" = out$result)
+  
+  return(newList)
+}
+
+#' @brief Get the devices count
+#'
+#' @retrun The devices count.
+#' @export
+GetDeviceCount <- function() {
+  try(out <- .C("get_device_count",
                 result = as.integer(seq(
                   length = 1,
                   from = 0,
