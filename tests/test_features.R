@@ -53,8 +53,8 @@ test_that("Test crossCorrelation", {
   expect_equal(out$result[1], 0.790569415)
   expect_equal(out$result[2], 0.790569415)
   expect_equal(out$result[3], 0.079056941)
-  expect_equal(out$result[4],-0.395284707)
-  expect_equal(out$result[5],-0.474341649)
+  expect_equal(out$result[4], -0.395284707)
+  expect_equal(out$result[5], -0.474341649)
 })
 
 test_that("Test autoCovariance", {
@@ -64,12 +64,12 @@ test_that("Test autoCovariance", {
   
   expect_equal(out$result[1], 1.25)
   expect_equal(out$result[2], 0.3125)
-  expect_equal(out$result[3],-0.375)
-  expect_equal(out$result[4],-0.5625)
+  expect_equal(out$result[3], -0.375)
+  expect_equal(out$result[4], -0.5625)
   expect_equal(out$result[5], 1.25)
   expect_equal(out$result[6], 0.3125)
-  expect_equal(out$result[7],-0.375)
-  expect_equal(out$result[8],-0.5625)
+  expect_equal(out$result[7], -0.375)
+  expect_equal(out$result[8], -0.5625)
 })
 
 test_that("Test CrossCovariance", {
@@ -83,8 +83,8 @@ test_that("Test CrossCovariance", {
     expect_equal(out$result[(i * 5) + 1], 2.5)
     expect_equal(out$result[(i * 5) + 2], 2.5)
     expect_equal(out$result[(i * 5) + 3], 0.25)
-    expect_equal(out$result[(i * 5) + 4],-1.25)
-    expect_equal(out$result[(i * 5) + 5],-1.5)
+    expect_equal(out$result[(i * 5) + 4], -1.25)
+    expect_equal(out$result[(i * 5) + 5], -1.5)
   }
 })
 
@@ -95,4 +95,62 @@ test_that("Test ApproximateEntropy", {
   out <- ApproximateEntropy(list(ta, tb), 4, 0.5)
   expect_equal(out$result[1], 0.13484275341033936, 1e-6)
   expect_equal(out$result[2], 0.13484275341033936, 1e-6)
+})
+
+test_that("Test AutoCorrelation", {
+  ta <- as.double(c(0, 1, 2, 3))
+  tb <- as.double(c(10, 11, 12, 13))
+  
+  out <- AutoCorrelation(list(ta, tb), 4, FALSE)
+  expect_equal(out[1], 1, 1e-6)
+  expect_equal(out[2], 0.25, 1e-6)
+  expect_equal(out[3],-0.3, 1e-6)
+  expect_equal(out[4],-0.45, 1e-6)
+  expect_equal(out[5], 1, 1e-6)
+  expect_equal(out[6], 0.25, 1e-6)
+  expect_equal(out[7],-0.3, 1e-6)
+  expect_equal(out[8],-0.45, 1e-6)
+})
+
+test_that("Test BinnedEntropy", {
+  ta <- as.double(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+                    14, 15, 16, 17, 18, 19, 20))
+  tb <-
+    as.double(c(1, 1, 3, 10, 5, 6, 1, 8, 9, 10, 11, 1, 13, 14, 10, 16, 17, 10, 19,
+                20))
+  
+  out <- BinnedEntropy(list(ta, tb), 5)
+  expect_equal(out[1], 1.6094379124341005, 1e-6)
+  expect_equal(out[2], 1.5614694247763998, 1e-6)
+})
+
+test_that("Test CountAboveMean", {
+  ta <- as.double(c(0, 1, 2, 3, 4, 5))
+  tb <- as.double(c(6, 7, 8, 9, 10, 11))
+  
+  out <- CountAboveMean(list(ta, tb))
+  expect_equal(out[1], 3)
+  expect_equal(out[2], 3)
+})
+
+test_that("Test CountBelowMean", {
+  ta <- as.double(c(0, 1, 2, 3, 4, 5))
+  tb <- as.double(c(6, 7, 8, 9, 10, 11))
+  
+  out <- CountBelowMean(list(ta, tb))
+  expect_equal(out[1], 3)
+  expect_equal(out[2], 3)
+})
+
+test_that("Test EnergyRatioBychunks", {
+  ta <- as.double(c(0, 1, 2, 3, 4, 5))
+  tb <- as.double(c(6, 7, 8, 9, 10, 11))
+  
+  out <- EnergyRatioByChunks(list(ta, tb), 2, 0)
+  expect_equal(out[1], 0.090909091)
+  expect_equal(out[2], 0.330376940)
+  
+  out <- EnergyRatioByChunks(list(ta, tb), 2, 1)
+  expect_equal(out[1], 0.909090909)
+  expect_equal(out[2], 0.669623060)
 })

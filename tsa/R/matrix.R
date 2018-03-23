@@ -10,8 +10,8 @@
 #' @brief'STOMP algorithm to calculate the matrix profile between 'ta' and 'tb' using a subsequence length
 #'of 'm'.
 #'
-#' @param firs.time.series The first time series.
-#' @param second.time.series The second time series.
+#' @param firs.time.series List of arrays of type double containing the time series. 
+#' @param second.time.series List of arrays of type double containing the time series. 
 #' @param subsequence.lenth Length of the subsequence.
 #' @return A matrix profile
 #' @export
@@ -49,7 +49,7 @@ Stomp <-
 #' @brief 'STOMP algorithm to calculate the matrix profile between 't' and itself using a subsequence length
 #'of 'm'. This method filters the trivial matches.
 #'
-#' @param first.time.series The query and reference time series.
+#' @param first.time.series List of arrays of type double containing the time series. 
 #' @param subsequence.length Lenght of the subsequence
 #' @return A matrix profile
 #' @export

@@ -7,7 +7,7 @@
 
 #' @brief Calculates de sum over the square values of the time series.
 #'
-#' @param  time.series List of time series double arrays.
+#' @param  time.series List of arrays of type double containing the time series. 
 #' @return List with the Absolute Energy.
 #' @export
 AbsEnergy <- function(time.series) {
@@ -37,7 +37,7 @@ AbsEnergy <- function(time.series) {
 #' @brief Calculates the sum over the absolute value of consecutive
 #' changes in the time series
 #'
-#' @param  time.series List of time.series double arrays.
+#' @param  time.series List of arrays of type double containing the time series. 
 #' @return List with the absoluteSumOfChanges
 #' @export
 AbsoluteSumOfChanges <- function(time.series) {
@@ -67,7 +67,7 @@ AbsoluteSumOfChanges <- function(time.series) {
 #' @brief Calculates the Schreiber, T. and Schmitz, A. (1997) measure of non-linearity
 #' for the given time series
 #'
-#' @param time.series Time series.
+#' @param time.series List of arrays of type double containing the time series. 
 #' @param lag The lag.
 #' @return The non-linearity value for the given time series.
 #' @export
@@ -99,7 +99,7 @@ C3 <- function(tss, lag) {
 #' Batista, Gustavo EAPA, et al (2014). (A more complex time series has more peaks,
 #' valleys, etc.)
 #'
-#' @param tss List of time series double arrays.
+#' @param tss List of arrays of type double containing the time series. 
 #' @param z.normalize Controls whether the time series should be z-normalized or not.
 #' @return The complexity value for the given time series.
 #' @export
@@ -129,8 +129,8 @@ CidCe <- function(tss, z.normalize) {
 
 #' @brief Calculates the cross-correlation of the given time series.
 #'
-#' @param xss Time series.
-#' @param yss Time series.
+#' @param xss List of arrays of type double containing the time series. 
+#' @param yss List of arrays of type double containing the time series. 
 #' @param unbiased Determines whether it divides by n - lag (if true) or n (if false).
 #' @return The cross-correlation value for the given time series.
 #' @export
@@ -166,8 +166,8 @@ CrossCorrelation <- function(xss, yss, unbiased) {
 
 #' @brief Calculates the cross-covariance of the given time series
 #'
-#' @param xss Time series.
-#' @param yss Time series.
+#' @param xss List of arrays of type double containing the time series. 
+#' @param yss List of arrays of type double containing the time series. 
 #' @param unbiased Determines whether it divides by n - lag (if true) or n (if false).
 #' @return The cross-covariance value for the given time series.
 #' @export
@@ -203,7 +203,7 @@ CrossCovariance <- function(xss, yss, unbiased) {
 
 #' @brief Calculates the auto-covariance the given time series.
 #'
-#' @param xss Time series.
+#' @param xss List of arrays of type double containing the time series. 
 #' @param unbiased Determines whether it divides by n - lag (if true) or n (if false).
 #' @return The auto-covariance value for the given time series.
 #' @export
@@ -238,7 +238,7 @@ AutoCovariance <- function(xss, unbiased) {
 #' Richman & Moorman (2000) - Physiological time-series analysis using approximate entropy and sample entropy
 #'
 #'
-#' @param tss Time series.
+#' @param tss List of arrays of type double containing the time series. 
 #' @param m Length of compared run of data.
 #' @param r Filtering level, must be positive.
 #' @return The vectorized approximate entropy for all the input time series in tss.
@@ -265,4 +265,148 @@ ApproximateEntropy <- function(xss, m, r) {
   r.result <- list("result" = out$result)
   
   return(r.result)
+}
+
+#' @brief Calculates the autocorrelation of the specified lag for the given time series.
+#'
+#' @param tss List of arrays of type double containing the time series. 
+#' @param max_lag The maximum lag to compute.
+#' @param unbiased Determines whether it divides by n - lag (if true) or n (if false)
+#' @return The autocorrelation value for the given time series.
+#' @export
+AutoCorrelation <- function(tss, max.lag, unbiased) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "auto_correlation",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    as.integer64(max.lag),
+    unbiased,
+    result = as.double(seq(
+      length = (tss.number.of.ts * tss.length),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Calculates the binned entropy for the given time series and number of bins.
+#'
+#' @param tss List of arrays of type double containing the time series. 
+#' @param max.bins The number of bins.
+#' @return The binned entropy value for the given time series.
+#' @export
+BinnedEntropy <- function(tss, max.bins) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "binned_entropy",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    as.integer(max.bins),
+    result = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Calculates the number of values in the time series that are higher than
+#' the mean.
+#'
+#' @param tss List of arrays of type double containing the time series. 
+#' @return The number of values in the time series that are higher than the mean.
+#' @export
+CountAboveMean <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "count_above_mean",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    result = as.integer(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Calculates the number of values in the time series that are lower than
+#' the mean
+#'
+#' @param tss List of arrays of type double containing the time series. 
+#' @return The number of values in the time series that are lower than the mean.
+#' @export
+CountBelowMean <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "count_below_mean",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    result = as.integer(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Calculates the sum of squares of chunk i out of N chunks expressed as a ratio
+#' with the sum of squares over the whole series. segmentFocus should be lower
+#' than the number of segments.
+#'
+#' @param tss List of arrays of type double containing the time series. 
+#' @param num.segments The number of segments to divide the series into.
+#' @param segment.focus The segment number (starting at zero) to return a feature on.
+#' @return The energy ratio by chunk of the time series.
+#' @export
+EnergyRatioByChunks <- function(tss, num.segments, segment.focus) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "energy_ratio_by_chunks",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    as.integer64(num.segments),
+    as.integer64(segment.focus),
+    result = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
 }
