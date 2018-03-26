@@ -7,7 +7,7 @@
 
 #' @brief Calculates de sum over the square values of the time series.
 #'
-#' @param  time.series List of arrays of type double containing the time series. 
+#' @param  time.series List of arrays of type double containing the time series.
 #' @return List with the Absolute Energy.
 #' @export
 AbsEnergy <- function(time.series) {
@@ -37,7 +37,7 @@ AbsEnergy <- function(time.series) {
 #' @brief Calculates the sum over the absolute value of consecutive
 #' changes in the time series
 #'
-#' @param  time.series List of arrays of type double containing the time series. 
+#' @param  time.series List of arrays of type double containing the time series.
 #' @return List with the absoluteSumOfChanges
 #' @export
 AbsoluteSumOfChanges <- function(time.series) {
@@ -67,7 +67,7 @@ AbsoluteSumOfChanges <- function(time.series) {
 #' @brief Calculates the Schreiber, T. and Schmitz, A. (1997) measure of non-linearity
 #' for the given time series
 #'
-#' @param time.series List of arrays of type double containing the time series. 
+#' @param time.series List of arrays of type double containing the time series.
 #' @param lag The lag.
 #' @return The non-linearity value for the given time series.
 #' @export
@@ -99,7 +99,7 @@ C3 <- function(tss, lag) {
 #' Batista, Gustavo EAPA, et al (2014). (A more complex time series has more peaks,
 #' valleys, etc.)
 #'
-#' @param tss List of arrays of type double containing the time series. 
+#' @param tss List of arrays of type double containing the time series.
 #' @param z.normalize Controls whether the time series should be z-normalized or not.
 #' @return The complexity value for the given time series.
 #' @export
@@ -129,8 +129,8 @@ CidCe <- function(tss, z.normalize) {
 
 #' @brief Calculates the cross-correlation of the given time series.
 #'
-#' @param xss List of arrays of type double containing the time series. 
-#' @param yss List of arrays of type double containing the time series. 
+#' @param xss List of arrays of type double containing the time series.
+#' @param yss List of arrays of type double containing the time series.
 #' @param unbiased Determines whether it divides by n - lag (if true) or n (if false).
 #' @return The cross-correlation value for the given time series.
 #' @export
@@ -166,8 +166,8 @@ CrossCorrelation <- function(xss, yss, unbiased) {
 
 #' @brief Calculates the cross-covariance of the given time series
 #'
-#' @param xss List of arrays of type double containing the time series. 
-#' @param yss List of arrays of type double containing the time series. 
+#' @param xss List of arrays of type double containing the time series.
+#' @param yss List of arrays of type double containing the time series.
 #' @param unbiased Determines whether it divides by n - lag (if true) or n (if false).
 #' @return The cross-covariance value for the given time series.
 #' @export
@@ -203,7 +203,7 @@ CrossCovariance <- function(xss, yss, unbiased) {
 
 #' @brief Calculates the auto-covariance the given time series.
 #'
-#' @param xss List of arrays of type double containing the time series. 
+#' @param xss List of arrays of type double containing the time series.
 #' @param unbiased Determines whether it divides by n - lag (if true) or n (if false).
 #' @return The auto-covariance value for the given time series.
 #' @export
@@ -238,7 +238,7 @@ AutoCovariance <- function(xss, unbiased) {
 #' Richman & Moorman (2000) - Physiological time-series analysis using approximate entropy and sample entropy
 #'
 #'
-#' @param tss List of arrays of type double containing the time series. 
+#' @param tss List of arrays of type double containing the time series.
 #' @param m Length of compared run of data.
 #' @param r Filtering level, must be positive.
 #' @return The vectorized approximate entropy for all the input time series in tss.
@@ -269,7 +269,7 @@ ApproximateEntropy <- function(xss, m, r) {
 
 #' @brief Calculates the autocorrelation of the specified lag for the given time series.
 #'
-#' @param tss List of arrays of type double containing the time series. 
+#' @param tss List of arrays of type double containing the time series.
 #' @param max_lag The maximum lag to compute.
 #' @param unbiased Determines whether it divides by n - lag (if true) or n (if false)
 #' @return The autocorrelation value for the given time series.
@@ -299,7 +299,7 @@ AutoCorrelation <- function(tss, max.lag, unbiased) {
 
 #' @brief Calculates the binned entropy for the given time series and number of bins.
 #'
-#' @param tss List of arrays of type double containing the time series. 
+#' @param tss List of arrays of type double containing the time series.
 #' @param max.bins The number of bins.
 #' @return The binned entropy value for the given time series.
 #' @export
@@ -328,7 +328,7 @@ BinnedEntropy <- function(tss, max.bins) {
 #' @brief Calculates the number of values in the time series that are higher than
 #' the mean.
 #'
-#' @param tss List of arrays of type double containing the time series. 
+#' @param tss List of arrays of type double containing the time series.
 #' @return The number of values in the time series that are higher than the mean.
 #' @export
 CountAboveMean <- function(tss) {
@@ -355,7 +355,7 @@ CountAboveMean <- function(tss) {
 #' @brief Calculates the number of values in the time series that are lower than
 #' the mean
 #'
-#' @param tss List of arrays of type double containing the time series. 
+#' @param tss List of arrays of type double containing the time series.
 #' @return The number of values in the time series that are lower than the mean.
 #' @export
 CountBelowMean <- function(tss) {
@@ -383,7 +383,7 @@ CountBelowMean <- function(tss) {
 #' with the sum of squares over the whole series. segmentFocus should be lower
 #' than the number of segments.
 #'
-#' @param tss List of arrays of type double containing the time series. 
+#' @param tss List of arrays of type double containing the time series.
 #' @param num.segments The number of segments to divide the series into.
 #' @param segment.focus The segment number (starting at zero) to return a feature on.
 #' @return The energy ratio by chunk of the time series.
@@ -400,6 +400,147 @@ EnergyRatioByChunks <- function(tss, num.segments, segment.focus) {
     tss.number.of.ts,
     as.integer64(num.segments),
     as.integer64(segment.focus),
+    result = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief     Calculates the first relative location of the maximal value for each timeseries.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The first relative location of the maximum value to the length of the timeseries,
+#' for each timeseries.
+#' @export
+#'
+FirstLocationOfMaximum <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "first_location_of_maximum",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    result = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief     Calculates the first location of the minimal value of each time series. The position
+#' is calculated relatively to the length of the series.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The first relative location of the minimal value of each series.
+#' @export
+#'
+FirstLocationOfMinimum <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "first_location_of_minimum",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    result = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Calculates if the input time series contain duplicated elements.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return Array containing True if the time series contains duplicated elements
+#' and false otherwise.
+#' @export
+#'
+HasDuplicates <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "has_duplicates",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    result = as.logical(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Calculates if the maximum within input time series is duplicated.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return Array containing True if the maximum value of the time series is duplicated
+#' and false otherwise.
+#' @export
+#'
+HasDuplicateMax <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "has_duplicate_max",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    result = as.logical(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Calculates the index of the max quantile.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @param q The quantile.
+#' @return The index of the max quantile q.
+#' @export
+#'
+IndexMaxQuantile <- function(tss, q) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "index_max_quantile",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    as.double(q),
     result = as.double(seq(
       length = (tss.number.of.ts),
       from = 0,

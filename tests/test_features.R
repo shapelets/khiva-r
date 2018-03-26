@@ -154,3 +154,48 @@ test_that("Test EnergyRatioBychunks", {
   expect_equal(out[1], 0.909090909)
   expect_equal(out[2], 0.669623060)
 })
+
+test_that("Test FirstLocationOfMaximum", {
+  ta <- as.double(c(5, 4, 3, 5, 0, 1, 5, 3, 2, 1))
+  tb <- as.double(c(2, 4, 3, 5, 2, 5, 4, 3, 5, 2))
+  
+  out <- FirstLocationOfMaximum(list(ta, tb))
+  expect_equal(out[1], 0.0)
+  expect_equal(out[2], 0.3)
+})
+
+test_that("Test FirstLocationOfMinimum", {
+  ta <- as.double(c(5, 4, 3, 0, 0, 1))
+  tb <- as.double(c(5, 4, 3, 0, 2, 1))
+  
+  out <- FirstLocationOfMinimum(list(ta, tb))
+  expect_equal(out[1], 0.5)
+  expect_equal(out[2], 0.5)
+})
+
+test_that("Test HasDuplicates", {
+  ta <- as.double(c(5, 4, 3, 0, 0, 1))
+  tb <- as.double(c(5, 4, 3, 0, 2, 1))
+  
+  out <- HasDuplicates(list(ta, tb))
+  expect_equal(out[1], TRUE)
+  expect_equal(out[2], FALSE)
+})
+
+test_that("Test HasDuplicateMax", {
+  ta <- as.double(c(5, 4, 3, 0, 5, 1))
+  tb <- as.double(c(5, 4, 3, 0, 2, 1))
+  
+  out <- HasDuplicateMax(list(ta, tb))
+  expect_equal(out[1], TRUE)
+  expect_equal(out[2], FALSE)
+})
+
+test_that("Test IndexMaxQuantile", {
+  ta <- as.double(c(5, 4, 3, 0, 5, 1))
+  tb <- as.double(c(5, 4, 3, 0, 2, 1))
+  
+  out <- IndexMaxQuantile(list(ta, tb), 0.5)
+  expect_equal(out[1], 0.333333333)
+  expect_equal(out[2], 0.333333333)
+})
