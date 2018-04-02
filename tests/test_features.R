@@ -5,7 +5,7 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-test_that("Test c3", {
+test_that("Test C3", {
   ta <- as.double(c(0, 1, 2, 3, 4, 5))
   tb <- as.double(c(6, 7, 8, 9, 10, 11))
   out <- C3((list(ta, tb)), 2)
@@ -14,7 +14,7 @@ test_that("Test c3", {
   expect_equal(out$result[2], 586.5)
 })
 
-test_that("Test cidCe", {
+test_that("Test CidCe", {
   ta <- as.double(c(0, 1, 2, 3, 4, 5))
   tb <- as.double(c(6, 7, 8, 9, 10, 11))
   out <- CidCe((list(ta, tb)), TRUE)
@@ -27,14 +27,14 @@ test_that("Test cidCe", {
   expect_equal(out$result[2], 2.23606797749979)
 })
 
-test_that("Test absEnergy", {
+test_that("Test AbsEnergy", {
   ta <- as.double(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
   out <- AbsEnergy(list(ta))
   
   expect_equal(out$result[1], 385)
 })
 
-test_that("Test absoluteSumOfChanges", {
+test_that("Test AbsoluteSumOfChanges", {
   ta <- as.double(c(0, 1, 2, 3))
   tb <- as.double(c(4, 6, 8, 10))
   tc <- as.double(c(11, 14, 17, 20))
@@ -45,7 +45,7 @@ test_that("Test absoluteSumOfChanges", {
   expect_equal(out$result[3], 9)
 })
 
-test_that("Test crossCorrelation", {
+test_that("Test CrossCorrelation", {
   ta <- as.double(c(1, 2, 3, 4))
   tb <- as.double(c(4, 6, 8, 10, 12))
   out <- CrossCorrelation(list(ta), list(tb), FALSE)
@@ -57,7 +57,7 @@ test_that("Test crossCorrelation", {
   expect_equal(out$result[5], -0.474341649)
 })
 
-test_that("Test autoCovariance", {
+test_that("Test AutoCovariance", {
   ta <- as.double(c(0, 1, 2, 3))
   tb <- as.double(c(10, 11, 12, 13))
   out <- AutoCovariance(list(ta, tb), FALSE)
@@ -155,6 +155,15 @@ test_that("Test EnergyRatioBychunks", {
   expect_equal(out[2], 0.669623060)
 })
 
+test_that("Test CountBelowMean", {
+  ta <- as.double(c(0, 1, 2, 3, 4, 5))
+  tb <- as.double(c(6, 7, 8, 9, 10, 11))
+  
+  out <- CountBelowMean(list(ta, tb))
+  expect_equal(out[1], 3)
+  expect_equal(out[2], 3)
+})
+
 test_that("Test FirstLocationOfMaximum", {
   ta <- as.double(c(5, 4, 3, 5, 0, 1, 5, 3, 2, 1))
   tb <- as.double(c(2, 4, 3, 5, 2, 5, 4, 3, 5, 2))
@@ -198,4 +207,70 @@ test_that("Test IndexMaxQuantile", {
   out <- IndexMaxQuantile(list(ta, tb), 0.5)
   expect_equal(out[1], 0.333333333)
   expect_equal(out[2], 0.333333333)
+})
+
+test_that("Test Kurtosis", {
+  ta <- as.double(c(0, 1, 2, 3, 4, 5))
+  tb <- as.double(c(2, 2, 2, 20, 30, 25))
+  
+  out <- Kurtosis(list(ta, tb))
+  expect_equal(out[1], -1.2)
+  expect_equal(out[2], -2.66226722)
+})
+
+test_that("Test LargeStandardDeviation", {
+  ta <- as.double(c(-1, -1, -1, 1, 1, 1))
+  tb <- as.double(c(4, 6, 8, 4, 5, 4))
+  
+  out <- LargeStandardDeviation(list(ta, tb), 0.4)
+  expect_equal(out[1], TRUE)
+  expect_equal(out[2], FALSE)
+})
+
+test_that("Test LastLocationOfMaximum", {
+  ta <- as.double(c(0, 4, 3, 5, 5, 1))
+  tb <- as.double(c(0, 4, 3, 2, 5, 1))
+  
+  out <- LastLocationOfMaximum(list(ta, tb))
+  expect_equal(out[1], 0.8333333333333334)
+  expect_equal(out[2], 0.8333333333333334)
+})
+
+test_that("Test LastLocationOfMinimum", {
+  ta <- as.double(c(0, 4, 3, 5, 5, 1, 0, 4))
+  tb <- as.double(c(3, 2, 5, 1, 4, 5, 1, 2))
+  
+  out <- LastLocationOfMinimum(list(ta, tb))
+  expect_equal(out[1], 0.875)
+  expect_equal(out[2], 0.875)
+})
+
+test_that("Test Length", {
+  ta <- as.double(c(0, 4, 3, 5, 5, 1))
+  tb <- as.double(c(0, 4, 3, 2, 5, 1))
+  
+  out <- Length(list(ta, tb))
+  expect_equal(out[1], 6)
+  expect_equal(out[2], 6)
+})
+
+test_that("Test LinearTrend", {
+  ta <- as.double(c(0, 4, 3, 5, 5, 1))
+  tb <- as.double(c(2, 4, 1, 2, 5, 3))
+  
+  out <- LinearTrend(list(ta, tb))
+  expect_equal(out$pvalue[1], 0.6260380997892747, 1e-6)
+  expect_equal(out$pvalue[2], 0.5272201945463578, 1e-6)
+  
+  expect_equal(out$rvalue[1], 0.2548235957188128, 1e-6)
+  expect_equal(out$rvalue[2], 0.3268228676411533, 1e-6)
+  
+  expect_equal(out$intercept[1], 2.2857142857142856, 1e-6)
+  expect_equal(out$intercept[2], 2.1904761904761907, 1e-6)
+  
+  expect_equal(out$slope[1], 0.2857142857142857, 1e-6)
+  expect_equal(out$slope[2], 0.2571428571428572, 1e-6)
+  
+  expect_equal(out$stdrr[1], 0.5421047417431507, 1e-6)
+  expect_equal(out$stdrr[2], 0.37179469135129783, 1e-6)
 })

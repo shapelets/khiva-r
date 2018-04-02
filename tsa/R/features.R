@@ -551,3 +551,197 @@ IndexMaxQuantile <- function(tss, q) {
   
   return(out$result)
 }
+
+#' @brief Returns the kurtosis of tss (calculated with the adjusted Fisher-Pearson
+#' standardized moment coefficient G2).
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The kurtosis of each tss.
+#' @export
+Kurtosis <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "kurtosis",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    result = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Checks if the time series within tss have a large standard deviation.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @param r The threshold.
+#' @return Array containing True for those time series in tss that have a large standard deviation.
+#' @export
+LargeStandardDeviation <- function(tss, r) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "large_standard_deviation",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    as.double(r),
+    result = as.logical(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Calculates the last location of the maximum value of each time series. The position
+#' is calculated relatively to the length of the series.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The last relative location of the maximum value of each series.
+#' @export
+LastLocationOfMaximum <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "last_location_of_maximum",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    result = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Calculates the last location of the minimum value of each time series. The position
+#' is calculated relatively to the length of the series.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The last relative location of the minimum value of each series.
+#' @export
+LastLocationOfMinimum <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "last_location_of_minimum",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    result = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Returns the length of the input time series.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The length of tss.
+#' @export
+Length <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "length",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    result = as.integer(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  return(out$result)
+}
+
+#' @brief Calculates a linear least-squares regression for the values of the time series versus the sequence from 0 to
+#' length of the time series minus one.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return a list with:
+#' pvalue: The pvalues for all time series.
+#' rvalue: The rvalues for all time series.
+#' intercept: The intercept values for all time series.
+#' slope: The slope for all time series.
+#' stdrr: The stderr values for all time series.
+#' @export
+LinearTrend <- function(tss) {
+  tss.length <- as.integer64(length(tss[[1]]))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  tss.number.of.ts <- as.integer64(length(tss))
+  
+  try(out <- .C(
+    "linear_trend",
+    tss.concatenated,
+    tss.length,
+    tss.number.of.ts,
+    pvalue = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    rvalue = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    intercept = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    slope = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    stdrr = as.double(seq(
+      length = (tss.number.of.ts),
+      from = 0,
+      to = 0
+    )),
+    PACKAGE = library
+  ))
+  
+  result <- list(
+    "pvalue" = out$pvalue,
+    "rvalue" = out$rvalue,
+    "intercept" = out$intercept,
+    "slope" = out$slope,
+    "stdrr" = out$stdrr
+  )
+  return(result)
+}
