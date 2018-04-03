@@ -745,3 +745,190 @@ LinearTrend <- function(tss) {
   )
   return(result)
 }
+
+#' @brief Calculates if the minimum of the input time series is duplicated.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return List with an array containing True if the minimum of the time series is duplicated
+#' and False otherwise.
+#' @export
+HasDuplicateMin <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "has_duplicate_min",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.logical(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  
+  return(out$result)
+  
+}
+
+#' @brief Calculates the length of the longest consecutive subsequence in tss that is bigger than the mean of tss.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The length of the longest consecutive subsequence in the input time series that is bigger than the mean.
+#' @export
+LongestStrikeAboveMean <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  
+  try(out <-
+        .C(
+          "longest_strike_above_mean",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' @brief Calculates the length of the longest consecutive subsequence in tss that is below the mean of tss.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The length of the longest consecutive subsequence in the input time series that is below the mean.
+#' @export
+LongestStrikeBelowMean <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "longest_strike_below_mean",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' @brief Calculates the maximum value for each time series within tss.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The maximum value of each time series within tss.
+#' @export
+Maximum <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "maximum",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' @brief Calculates the mean over the absolute differences between subsequent time series values in tss.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The mean over the absolute differences between subsequent time series values.
+#' @export
+MeanAbsoluteChange <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "mean_absolute_change",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' @brief Calculates the fourier coefficients of the one-dimensional discrete
+#' Fourier Transform for real input by fast fourier transformation algorithm.
+#' @param tss List of arrays of type double containing the time series.
+#' @return List with:
+#' real: The real part of the coefficient.
+#' imag: The imaginary part of the coefficient.
+#' abs: The absolute value of the coefficient.
+#' angle: The angle of the coefficient.
+#' @export
+FftCoefficient <- function(tss, coefficient) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "fftCoefficient",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          as.integer64(coefficient),
+          real = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          imag = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          abs = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          angle = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  result <-
+    (list(
+      "real" = out$real,
+      "imag" = out$imag,
+      "abs" = out$abs,
+      "angle" = out$angle
+    ))
+  return(result)
+}

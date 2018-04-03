@@ -274,3 +274,72 @@ test_that("Test LinearTrend", {
   expect_equal(out$stdrr[1], 0.5421047417431507, 1e-6)
   expect_equal(out$stdrr[2], 0.37179469135129783, 1e-6)
 })
+
+test_that("Test HasDuplicateMin", {
+  ta <- as.double(c(5, 4, 3, 0, 0, 1))
+  tb <- as.double(c(5, 4, 3, 0, 2, 1))
+  
+  out <- HasDuplicateMin(list(ta, tb))
+  expect_equal(out[1], TRUE)
+  expect_equal(out[2], FALSE)
+})
+
+test_that("Test LongestStrikeAboveMean", {
+  ta <-
+    as.double(c(20, 20, 20, 1, 1, 1, 20, 20, 20, 20, 1, 1, 1, 1, 1, 1, 1, 1, 20, 20))
+  tb <-
+    as.double(c(20, 20, 20, 1, 1, 1, 20, 20, 20, 1,  1, 1, 1, 1, 1, 1, 1, 1, 20, 20))
+  
+  out <- LongestStrikeAboveMean(list(ta, tb))
+  expect_equal(out[1], 4, 1e-6)
+  expect_equal(out[2], 3, 1e-6)
+})
+
+test_that("Test LongestStrikeBelowMean", {
+  ta <-
+    as.double(c(20, 20, 20, 1, 1, 1, 20, 20, 20, 20, 1, 1, 1, 1, 1, 1, 1, 1, 20, 20))
+  tb <-
+    as.double(c(20, 20, 20, 1, 1, 1, 20, 20, 20, 1,  1, 1, 1, 1, 1, 1, 1, 1, 20, 20))
+  
+  out <- LongestStrikeBelowMean(list(ta, tb))
+  expect_equal(out[1], 8, 1e-6)
+  expect_equal(out[2], 9, 1e-6)
+})
+
+test_that("Test Maximum", {
+  ta <-
+    as.double(c(20, 20, 20, 18, 25, 19, 20, 20, 20, 20, 40, 30, 1,  50, 1, 1,  5, 1, 20, 20))
+  tb <-
+    as.double(c(20, 20, 20, 2,  19, 1,  20, 20, 20, 1,  15, 1,  30, 1,  1, 18, 4, 1, 20, 20))
+  
+  out <- Maximum(list(ta, tb))
+  expect_equal(out[1], 50, 1e-6)
+  expect_equal(out[2], 30, 1e-6)
+})
+
+test_that("Test MeanAbsoluteChange", {
+  ta <- as.double(c(0, 1, 2, 3, 4, 5))
+  tb <- as.double(c(8, 10, 12, 14, 16, 18))
+  
+  out <- MeanAbsoluteChange(list(ta, tb))
+  expect_equal(out[1], 5 / 6, 1e-6)
+  expect_equal(out[2], 10 / 6, 1e-6)
+})
+
+test_that("Test FftCoefficient", {
+  ta <- as.double(c(0, 1, 2, 3, 4, 5))
+  tb <- as.double(c(6, 7, 8, 9, 10, 11))
+  
+  out <- FftCoefficient(list(ta, tb), 0)
+  expect_equal(out$real[1], 15, 1e-6)
+  expect_equal(out$real[2], 51, 1e-6)
+  
+  expect_equal(out$imag[1], 0, 1e-6)
+  expect_equal(out$imag[2], 0, 1e-6)
+  
+  expect_equal(out$abs[1], 15, 1e-6)
+  expect_equal(out$abs[2], 51, 1e-6)
+  
+  expect_equal(out$angle[1], 0, 1e-6)
+  expect_equal(out$angle[2], 0, 1e-6)
+})
