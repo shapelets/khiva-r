@@ -932,3 +932,234 @@ FftCoefficient <- function(tss, coefficient) {
     ))
   return(result)
 }
+
+#' @brief Calculates the number of m-crossings. A m-crossing is defined as two sequential values where the first
+#' value is lower than m and the next is greater, or viceversa. If you set m to zero, you will get the number of
+#' zero crossings.
+#' @param tss List of arrays of type double containing the time series.
+#' @param m The m value.
+#' @return The number of m-crossings of each time series within tss.
+#' @export
+NumberCrossingM <- function(tss, m) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "number_crossing_m",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          as.integer(m),
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' @brief Calculates the minimum value for each time series within tss.
+#' @param tss List of arrays of type double containing the time series.
+#' @return The minimum value of each time series within tss.
+#' @export
+Minimum <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "minimum",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' @brief Calculates mean value of a central approximation of the second derivative for each time series in tss.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The mean value of a central approximation of
+#' the second derivative for each time series.
+#' @export
+MeanSecondDerivativeCentral <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "mean_second_derivative_central",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' @brief Calculates a Continuous wavelet transform for the Ricker wavelet, also known as
+#' the "Mexican hat wavelet".
+#' @param tss List of arrays of type double containing the time series.
+#' @param widths Widths. List of arrays of type double containing the time series.
+#' @param coeff Coefficient of interest.
+#' @param w Width of interest.
+#' @return Result of calculated coefficients.
+#' @export
+CwtCoefficients <- function(tss, widths, coeff, w) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  widths.l <- as.integer64(length(widths[[1]]))
+  widths.n <- as.integer64(length(widths))
+  widths.concatenated <- as.integer(apply(cbind(widths), 1, unlist))
+  
+  try(out <-
+        .C(
+          "cwt_coefficients",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          widths.concatenated,
+          widths.l,
+          widths.n,
+          as.integer(coeff),
+          as.integer(w),
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' @brief Calculates a linear least-squares regression for values of the time series that were aggregated
+#' over chunks versus the sequence from 0 up to the number of chunks minus one.
+#' @param tss List of arrays of type double containing the time series.
+#' @param chunk.size The chunk size used to aggregate the data.
+#' @param aggregation.function Function to be used in the aggregation. It receives an integer which indicates the
+#' function to be applied:
+#' {
+#'   0 : mean,
+#'   1 : median
+#'   2 : min,
+#'   3 : max,
+#'   4 : stdev,
+#'   default : mean
+#' }
+#' @return List with:
+#' pvalue: The pvalues for all time series.
+#' rvalue: The rvalues for all time series.
+#' intercept: The intercept values for all time series.
+#' slope: The slope for all time series.
+#' stderrest: The stderr values for all time series.
+#' @export
+AggregatedLinearTrend <-
+  function(tss, chunk.size, aggregation.function) {
+    tss.l <- as.integer64(length(tss[[1]]))
+    tss.n <- as.integer64(length(tss))
+    tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+    
+    try(out <-
+          .C(
+            "aggregated_linear_trend",
+            tss.concatenated,
+            tss.l,
+            tss.n,
+            as.integer64(chunk.size),
+            as.integer(aggregation.function),
+            slope = as.double(seq(
+              length = (tss.n),
+              from = 0,
+              to = 0
+            )),
+            intercept = as.double(seq(
+              length = (tss.n),
+              from = 0,
+              to = 0
+            )),
+            rvalue = as.double(seq(
+              length = (tss.n),
+              from = 0,
+              to = 0
+            )),
+            pvalue = as.double(seq(
+              length = (tss.n),
+              from = 0,
+              to = 0
+            )),
+            stderrest = as.double(seq(
+              length = (tss.n),
+              from = 0,
+              to = 0
+            )),
+            PACKAGE = library
+          ))
+    result <-
+      list(
+        "slope" = out$slope,
+        "intercept" = out$intercept,
+        "rvalue" = out$rvalue,
+        "pvalue" = out$pvalue,
+        "stderrest" = out$stderrest
+      )
+    return(result)
+  }
+
+#' @brief Calculates a linear least-squares regression for values of the time series that were aggregated
+#' over chunks versus the sequence from 0 up to the number of chunks minus one.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @param aggregation.function Function to be used in the aggregation. It receives an integer which indicates the
+#' function to be applied:
+#' {
+#'   0 : mean,
+#'   1 : median
+#'   2 : min,
+#'   3 : max,
+#'   4 : stdev,
+#'   5 : var,
+#'   default : mean
+#' }
+#' @return List whose values contains the aggregated correlation for each time series.
+#' @export
+AggregatedAutocorrelation <- function(tss, aggregation.function) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "aggregated_autocorrelation",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          as.integer(aggregation.function),
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}

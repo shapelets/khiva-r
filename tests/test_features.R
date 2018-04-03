@@ -343,3 +343,149 @@ test_that("Test FftCoefficient", {
   expect_equal(out$angle[1], 0, 1e-6)
   expect_equal(out$angle[2], 0, 1e-6)
 })
+
+test_that("Test AggregatedAutocorrelationMean", {
+  ta <- as.double(c(1, 2, 3, 4, 5, 6))
+  tb <- as.double(c(7, 8, 9, 10, 11, 12))
+  
+  out <- AggregatedAutocorrelation(list(ta, tb), 0)
+  expect_equal(out[1], -0.6571428571428571, 1e-6)
+  expect_equal(out[2], -0.6571428571428571, 1e-6)
+})
+
+test_that("Test AggregatedAutocorrelationMedian", {
+  ta <- as.double(c(1, 2, 3, 4, 5, 6))
+  tb <- as.double(c(7, 8, 9, 10, 11, 12))
+  
+  out <- AggregatedAutocorrelation(list(ta, tb), 1)
+  expect_equal(out[1], -0.54285717010498047, 1e-6)
+  expect_equal(out[2], -0.54285717010498047, 1e-6)
+})
+
+test_that("Test AggregatedAutocorrelationMin", {
+  ta <- as.double(c(1, 2, 3, 4, 5, 6))
+  tb <- as.double(c(7, 8, 9, 10, 11, 12))
+  
+  out <- AggregatedAutocorrelation(list(ta, tb), 2)
+  expect_equal(out[1], -2.142857142857143, 1e-6)
+  expect_equal(out[2], -2.142857142857143, 1e-6)
+})
+
+test_that("Test AggregatedAutocorrelationMax", {
+  ta <- as.double(c(1, 2, 3, 4, 5, 6))
+  tb <- as.double(c(7, 8, 9, 10, 11, 12))
+  
+  out <- AggregatedAutocorrelation(list(ta, tb), 3)
+  expect_equal(out[1], 0.6, 1e-6)
+  expect_equal(out[2], 0.6, 1e-6)
+})
+
+test_that("Test AggregatedAutocorrelationStdev", {
+  ta <- as.double(c(1, 2, 3, 4, 5, 6))
+  tb <- as.double(c(7, 8, 9, 10, 11, 12))
+  
+  out <- AggregatedAutocorrelation(list(ta, tb), 4)
+  expect_equal(out[1], 0.9744490855905009, 1e-6)
+  expect_equal(out[2], 0.9744490855905009, 1e-6)
+})
+
+test_that("Test AggregatedAutocorrelationVar", {
+  ta <- as.double(c(1, 2, 3, 4, 5, 6))
+  tb <- as.double(c(7, 8, 9, 10, 11, 12))
+  
+  out <- AggregatedAutocorrelation(list(ta, tb), 5)
+  expect_equal(out[1], 0.9495510204081633, 1e-6)
+  expect_equal(out[2], 0.9495510204081633, 1e-6)
+})
+
+test_that("Test AggregatedLinearTrendMean", {
+  ta <- as.double(c(2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5))
+  
+  out <- AggregatedLinearTrend(list(ta), 3, 0)
+  expect_equal(out$slope[1], 1, 1e-6)
+  
+  expect_equal(out$intercept[1], 2, 1e-6)
+  
+  expect_equal(out$rvalue[1], 1, 1e-6)
+  
+  expect_equal(out$pvalue[1], 0, 1e-6)
+  
+  expect_equal(out$stderrest[1], 0, 1e-6)
+})
+
+test_that("Test AggregatedLinearTrendMin", {
+  ta <- as.double(c(2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5))
+  
+  out <- AggregatedLinearTrend(list(ta), 3, 2)
+  expect_equal(out$slope[1], 1, 1e-6)
+  
+  expect_equal(out$intercept[1], 2, 1e-6)
+  
+  expect_equal(out$rvalue[1], 1, 1e-6)
+  
+  expect_equal(out$pvalue[1], 0, 1e-6)
+  
+  expect_equal(out$stderrest[1], 0, 1e-6)
+})
+
+test_that("Test CwtCoefficients", {
+  ta <- as.double(c(0.1, 0.2, 0.3))
+  tb <- as.double(c(0.1, 0.2, 0.3))
+  
+  w <- as.integer(c(1, 2, 3))
+  out <- CwtCoefficients(list(ta, tb), list(w), 2, 2)
+  expect_equal(out[1], 0.26517161726951599, 1e-6)
+  expect_equal(out[2], 0.26517161726951599, 1e-6)
+})
+
+test_that("Test MeanSecondDerivativeCentral", {
+  ta <- as.double(c(1, 3, 7, 4, 8))
+  tb <- as.double(c(2, 5, 1, 7, 4))
+  
+  out <- MeanSecondDerivativeCentral(list(ta, tb))
+  expect_equal(out[1], as.double(1.0 / 5.0), 1e-6)
+  expect_equal(out[2], as.double(-3.0 / 5.0), 1e-6)
+})
+
+test_that("Test Minimum", {
+  ta <-
+    as.double(c(
+      20,
+      20,
+      20,
+      18,
+      25,
+      19,
+      20,
+      20,
+      20,
+      20,
+      40,
+      30,
+      1,
+      50,
+      13,
+      15,
+      5,
+      16,
+      20,
+      20
+    ))
+  tb <-
+    as.double(c(20, 20, 20, 2, 19, 4, 20, 20, 20, 4, 15, 6, 30, 7, 9, 18, 4, 10, 20, 20))
+  
+  out <- Minimum(list(ta, tb))
+  expect_equal(out[1], 1, 1e-6)
+  expect_equal(out[2], 2, 1e-6)
+})
+
+test_that("Test NumberCrossingM", {
+  ta <-
+    as.double(c(1, 2, 1, 1, -3, -4, 7, 8, 9, 10, -2, 1, -3, 5, 6, 7, -10))
+  tb <-
+    as.double(c(1, 2, 1, 1, -3, -4, 7, 8, 9, 10, -2, 1, -3, 5, 6, 7, -10))
+  
+  out <- NumberCrossingM(list(ta, tb), 0)
+  expect_equal(out[1], 7, 1e-6)
+  expect_equal(out[2], 7, 1e-6)
+})
