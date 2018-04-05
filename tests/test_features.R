@@ -489,3 +489,47 @@ test_that("Test NumberCrossingM", {
   expect_equal(out[1], 7, 1e-6)
   expect_equal(out[2], 7, 1e-6)
 })
+
+test_that("Test Mean", {
+  ta <-
+    as.double(c(20, 20, 20, 18, 25, 19, 20, 20, 20, 20, 40, 30, 1, 50, 1, 1, 5, 1, 20, 20))
+  tb <-
+    as.double(c(20, 20, 20, 2, 19, 1, 20, 20, 20, 1, 15, 1, 30, 1, 1, 18, 4, 1, 20, 20))
+  
+  out <- Mean(list(ta, tb))
+  expect_equal(out[1], 18.55, 1e-6)
+  expect_equal(out[2], 12.7, 1e-6)
+})
+
+test_that("Test Median", {
+  ta <-
+    as.double(c(20, 20, 20, 18, 25, 19, 20, 20, 20, 20, 40, 30, 1, 50, 1, 1, 5, 1, 20, 20))
+  tb <-
+    as.double(c(20, 20, 20, 2, 19, 1, 20, 20, 20, 1, 15, 1, 30, 1, 1, 18, 4, 1, 20, 20))
+  
+  out <- Median(list(ta, tb))
+  expect_equal(out[1], 20, 1e-6)
+  expect_equal(out[2], 18.5, 1e-6)
+})
+
+test_that("Test MeanChange", {
+  ta <-
+    as.double(c(0, 1, 2, 3, 4, 5))
+  tb <-
+    as.double(c(8, 10, 12, 14, 16, 18))
+  
+  out <- MeanChange(list(ta, tb))
+  expect_equal(out[1], 5 / 6, 1e-6)
+  expect_equal(out[2], 10 / 6, 1e-6)
+})
+
+test_that("Test MaxLangevinFixedPoint", {
+  ta <-
+    as.double(c(0, 1, 2, 3, 4, 5))
+  tb <-
+    as.double(c(0, 1, 2, 3, 4, 5))
+  
+  out <- MaxLangevinFixedPoint(list(ta, tb), 7, 2)
+  expect_equal(out[1], 4.562970585, 1e-4)
+  expect_equal(out[2], 4.562970585, 1e-4)
+})
