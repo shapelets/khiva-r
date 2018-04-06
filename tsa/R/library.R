@@ -55,7 +55,9 @@ TSABackendFromOrdinal <- function(number) {
   )
 }
 
-#' @brief Get the device info.
+#' Info
+#' 
+#' Get the device info.
 #'
 #' @export
 Info <- function() {
@@ -63,7 +65,9 @@ Info <- function() {
                 PACKAGE = library))
 }
 
-#' @brief Set the backend.
+#' SetBackend
+#' 
+#' Set the backend.
 #'
 #' @export
 SetBackend <- function(backend) {
@@ -72,9 +76,11 @@ SetBackend <- function(backend) {
                 PACKAGE = library))
 }
 
-#' @brief Get the active backend.
+#' GetBackend
+#' 
+#' Get the active backend.
 #'
-#' @result The active backend.
+#' @return The active backend.
 #' @export
 GetBackend <- function() {
   try(out <- .C("get_backend",
@@ -88,9 +94,11 @@ GetBackend <- function() {
   return(TSABackendFromOrdinal(out$result))
 }
 
-#' @brief Get the active available backends.
+#' GetBackends
+#' 
+#' Get the active available backends.
 #'
-#' @result The available backends.
+#' @return The available backends.
 #' @export
 GetBackends <- function() {
   try(out <- .C("get_backends",
@@ -106,7 +114,9 @@ GetBackends <- function() {
   return(newList)
 }
 
-#' @brief Set the device.
+#' SetDevice
+#' 
+#' Set the device.
 #'
 #' @param device The desired device.
 #' @export
@@ -116,7 +126,9 @@ SetDevice <- function(device) {
                 PACKAGE = library))
 }
 
-#' @brief Get the device
+#' GetDeviceID
+#' 
+#' Get the device id.
 #'
 #' @param device The active device.
 #' @export
@@ -133,9 +145,11 @@ GetDeviceID <- function() {
   return(newList)
 }
 
-#' @brief Get the devices count
+#' GetDeviceCount
 #'
-#' @retrun The devices count.
+#' Get the devices count
+#'
+#' @return The devices count.
 #' @export
 GetDeviceCount <- function() {
   try(out <- .C("get_device_count",

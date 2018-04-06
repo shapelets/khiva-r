@@ -5,7 +5,10 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#' @brief Calculates a new set of timeseries with zero mean and standard deviation one.
+#' Znorm
+#' 
+#' Calculates a new set of timeseries with zero mean and standard deviation one.
+#' 
 #' @param tss List of arrays of type double containing the time series.
 #' @param epsilon Minimum standard deviation to consider.  It acts a a gatekeeper for
 #' those time series that may be constant or near constant.

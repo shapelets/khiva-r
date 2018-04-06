@@ -5,7 +5,9 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#' @brief Calculates de sum over the square values of the time series.
+#' AbsEnergy
+#' 
+#' Calculates de sum over the square values of the time series.
 #'
 #' @param  time.series List of arrays of type double containing the time series.
 #' @return List with the Absolute Energy.
@@ -34,7 +36,9 @@ AbsEnergy <- function(time.series) {
   return(newList)
 }
 
-#' @brief Calculates the sum over the absolute value of consecutive
+#' AbsoluteSumOfChanges
+#' 
+#' Calculates the sum over the absolute value of consecutive
 #' changes in the time series
 #'
 #' @param  time.series List of arrays of type double containing the time series.
@@ -64,7 +68,9 @@ AbsoluteSumOfChanges <- function(time.series) {
   return(newList)
 }
 
-#' @brief Calculates a linear least-squares regression for values of the time series that were aggregated
+#' AggregatedAutocorrelation
+#' 
+#' Calculates a linear least-squares regression for values of the time series that were aggregated
 #' over chunks versus the sequence from 0 up to the number of chunks minus one.
 #'
 #' @param tss List of arrays of type double containing the time series.
@@ -103,8 +109,11 @@ AggregatedAutocorrelation <- function(tss, aggregation.function) {
   return(out$result)
 }
 
-#' @brief Calculates a linear least-squares regression for values of the time series that were aggregated
+#' AggregatedLinearTrend
+#' 
+#' Calculates a linear least-squares regression for values of the time series that were aggregated
 #' over chunks versus the sequence from 0 up to the number of chunks minus one.
+#' 
 #' @param tss List of arrays of type double containing the time series.
 #' @param chunk.size The chunk size used to aggregate the data.
 #' @param aggregation.function Function to be used in the aggregation. It receives an integer which indicates the
@@ -176,7 +185,9 @@ AggregatedLinearTrend <-
     return(result)
   }
 
-#' @brief Calculates a vectorized Approximate entropy algorithm.
+#' ApproximateEntropy
+#'
+#' Calculates a vectorized Approximate entropy algorithm.
 #' https://en.wikipedia.org/wiki/Approximate_entropy
 #' For short time-series this method is highly dependent on the parameters, but should be stable for N > 2000,
 #' see: Yentes et al. (2012) - The Appropriate Use of Approximate Entropy and Sample Entropy with Short Data Sets
@@ -213,7 +224,9 @@ ApproximateEntropy <- function(xss, m, r) {
   return(r.result)
 }
 
-#' @brief Calculates the cross-covariance of the given time series
+#' CrossCovariance
+#' 
+#' Calculates the cross-covariance of the given time series
 #'
 #' @param xss List of arrays of type double containing the time series.
 #' @param yss List of arrays of type double containing the time series.
@@ -250,7 +263,9 @@ CrossCovariance <- function(xss, yss, unbiased) {
   return(r.result)
 }
 
-#' @brief Calculates the auto-covariance the given time series.
+#' AutoCovariance
+#' 
+#' Calculates the auto-covariance the given time series.
 #'
 #' @param xss List of arrays of type double containing the time series.
 #' @param unbiased Determines whether it divides by n - lag (if true) or n (if false).
@@ -279,7 +294,9 @@ AutoCovariance <- function(xss, unbiased) {
   return(r.result)
 }
 
-#' @brief Calculates the cross-correlation of the given time series.
+#' CrossCorrelation
+#'
+#' Calculates the cross-correlation of the given time series.
 #'
 #' @param xss List of arrays of type double containing the time series.
 #' @param yss List of arrays of type double containing the time series.
@@ -316,7 +333,9 @@ CrossCorrelation <- function(xss, yss, unbiased) {
   return(r.result)
 }
 
-#' @brief Calculates the autocorrelation of the specified lag for the given time series.
+#' AutoCorrelation
+#' 
+#' Calculates the autocorrelation of the specified lag for the given time series.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @param max_lag The maximum lag to compute.
@@ -346,15 +365,9 @@ AutoCorrelation <- function(tss, max.lag, unbiased) {
   return(out$result)
 }
 
-#' @brief Calculates the Schreiber, T. and Schmitz, A. (1997) measure of non-linearity
-#' for the given time series
-#'
-#' @param time.series List of arrays of type double containing the time series.
-#' @param lag The lag.
-#' @return The non-linearity value for the given time series.
-#' @export
-
-#' @brief Calculates the binned entropy for the given time series and number of bins.
+#' BinnedEntropy
+#' 
+#' Calculates the binned entropy for the given time series and number of bins.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @param max.bins The number of bins.
@@ -382,6 +395,15 @@ BinnedEntropy <- function(tss, max.bins) {
   return(out$result)
 }
 
+#' C3
+#'
+#' Calculates the Schreiber, T. and Schmitz, A. (1997) measure of non-linearity
+#' for the given time series
+#'
+#' @param time.series List of arrays of type double containing the time series.
+#' @param lag The lag.
+#' @return The non-linearity value for the given time series.
+#' @export
 C3 <- function(tss, lag) {
   tss.length <- as.integer64(length(tss[[1]]))
   tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
@@ -406,7 +428,9 @@ C3 <- function(tss, lag) {
   return(r.result)
 }
 
-#' @brief Calculates an estimate for the time series complexity defined by
+#' CicCe
+#' 
+#' Calculates an estimate for the time series complexity defined by
 #' Batista, Gustavo EAPA, et al (2014). (A more complex time series has more peaks,
 #' valleys, etc.)
 #'
@@ -438,7 +462,9 @@ CidCe <- function(tss, z.normalize) {
   return(r.result)
 }
 
-#' @brief Calculates the number of values in the time series that are higher than
+#' CountAboveMean
+#' 
+#' Calculates the number of values in the time series that are higher than
 #' the mean.
 #'
 #' @param tss List of arrays of type double containing the time series.
@@ -465,7 +491,9 @@ CountAboveMean <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates the number of values in the time series that are lower than
+#' CountBelowMean
+#'
+#' Calculates the number of values in the time series that are lower than
 #' the mean
 #'
 #' @param tss List of arrays of type double containing the time series.
@@ -492,8 +520,10 @@ CountBelowMean <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates a Continuous wavelet transform for the Ricker wavelet, also known as
+#' CwtCoefficients
+#' Calculates a Continuous wavelet transform for the Ricker wavelet, also known as
 #' the "Mexican hat wavelet".
+#' 
 #' @param tss List of arrays of type double containing the time series.
 #' @param widths Widths. List of arrays of type double containing the time series.
 #' @param coeff Coefficient of interest.
@@ -530,7 +560,9 @@ CwtCoefficients <- function(tss, widths, coeff, w) {
   return(out$result)
 }
 
-#' @brief Calculates the sum of squares of chunk i out of N chunks expressed as a ratio
+#' EnergyRatioByChunks
+#' 
+#' Calculates the sum of squares of chunk i out of N chunks expressed as a ratio
 #' with the sum of squares over the whole series. segmentFocus should be lower
 #' than the number of segments.
 #'
@@ -562,8 +594,11 @@ EnergyRatioByChunks <- function(tss, num.segments, segment.focus) {
   return(out$result)
 }
 
-#' @brief Calculates the fourier coefficients of the one-dimensional discrete
+#' FftCoefficient
+#' 
+#' Calculates the fourier coefficients of the one-dimensional discrete
 #' Fourier Transform for real input by fast fourier transformation algorithm.
+#' 
 #' @param tss List of arrays of type double containing the time series.
 #' @return List with:
 #' real: The real part of the coefficient.
@@ -615,7 +650,9 @@ FftCoefficient <- function(tss, coefficient) {
   return(result)
 }
 
-#' @brief     Calculates the first relative location of the maximal value for each timeseries.
+#' FirstLocationOfMaximum
+#' 
+#' Calculates the first relative location of the maximal value for each timeseries.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return The first relative location of the maximum value to the length of the timeseries,
@@ -643,7 +680,9 @@ FirstLocationOfMaximum <- function(tss) {
   return(out$result)
 }
 
-#' @brief     Calculates the first location of the minimal value of each time series. The position
+#' FistLocationOfMinimum
+#' 
+#' Calculates the first location of the minimal value of each time series. The position
 #' is calculated relatively to the length of the series.
 #'
 #' @param tss List of arrays of type double containing the time series.
@@ -671,7 +710,9 @@ FirstLocationOfMinimum <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates if the input time series contain duplicated elements.
+#' HasDuplicates
+#' 
+#' Calculates if the input time series contain duplicated elements.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return Array containing True if the time series contains duplicated elements
@@ -699,7 +740,9 @@ HasDuplicates <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates if the maximum within input time series is duplicated.
+#' HasDuplicateMax
+#' 
+#' Calculates if the maximum within input time series is duplicated.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return Array containing True if the maximum value of the time series is duplicated
@@ -727,7 +770,9 @@ HasDuplicateMax <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates if the minimum of the input time series is duplicated.
+#' HasDuplicateMin
+#' 
+#' Calculates if the minimum of the input time series is duplicated.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return List with an array containing True if the minimum of the time series is duplicated
@@ -756,7 +801,9 @@ HasDuplicateMin <- function(tss) {
   
 }
 
-#' @brief Calculates the index of the max quantile.
+#' IndexMaxQuantile
+#' 
+#' Calculates the index of the max quantile.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @param q The quantile.
@@ -785,7 +832,9 @@ IndexMaxQuantile <- function(tss, q) {
   return(out$result)
 }
 
-#' @brief Returns the kurtosis of tss (calculated with the adjusted Fisher-Pearson
+#' Kurtosis
+#' 
+#' Returns the kurtosis of tss (calculated with the adjusted Fisher-Pearson
 #' standardized moment coefficient G2).
 #'
 #' @param tss List of arrays of type double containing the time series.
@@ -812,7 +861,9 @@ Kurtosis <- function(tss) {
   return(out$result)
 }
 
-#' @brief Checks if the time series within tss have a large standard deviation.
+#' LargeStandardDeviation
+#' 
+#' Checks if the time series within tss have a large standard deviation.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @param r The threshold.
@@ -840,7 +891,9 @@ LargeStandardDeviation <- function(tss, r) {
   return(out$result)
 }
 
-#' @brief Calculates the last location of the maximum value of each time series. The position
+#' LastLocationOfMaximum
+#' 
+#' Calculates the last location of the maximum value of each time series. The position
 #' is calculated relatively to the length of the series.
 #'
 #' @param tss List of arrays of type double containing the time series.
@@ -867,7 +920,9 @@ LastLocationOfMaximum <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates the last location of the minimum value of each time series. The position
+#' LastLocationOfMinimum
+#' 
+#' Calculates the last location of the minimum value of each time series. The position
 #' is calculated relatively to the length of the series.
 #'
 #' @param tss List of arrays of type double containing the time series.
@@ -894,7 +949,9 @@ LastLocationOfMinimum <- function(tss) {
   return(out$result)
 }
 
-#' @brief Returns the length of the input time series.
+#' Length
+#' 
+#' Returns the length of the input time series.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return The length of tss.
@@ -920,7 +977,9 @@ Length <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates a linear least-squares regression for the values of the time series versus the sequence from 0 to
+#' LinearTrend
+#' 
+#' Calculates a linear least-squares regression for the values of the time series versus the sequence from 0 to
 #' length of the time series minus one.
 #'
 #' @param tss List of arrays of type double containing the time series.
@@ -979,7 +1038,9 @@ LinearTrend <- function(tss) {
   return(result)
 }
 
-#' @brief Calculates the length of the longest consecutive subsequence in tss that is bigger than the mean of tss.
+#' LongestStrikeAboveMean
+#' 
+#' Calculates the length of the longest consecutive subsequence in tss that is bigger than the mean of tss.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return The length of the longest consecutive subsequence in the input time series that is bigger than the mean.
@@ -1006,7 +1067,9 @@ LongestStrikeAboveMean <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates the length of the longest consecutive subsequence in tss that is below the mean of tss.
+#' LongestStrikeBelowMean
+#' 
+#' Calculates the length of the longest consecutive subsequence in tss that is below the mean of tss.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return The length of the longest consecutive subsequence in the input time series that is below the mean.
@@ -1032,11 +1095,13 @@ LongestStrikeBelowMean <- function(tss) {
   return(out$result)
 }
 
-#' @brief Largest fixed point of dynamics \f$\max_x {h(x)=0}\f$ estimated from polynomial
-#' \f$h(x)\f$, which has been fitted to the deterministic dynamics of Langevin model
-#' \f[
+#' MaxLangevinFixedPoint
+#' 
+#' Largest fixed point of dynamics \eqn{\max_x {h(x)=0}} estimated from polynomial
+#' \eqn{h(x)}, which has been fitted to the deterministic dynamics of Langevin model
+#' \deqn{
 #'   \dot(x)(t) = h(x(t)) + R \mathcal(N)(0,1)
-#'   \f]
+#'   }
 #' as described by
 #' Friedrich et al. (2000): Physics Letters A 271, p. 217-222 *Extracting model equations from experimental data.
 #
@@ -1069,7 +1134,9 @@ MaxLangevinFixedPoint <- function(tss, m, r) {
   return(out$result)
 }
 
-#' @brief Calculates the mean value for each time series within tss.
+#' Mean
+#' 
+#' Calculates the mean value for each time series within tss.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return The mean value of each time series within tss.
@@ -1095,7 +1162,9 @@ Mean <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates the maximum value for each time series within tss.
+#' Maximum
+#' 
+#' Calculates the maximum value for each time series within tss.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return The maximum value of each time series within tss.
@@ -1121,7 +1190,9 @@ Maximum <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates the mean over the absolute differences between subsequent time series values in tss.
+#' MeanAbsolutgeChange
+#' 
+#' Calculates the mean over the absolute differences between subsequent time series values in tss.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return The mean over the absolute differences between subsequent time series values.
@@ -1147,7 +1218,9 @@ MeanAbsoluteChange <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates the mean over the differences between subsequent time series values in tss.
+#' MeanChange
+#' 
+#' Calculates the mean over the differences between subsequent time series values in tss.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return The mean over the differences between subsequent time series values.
@@ -1174,7 +1247,9 @@ MeanChange <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates mean value of a central approximation of the second derivative for each time series in tss.
+#' MeanSecondDerivativeCentral
+#' 
+#' Calculates mean value of a central approximation of the second derivative for each time series in tss.
 #'
 #' @param tss List of arrays of type double containing the time series.
 #' @return The mean value of a central approximation of
@@ -1201,7 +1276,10 @@ MeanSecondDerivativeCentral <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates the median value for each time series within tss.
+#' Median
+#' 
+#' Calculates the median value for each time series within tss.
+#' 
 #' @param tss List of arrays of type double containing the time series.
 #' @return The median value of each time series within tss.
 #' @export
@@ -1226,7 +1304,10 @@ Median <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates the minimum value for each time series within tss.
+#' Minimum
+#'
+#' Calculates the minimum value for each time series within tss.
+#' 
 #' @param tss List of arrays of type double containing the time series.
 #' @return The minimum value of each time series within tss.
 #' @export
@@ -1251,9 +1332,12 @@ Minimum <- function(tss) {
   return(out$result)
 }
 
-#' @brief Calculates the number of m-crossings. A m-crossing is defined as two sequential values where the first
+#' NumberCrossingM
+#' 
+#' Calculates the number of m-crossings. A m-crossing is defined as two sequential values where the first
 #' value is lower than m and the next is greater, or viceversa. If you set m to zero, you will get the number of
 #' zero crossings.
+#' 
 #' @param tss List of arrays of type double containing the time series.
 #' @param m The m value.
 #' @return The number of m-crossings of each time series within tss.

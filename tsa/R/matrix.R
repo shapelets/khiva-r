@@ -5,10 +5,10 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#'Stomp algorithm
+#' Stomp
 #'
-#' @brief'STOMP algorithm to calculate the matrix profile between 'ta' and 'tb' using a subsequence length
-#'of 'm'.
+#' STOMP algorithm to calculate the matrix profile between 'ta' and 'tb' using a subsequence length
+#' of 'm'.
 #'
 #' @param firs.time.series List of arrays of type double containing the time series. 
 #' @param second.time.series List of arrays of type double containing the time series. 
@@ -45,9 +45,10 @@ Stomp <-
     return(newList)
   }
 
-#' Stomp self join algorithm
-#' @brief 'STOMP algorithm to calculate the matrix profile between 't' and itself using a subsequence length
-#'of 'm'. This method filters the trivial matches.
+#' StompSelfJoin
+#' 
+#' STOMP algorithm to calculate the matrix profile between 't' and itself using a subsequence length
+#' of 'm'. This method filters the trivial matches.
 #'
 #' @param first.time.series List of arrays of type double containing the time series. 
 #' @param subsequence.length Lenght of the subsequence
@@ -78,8 +79,9 @@ StompSelfJoin <- function(first.time.series, subsequence.length) {
   return(newList)
 }
 
-#' find_best_n_discords.R
-#' @brief Primitive of the findBestNDiscords function.
+#' FindBestNDiscords
+#' 
+#' This function extracts the best N discords from a previously calculated matrix profile.
 #
 #' @param profile The matrix profile containing the minimum distance of each
 #' subsequence.
@@ -122,8 +124,9 @@ FindBestNDiscords <- function(profile, index, n) {
   return(newList)
 }
 
-#' find_best_n_motifs.R
-#' @brief Primitive of the findBestNMotifs function.
+#' FindBestNMotifs
+#' 
+#' This function extracts the best N motifs from a previously calculated matrix profile.
 #
 #' @param profile The matrix profile containing the minimum distance of each
 #' subsequence
