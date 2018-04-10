@@ -28,7 +28,7 @@ AbsEnergy <- function(time.series) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   newList <- list("result" = out$result)
@@ -60,7 +60,7 @@ AbsoluteSumOfChanges <- function(time.series) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   newList <- list("result" = out$result)
@@ -104,7 +104,7 @@ AggregatedAutocorrelation <- function(tss, aggregation.function) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -172,7 +172,7 @@ AggregatedLinearTrend <-
               from = 0,
               to = 0
             )),
-            PACKAGE = library
+            PACKAGE = package
           ))
     result <-
       list(
@@ -217,7 +217,7 @@ ApproximateEntropy <- function(xss, m, r) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   r.result <- list("result" = out$result)
   
@@ -256,7 +256,7 @@ CrossCovariance <- function(xss, yss, unbiased) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   r.result <- list("result" = out$result)
   
@@ -287,7 +287,7 @@ AutoCovariance <- function(xss, unbiased) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   r.result <- list("result" = out$result)
   
@@ -326,7 +326,7 @@ CrossCorrelation <- function(xss, yss, unbiased) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   r.result <- list("result" = out$result)
   
@@ -359,7 +359,7 @@ AutoCorrelation <- function(tss, max.lag, unbiased) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -389,7 +389,7 @@ BinnedEntropy <- function(tss, max.bins) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -420,7 +420,7 @@ C3 <- function(tss, lag) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   r.result <- list("result" = out$result)
@@ -454,7 +454,7 @@ CidCe <- function(tss, z.normalize) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   r.result <- list("result" = out$result)
@@ -485,7 +485,7 @@ CountAboveMean <- function(tss) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -514,7 +514,7 @@ CountBelowMean <- function(tss) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -555,7 +555,7 @@ CwtCoefficients <- function(tss, widths, coeff, w) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -588,7 +588,7 @@ EnergyRatioByChunks <- function(tss, num.segments, segment.focus) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -619,7 +619,7 @@ FftAggregated <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -668,7 +668,7 @@ FftCoefficient <- function(tss, coefficient) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   result <-
     (list(
@@ -704,7 +704,7 @@ FirstLocationOfMaximum <- function(tss) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -734,7 +734,7 @@ FirstLocationOfMinimum <- function(tss) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -764,7 +764,7 @@ HasDuplicates <- function(tss) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -794,7 +794,7 @@ HasDuplicateMax <- function(tss) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -824,7 +824,7 @@ HasDuplicateMin <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   
   return(out$result)
@@ -856,7 +856,7 @@ IndexMaxQuantile <- function(tss, q) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -885,7 +885,7 @@ Kurtosis <- function(tss) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -915,7 +915,7 @@ LargeStandardDeviation <- function(tss, r) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -944,7 +944,7 @@ LastLocationOfMaximum <- function(tss) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -973,7 +973,7 @@ LastLocationOfMinimum <- function(tss) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -1000,8 +1000,7 @@ Length <- function(tss) {
       length = (tss.number.of.ts),
       from = 0,
       to = 0
-    )),
-    PACKAGE = library
+    ))
   ))
   
   return(out$result)
@@ -1055,7 +1054,7 @@ LinearTrend <- function(tss) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   result <- list(
@@ -1092,7 +1091,7 @@ LongestStrikeAboveMean <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1120,7 +1119,7 @@ LongestStrikeBelowMean <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1159,7 +1158,7 @@ MaxLangevinFixedPoint <- function(tss, m, r) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1187,7 +1186,7 @@ Mean <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1215,7 +1214,7 @@ Maximum <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1243,7 +1242,7 @@ MeanAbsoluteChange <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1272,7 +1271,7 @@ MeanChange <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1301,7 +1300,7 @@ MeanSecondDerivativeCentral <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1329,7 +1328,7 @@ Median <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1357,7 +1356,7 @@ Minimum <- function(tss) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1389,7 +1388,7 @@ NumberCrossingM <- function(tss, m) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1421,7 +1420,7 @@ NumberPeaks <- function(tss, n) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1454,7 +1453,7 @@ PercentageOfReoccurringDatapointsToAllDatapoints <-
               from = 0,
               to = 0
             )),
-            PACKAGE = library
+            PACKAGE = package
           ))
     return(out$result)
   }
@@ -1489,7 +1488,7 @@ Quantile <- function(tss, q, precision = 1e8) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }
@@ -1521,7 +1520,7 @@ RatioBeyondRSigma <- function(tss, r) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }

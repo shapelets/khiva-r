@@ -32,7 +32,7 @@ Znorm <- function(tss, epsilon = 0.00000001) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }

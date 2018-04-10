@@ -7,7 +7,7 @@
 
 #' Lls
 #' 
-#' Calculates the minimum norm least squares solution \eqn{x} \eqn{(||A·x − b||^2)} to \eqn{A·x = b}. This
+#' Calculates the minimum norm least squares solution \eqn{x} \eqn{(||A·x - b||^2)} to \eqn{A·x = b}. This
 # 'function uses the singular value decomposition function of Arrayfire. The actual formula that this function computes
 #' is \eqn{x = V·D\dagger·U^T·b}. Where \eqn{U} and \eqn{V} are orthogonal matrices and \eqn{Ddagger} contains
 #' the inverse values of the singular values contained in \eqn{D} if they are not zero, and zero otherwise.
@@ -36,7 +36,7 @@ Lls <- function(a, b) {
             from = 0,
             to = 0
           )),
-          PACKAGE = library
+          PACKAGE = package
         ))
   return(out$result)
 }

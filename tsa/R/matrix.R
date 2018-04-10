@@ -37,7 +37,7 @@ Stomp <-
         from = 0,
         to = 0
       )),
-      PACKAGE = library
+      PACKAGE = package
     ))
     
     newList <- list("profile" = out$p, "index" = out$i)
@@ -71,7 +71,7 @@ StompSelfJoin <- function(first.time.series, subsequence.length) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   newList <- list("profile" = out$p, "index" = out$i)
@@ -112,7 +112,7 @@ FindBestNDiscords <- function(profile, index, n) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   newList <- list(
@@ -158,7 +158,7 @@ FindBestNMotifs <- function(profile, index, n) {
       from = 0,
       to = 0
     )),
-    PACKAGE = library
+    PACKAGE = package
   ))
   
   newList <- list(

@@ -5,28 +5,49 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-platform <- Sys.info()['sysname']
-
-if (platform == 'Darwin') {
-  shared.library <-
-    system.file("extdata", "libtsa_c.dylib", package = "tsa")
-  dyn.load(shared.library)
-  library <- "libtsa_c.dylib"
-}
-if (platform == 'Windows') {
-  shared.library <-
-    system.file("extdata", "libtsa_c.dll", package = "tsa")
-  dyn.load(shared.library)
-  library <- "libtsa_c.dll"
-}
-if (platform == 'Linux') {
-  shared.library <-
-    system.file("extdata", "libtsa_c.so", package = "tsa")
-  dyn.load(shared.library)
-  library <- "libtsa_c.so"
+PackageName <- function() {
+  platform <- Sys.info()['sysname']
+  
+  if (platform == 'Darwin') {
+    package <- 'libtsa_c.dylib'
+  }
+  else if (platform == 'Windows') {
+    package <- 'libtsa_c.dll'
+  }
+  else if (platform == 'Linux') {
+    package <- 'libtsa_c.so'
+  }
+  
+  return(package)
 }
 
-library("bit64")
+LoadLibraries <- function() {
+  platform <- Sys.info()['sysname']
+  
+  if (platform == 'Darwin') {
+    shared.library <- '/usr/local/lib/libtsa_c.dylib'
+    dyn.load('/usr/local/lib/libaf.3.dylib')
+    dyn.load(shared.library)
+  }
+  else if (platform == 'Windows') {
+    shared.library <- 'C:\\Windows\\system32\\libtsa_c.dll'
+    dyn.load('C:\\Windows\\system32\\libaf.3.dll')
+    dyn.load(shared.library)
+  }
+  else if (platform == 'Linux') {
+    shared.library <- '/usr/local/lib/libtsa_c.so'
+    dyn.load('/usr/local/lib/libaf.3.so')
+    dyn.load(shared.library)
+  }
+  
+  library("bit64")
+}
+
+package <- PackageName()
+
+.onLoad <- function(lib.name, pkg.name) {
+  LoadLibraries()
+}
 
 TSABackend <- function() {
   list(
@@ -56,7 +77,7 @@ TSABackendFromOrdinal <- function(number) {
 }
 
 #' Info
-#' 
+#'
 #' Get the device info.
 #'
 #' @export
@@ -66,7 +87,7 @@ Info <- function() {
 }
 
 #' SetBackend
-#' 
+#'
 #' Set the backend.
 #'
 #' @export
@@ -77,7 +98,7 @@ SetBackend <- function(backend) {
 }
 
 #' GetBackend
-#' 
+#'
 #' Get the active backend.
 #'
 #' @return The active backend.
@@ -95,7 +116,7 @@ GetBackend <- function() {
 }
 
 #' GetBackends
-#' 
+#'
 #' Get the active available backends.
 #'
 #' @return The available backends.
@@ -115,7 +136,7 @@ GetBackends <- function() {
 }
 
 #' SetDevice
-#' 
+#'
 #' Set the device.
 #'
 #' @param device The desired device.
@@ -127,7 +148,7 @@ SetDevice <- function(device) {
 }
 
 #' GetDeviceID
-#' 
+#'
 #' Get the device id.
 #'
 #' @param device The active device.
