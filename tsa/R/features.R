@@ -594,6 +594,36 @@ EnergyRatioByChunks <- function(tss, num.segments, segment.focus) {
   return(out$result)
 }
 
+#' FftAggregated
+#'
+#' Calculates the spectral centroid(mean), variance, skew, and kurtosis of the absolute fourier transform
+#' spectrum.
+#'
+#' @param tss List of arrays of type double containing the time series.
+#' @return The spectral centroid (mean), variance, skew, and kurtosis of the absolute fourier transform
+#'  spectrum.
+#' @export
+FftAggregated <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "fft_aggregated",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.double(seq(
+            length = (tss.n * tss.l),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
 #' FftCoefficient
 #' 
 #' Calculates the fourier coefficients of the one-dimensional discrete
@@ -1354,6 +1384,138 @@ NumberCrossingM <- function(tss, m) {
           tss.l,
           tss.n,
           as.integer(m),
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' NumberPeaks
+#' 
+#' Calculates the number of peaks of at least support \eqn{n} in the time series \eqn{tss}. A peak of support
+#' \eqn{n} is defined as a subsequence of \eqn{tss} where a value occurs, which is bigger than
+#' its \eqn{n} neighbours to the left and to the right.
+#' 
+#' @param tss List of arrays of type double containing the time series.
+#' @param n The support of the peak.
+#' @return The number of m-crossings of each time series within tss.
+#' @export
+NumberPeaks <- function(tss, n) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "number_peaks",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          as.integer(n),
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' PercentageOfReoccurringDatapointsToAllDatapoints
+#' 
+#' Calculates the number of peaks of at least support \eqn{n} in the time series \eqn{tss}. A peak of support
+#' \eqn{n} is defined as a subsequence of \eqn{tss} where a value occurs, which is bigger than
+#' its \eqn{n} neighbours to the left and to the right.
+#' 
+#' @param tss List of arrays of type double containing the time series.
+#' @param n The support of the peak.
+#' @return The number of m-crossings of each time series within tss.
+#' @export
+PercentageOfReoccurringDatapointsToAllDatapoints <-
+  function(tss, isSorted) {
+    tss.l <- as.integer64(length(tss[[1]]))
+    tss.n <- as.integer64(length(tss))
+    tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+    
+    try(out <-
+          .C(
+            "percentage_of_reoccurring_datapoints_to_all_datapoints",
+            tss.concatenated,
+            tss.l,
+            tss.n,
+            as.logical(isSorted),
+            result = as.double(seq(
+              length = (tss.n),
+              from = 0,
+              to = 0
+            )),
+            PACKAGE = library
+          ))
+    return(out$result)
+  }
+
+#' Quantile
+#' 
+#' Returns values at the given quantile.
+#' 
+#' @param tss List of arrays of type double containing the time series.
+#' @param q Percentile(s) at which to extract score(s). One or many.
+#' @param precision Number of decimals expected.
+#' @return The number of m-crossings of each time series within tss.
+#' @export
+Quantile <- function(tss, q, precision = 1e8) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  q.l <- as.integer64(length(q))
+  q <- as.double(q)
+  try(out <-
+        .C(
+          "quantile",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          q,
+          q.l,
+          as.double(precision),
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = library
+        ))
+  return(out$result)
+}
+
+#' RatioBeyondRSigma
+#' 
+#' Calculates the ratio of values that are more than  \eqn{r*std(x)} (so \eqn{r} sigma away from the mean of
+#' \eqn{x}.
+#' 
+#' @param tss List of arrays of type double containing the time series.
+#' @param q Percentile(s) at which to extract score(s). One or many.
+#' @param precision Number of decimals expected.
+#' @return The number of m-crossings of each time series within tss.
+#' @export
+RatioBeyondRSigma <- function(tss, r) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "ratio_beyond_r_sigma",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          as.double(r),
           result = as.double(seq(
             length = (tss.n),
             from = 0,

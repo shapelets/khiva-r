@@ -533,3 +533,64 @@ test_that("Test MaxLangevinFixedPoint", {
   expect_equal(out[1], 4.562970585, 1e-4)
   expect_equal(out[2], 4.562970585, 1e-4)
 })
+
+test_that("Test FftAggregated", {
+  ta <-
+    as.double(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
+  tb <-
+    as.double(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
+  
+  out <- FftAggregated(list(ta, tb))
+  expect_equal(out[1], 1.135143, 1e-4)
+  expect_equal(out[2], 2.368324, 1e-4)
+  expect_equal(out[3], 1.248777, 1e-4)
+  expect_equal(out[4], 3.642666, 1e-4)
+  expect_equal(out[5], 1.135143, 1e-4)
+  expect_equal(out[6], 2.368324, 1e-4)
+  expect_equal(out[7], 1.248777, 1e-4)
+  expect_equal(out[8], 3.642666, 1e-4)
+})
+
+test_that("Test NumberPeaks", {
+  ta <-
+    as.double(c(3, 0, 0, 4, 0, 0, 13))
+  tb <-
+    as.double(c(3, 0, 0, 4, 0, 0, 13))
+  
+  out <- NumberPeaks(list(ta, tb), 2)
+  expect_equal(out[1], 1, 1e-4)
+  expect_equal(out[2], 1, 1e-4)
+})
+
+test_that("Test PercentageOfReocurringDatapointsToAllDatapoints", {
+  ta <-
+    as.double(c(3, 0, 0, 4, 0, 0, 13))
+  tb <-
+    as.double(c(3, 0, 0, 4, 0, 0, 13))
+  
+  out <-
+    PercentageOfReoccurringDatapointsToAllDatapoints(list(ta, tb), FALSE)
+  expect_equal(out[1], 0.25, 1e-4)
+  expect_equal(out[2], 0.25, 1e-4)
+})
+
+test_that("Test Quantile", {
+  ta <-
+    as.double(c(0, 0, 0, 0, 3, 4, 13))
+  tb <-
+    as.double(c(0, 0, 0, 0, 3, 4, 13))
+  q <- as.double(c(0.6))
+  out <- Quantile(list(ta, tb), q)
+  expect_equal(out[1], 1.79999999, 1e-4)
+  expect_equal(out[2], 1.79999999, 1e-4)
+})
+
+test_that("Test RatioBeyondRSigma", {
+  ta <-
+    as.double(c(3, 0, 0, 4, 0, 0, 13))
+  tb <-
+    as.double(c(3, 0, 0, 4, 0, 0, 13))
+  out <- RatioBeyondRSigma(list(ta, tb), 0.5)
+  expect_equal(out[1], 0.7142857142857143, 1e-4)
+  expect_equal(out[2], 0.7142857142857143, 1e-4)
+})
