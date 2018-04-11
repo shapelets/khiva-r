@@ -4,7 +4,6 @@
 #This Source Code Form is subject to the terms of the Mozilla Public
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 test_that("Test C3", {
   ta <- as.double(c(0, 1, 2, 3, 4, 5))
   tb <- as.double(c(6, 7, 8, 9, 10, 11))
@@ -593,4 +592,64 @@ test_that("Test RatioBeyondRSigma", {
   out <- RatioBeyondRSigma(list(ta, tb), 0.5)
   expect_equal(out[1], 0.7142857142857143, 1e-4)
   expect_equal(out[2], 0.7142857142857143, 1e-4)
+})
+
+test_that("Test SampleEntropy", {
+  ta <-
+    as.double(c(3, 0, 0, 4, 0, 0, 13))
+  tb <-
+    as.double(c(3, 0, 0, 4, 0, 0, 13))
+  out <- SampleEntropy(list(ta, tb))
+  expect_equal(out[1], 1.252762968495368, 1e-4)
+  expect_equal(out[2], 1.252762968495368, 1e-4)
+})
+
+test_that("Test Skewness", {
+  ta <-
+    as.double(c(3, 0, 0, 4, 0, 0, 13))
+  tb <-
+    as.double(c(3, 0, 0, 4, 0, 0, 13))
+  out <- Skewness(list(ta, tb))
+  expect_equal(out[1], 2.038404735373753, 1e-4)
+  expect_equal(out[2], 2.038404735373753, 1e-4)
+})
+
+test_that("Test StandardDeviation", {
+  ta <-
+    as.double(c(20, 20, 20, 18, 25, 19, 20, 20, 20, 20, 40, 30, 1, 50, 1, 1, 5, 1, 20, 20))
+  tb <-
+    as.double(c(20, 20, 20, 2, 19, 1, 20, 20, 20, 1, 15, 1, 30, 1, 1, 18, 4, 1, 20, 20))
+  out <- StandardDeviation(list(ta, tb))
+  expect_equal(out[1], 12.363150892875165, 1e-4)
+  expect_equal(out[2], 9.51367436903324, 1e-4)
+})
+
+test_that("Test SumOfReoccurringDatapoints", {
+  ta <-
+    as.double(c(3, 3, 0, 4, 0, 13, 13))
+  tb <-
+    as.double(c(3, 3, 0, 4, 0, 13, 13))
+  out <- SumOfReoccurringDatapoints(list(ta, tb))
+  expect_equal(out[1], 32, 1e-4)
+  expect_equal(out[2], 32, 1e-4)
+})
+
+test_that("Test SymmetryLooking", {
+  ta <-
+    as.double(c(20, 20, 20, 18, 25, 19, 20, 20, 20, 20, 40, 30, 1, 50, 1, 1, 5, 1, 20, 20))
+  tb <-
+    as.double(c(20, 20, 20, 2, 19, 1, 20, 20, 20, 1, 15, 1, 30, 1, 1, 18, 4, 1, 20, 20))
+  out <- SymmetryLooking(list(ta, tb), 0.1)
+  expect_equal(out[1], TRUE)
+  expect_equal(out[2], FALSE)
+})
+
+test_that("Test ValueCount", {
+  ta <-
+    as.double(c(20, 20, 20, 18, 25, 19, 20, 20, 20, 20, 40, 30, 1, 50, 1, 1, 5, 1, 20, 20))
+  tb <-
+    as.double(c(20, 20, 20, 2, 19, 1, 20, 20, 20, 1, 15, 1, 30, 1, 1, 18, 4, 1, 20, 20))
+  out <- ValueCount(list(ta, tb), 20)
+  expect_equal(out[1], 9)
+  expect_equal(out[2], 8)
 })

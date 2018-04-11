@@ -1000,7 +1000,8 @@ Length <- function(tss) {
       length = (tss.number.of.ts),
       from = 0,
       to = 0
-    ))
+    )),
+    PACKAGE = package
   ))
   
   return(out$result)
@@ -1516,6 +1517,190 @@ RatioBeyondRSigma <- function(tss, r) {
           tss.n,
           as.double(r),
           result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = package
+        ))
+  return(out$result)
+}
+
+#' SampleEntropy
+#' 
+#' Calculates a vectorized sample entropy algorithm.
+#' https://en.wikipedia.org/wiki/Sample_entropy
+#' https://www.ncbi.nlm.nih.gov/pubmed/10843903?dopt=Abstract
+#' For short time-series this method is highly dependent on the parameters, but should be stable for N > 2000,
+#' see: Yentes et al. (2012) - The Appropriate Use of Approximate Entropy and Sample Entropy with Short Data Sets
+#' Other shortcomings and alternatives discussed in:
+#' Richman & Moorman (2000) - Physiological time-series analysis using approximate entropy and sample entropy.
+#' 
+#' @param tss List of arrays of type double containing the time series.
+#' @return An array with the same dimensions as tss, whose values (time series in dimension 0)
+#' contains the vectorized sample entropy for all the input time series in tss.
+#' @export
+SampleEntropy <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "sample_entropy",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = package
+        ))
+  return(out$result)
+}
+
+#' Skewness
+#' 
+#' Calculates the sample skewness of tss (calculated with the adjusted Fisher-Pearson standardized
+#' moment coefficient G1).
+#' 
+#' @param tss List of arrays of type double containing the time series.
+#' @return Array containing the skewness of each time series in tss.
+#' @export
+Skewness <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "skewness",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = package
+        ))
+  return(out$result)
+}
+
+#' Skewness
+#' 
+#' Calculates the standard deviation of each time series within tss.
+#' 
+#' @param tss List of arrays of type double containing the time series.
+#' @return The standard deviation of each time series within tss.
+#' @export
+StandardDeviation <- function(tss) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "standard_deviation",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = package
+        ))
+  return(out$result)
+}
+
+#' SumOfReoccuringDatapoints
+#' 
+#' Calculates the sum of all data points, that are present in the time series more than once.
+#' 
+#' @param tss List of arrays of type double containing the time series.
+#' @return Returns the sum of all data points, that are present in the time series more than once.
+#' @export
+SumOfReoccurringDatapoints <- function(tss, is.sorted = FALSE) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "sum_of_reoccurring_datapoints",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          as.logical(is.sorted),
+          result = as.double(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = package
+        ))
+  return(out$result)
+}
+
+#' SymmetryLooking
+#' 
+#' Calculates if the distribution of tss *looks symmetric*. This is the case if
+#' \deqn{
+#'  | mean(tss)-median(tss)| < r * (max(tss)-min(tss))
+#' }
+#' 
+#' @param tss List of arrays of type double containing the time series.
+#' @param r The percentage of the range to compare with.
+#' @return An array denoting if the input time series look symmetric.
+#' @export
+SymmetryLooking <- function(tss, r) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.double(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "symmetry_looking",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          as.double(r),
+          result = as.logical(seq(
+            length = (tss.n),
+            from = 0,
+            to = 0
+          )),
+          PACKAGE = package
+        ))
+  return(out$result)
+}
+
+#' ValueCount
+#' 
+#' Counts occurrences of value in the time series tss.
+#' 
+#' @param tss List of arrays of type double containing the time series.
+#' @param v The value to be counted.
+#' @return An array containing the count of the given value in each time series.
+#' @export
+ValueCount <- function(tss, v) {
+  tss.l <- as.integer64(length(tss[[1]]))
+  tss.n <- as.integer64(length(tss))
+  tss.concatenated <- as.integer(apply(cbind(tss), 1, unlist))
+  
+  try(out <-
+        .C(
+          "value_count",
+          tss.concatenated,
+          tss.l,
+          tss.n,
+          as.double(v),
+          result = as.integer(seq(
             length = (tss.n),
             from = 0,
             to = 0

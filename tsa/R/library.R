@@ -83,7 +83,7 @@ TSABackendFromOrdinal <- function(number) {
 #' @export
 Info <- function() {
   try(out <- .C("info",
-                PACKAGE = library))
+                PACKAGE = package))
 }
 
 #' SetBackend
@@ -94,7 +94,7 @@ Info <- function() {
 SetBackend <- function(backend) {
   try(out <- .C("set_backend",
                 as.integer(backend),
-                PACKAGE = library))
+                PACKAGE = package))
 }
 
 #' GetBackend
@@ -110,7 +110,7 @@ GetBackend <- function() {
                   from = 0,
                   to = 0
                 )),
-                PACKAGE = library))
+                PACKAGE = package))
   
   return(TSABackendFromOrdinal(out$result))
 }
@@ -128,7 +128,7 @@ GetBackends <- function() {
                   from = 0,
                   to = 0
                 )),
-                PACKAGE = library))
+                PACKAGE = package))
   
   newList <- list("result" = out$result)
   
@@ -144,7 +144,7 @@ GetBackends <- function() {
 SetDevice <- function(device) {
   try(out <- .C("set_device",
                 as.integer(device),
-                PACKAGE = library))
+                PACKAGE = package))
 }
 
 #' GetDeviceID
@@ -160,7 +160,7 @@ GetDeviceID <- function() {
                   from = 0,
                   to = 0
                 )),
-                PACKAGE = library))
+                PACKAGE = package))
   newList <- list("result" = out$result)
   
   return(newList)
@@ -179,7 +179,7 @@ GetDeviceCount <- function() {
                   from = 0,
                   to = 0
                 )),
-                PACKAGE = library))
+                PACKAGE = package))
   newList <- list("result" = out$result)
   
   return(newList)
