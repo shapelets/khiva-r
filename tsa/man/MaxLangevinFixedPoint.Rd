@@ -4,10 +4,10 @@
 \alias{MaxLangevinFixedPoint}
 \title{MaxLangevinFixedPoint}
 \usage{
-MaxLangevinFixedPoint(tss, m, r)
+MaxLangevinFixedPoint(arr, m, r)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
 \item{m:}{Order of polynom to fit for estimating fixed points of dynamics.}
 

@@ -8,18 +8,20 @@
 test_that("Test stomp", {
   SetBackend(4)
   SetDevice(0)
-  
-  ta <-
-    as.double(c(10, 10, 10, 11, 12, 11, 10, 10, 11, 12, 11, 10, 10, 10))
-  tb <-
-    as.double(c(10, 10, 10, 11, 12, 11, 10, 10, 11, 12, 11, 10, 10, 10))
+  ta <- as.single(c(10, 11, 10, 11))
+  tb <- as.single(c(10, 11, 10, 11))
+  tc <- as.single(c(10, 11, 10, 11, 10, 11, 10, 11))
+  td <- as.single(c(10, 11, 10, 11, 10, 11, 10, 11))
+  a <- Array(data.frame(ta, tb))
+  b <- Array(data.frame(tc, td))
   expected.index <-
-    as.integer(c(11, 1, 2, 8, 9, 10, 1, 2, 8, 9, 10, 11))
-  out <- Stomp(ta, tb, 3)
-  
+    as.integer(c(0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1))
+  out <- Stomp(a, b, 3)
+  profile <- getData(out$profile)
+  index <- getData(out$index)
   for (i in 1:length(expected.index)) {
-    expect_equal(out$profile[i], 0, 1e-6)
-    expect_equal(out$index[i], expected.index[i], 1e-6)
+    expect_equal(profile[i], 0, 1e-2)
+    expect_equal(index[i], expected.index[i], 1e-2)
   }
 })
 
@@ -28,14 +30,18 @@ test_that("Test stompSelJoin", {
   SetDevice(0)
   
   ta <-
-    as.double(c(10, 10, 10, 11, 12, 11, 10, 10, 11, 12, 11, 10, 10, 10))
+    as.double(c(10, 10, 11, 11, 10, 11, 10, 10, 11, 11, 10, 11, 10, 10))
+  tb <-
+    as.double(c(11, 10, 10, 11, 10, 11, 11, 10, 11, 11, 10, 10, 11, 10))
   expected.index <-
-    as.integer(c(11, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 0))
-  out <- StompSelfJoin(ta, 3)
-  
+    as.integer(c(6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5, 9, 10, 11, 6, 7, 8, 3, 4, 5, 0, 1, 2))
+  a <- Array(data.frame(ta, tb))
+  out <- StompSelfJoin(a, 3)
+  profile <- getData(out$profile)
+  index <- getData(out$index)
   for (i in 1:length(expected.index)) {
-    expect_equal(out$profile[i], 0, 1e-6)
-    expect_equal(out$index[i], expected.index[i], 1e-6)
+    expect_equal(profile[i], 0, 1e-2)
+    expect_equal(index[i], expected.index[i], 1e-2)
   }
 })
 
@@ -44,17 +50,21 @@ test_that("Test findBestNMotifs", {
   SetDevice(0)
   
   ta <-
-    as.double(c(10, 11, 10, 10, 10, 10, 9, 10, 10, 10, 10, 10, 11, 10))
+    as.double(c(10, 10, 10, 10, 10, 10, 9, 10, 10, 10, 10, 10, 11, 10, 9))
   tb <-
-    as.double(c(10, 11, 10, 300, 20, 30, 40, 50, 60, 70, 80, 90, 80, 90))
-  stomp.results <- Stomp(ta, tb, 3)
-  out <-
-    FindBestNMotifs(stomp.results$profile, stomp.results$index, 3)
+    as.double(c(10, 11, 10, 9))
+  a <- Array(data.frame(ta))
+  b <- Array(data.frame(tb))
   
-  expect_equal(out$motif.index[1], 0)
-  expect_equal(out$motif.index[2], 0)
-  expect_equal(out$subsequence.index[1], 0)
-  expect_equal(out$subsequence.index[2], 10)
+  stomp.results <- Stomp(a, b, 3)
+  out <-
+    FindBestNMotifs(stomp.results$profile, stomp.results$index, 2)
+  motif.index <- getData(out$motif.index)
+  subsequence.index <- getData(out$subsequence)
+  expect_equal(motif.index[1], 12, 1e-2)
+  expect_equal(motif.index[2], 11, 1e-2)
+  expect_equal(subsequence.index[1], 1, 1e-2)
+  expect_equal(subsequence.index[2], 0, 1e-2)
 })
 
 test_that("Test findBestNDiscords", {
@@ -62,13 +72,16 @@ test_that("Test findBestNDiscords", {
   SetDevice(0)
   
   ta <-
-    as.double(c(10, 11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 10))
+    as.double(c(11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11))
   tb <-
-    as.double(c(10, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 10))
-  stomp.results <- Stomp(ta, tb, 3)
-  out <-
-    FindBestNDiscords(stomp.results$profile, stomp.results$index, 3)
+    as.double(c(9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9))
+  a <- Array(data.frame(ta))
+  b <- Array(data.frame(tb))
   
-  expect_equal(out$subsequence.index[1], 0)
-  expect_equal(out$subsequence.index[2], 11)
+  stomp.results <- Stomp(a, b, 3)
+  out <-
+    FindBestNDiscords(stomp.results$profile, stomp.results$index, 2)
+  subsequence.index <- getData(out$subsequence.index)
+  expect_equal(subsequence.index[1], 0, 1e-2)
+  expect_equal(subsequence.index[2], 9, 1e-2)
 })

@@ -7,16 +7,16 @@
 Stomp(first.time.series, second.time.series, subsequence.length)
 }
 \arguments{
-\item{second.time.series}{List of arrays of type double containing the time series.}
+\item{first.time.series}{TSA Array the time series.}
 
-\item{firs.time.series}{List of arrays of type double containing the time series.}
+\item{second.time.series}{TSA Array time series.}
 
-\item{subsequence.lenth}{Length of the subsequence.}
+\item{subsequence.length}{Length of the subsequence.}
 }
 \value{
-A matrix profile
+List of TSA Arrays with the matrix profile and the index profile
 }
 \description{
-STOMP algorithm to calculate the matrix profile between 'ta' and 'tb' using a subsequence length
-of 'm'.
+STOMP algorithm to calculate the matrix profile between 'first.time.series' and 'second.time.series' using a subsequence length
+of 'subsequence.length'.
 }

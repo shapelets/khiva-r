@@ -4,14 +4,14 @@
 \alias{Minimum}
 \title{Minimum}
 \usage{
-Minimum(tss)
+Minimum(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-The minimum value of each time series within tss.
+The minimum value of each time series within arr.
 }
 \description{
-Calculates the minimum value for each time series within tss.
+Calculates the minimum value for each time series within arr.
 }

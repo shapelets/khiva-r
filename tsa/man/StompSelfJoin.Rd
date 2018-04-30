@@ -4,15 +4,15 @@
 \alias{StompSelfJoin}
 \title{StompSelfJoin}
 \usage{
-StompSelfJoin(first.time.series, subsequence.length)
+StompSelfJoin(t, m)
 }
 \arguments{
-\item{first.time.series}{List of arrays of type double containing the time series.}
+\item{t}{TSA Array the time series.}
 
-\item{subsequence.length}{Lenght of the subsequence}
+\item{m}{TSA Array the time series.}
 }
 \value{
-A matrix profile
+List of TSA Arrays with the matrix profile and the index profile
 }
 \description{
 STOMP algorithm to calculate the matrix profile between 't' and itself using a subsequence length

@@ -4,15 +4,15 @@
 \alias{NumberCrossingM}
 \title{NumberCrossingM}
 \usage{
-NumberCrossingM(tss, m)
+NumberCrossingM(arr, m)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
 \item{m}{The m value.}
 }
 \value{
-The number of m-crossings of each time series within tss.
+The number of m-crossings of each time series within arr.
 }
 \description{
 Calculates the number of m-crossings. A m-crossing is defined as two sequential values where the first

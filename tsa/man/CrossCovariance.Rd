@@ -4,18 +4,18 @@
 \alias{CrossCovariance}
 \title{CrossCovariance}
 \usage{
-CrossCovariance(xss, yss, unbiased)
+CrossCovariance(arr.xss, arr.yss, unbiased)
 }
 \arguments{
-\item{xss}{List of arrays of type double containing the time series.}
-
-\item{yss}{List of arrays of type double containing the time series.}
-
 \item{unbiased}{Determines whether it divides by n - lag (if true) or n (if false).}
+
+\item{xss.arr}{TSA array with the time series.}
+
+\item{yss.arr}{TSA array with the time series.}
 }
 \value{
 The cross-covariance value for the given time series.
 }
 \description{
-Calculates the cross-covariance of the given time series
+Calculates the cross-covariance of the given time series.
 }

@@ -4,10 +4,10 @@
 \alias{EnergyRatioByChunks}
 \title{EnergyRatioByChunks}
 \usage{
-EnergyRatioByChunks(tss, num.segments, segment.focus)
+EnergyRatioByChunks(arr, num.segments, segment.focus)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
 \item{num.segments}{The number of segments to divide the series into.}
 

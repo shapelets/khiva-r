@@ -4,10 +4,10 @@
 \alias{AggregatedLinearTrend}
 \title{AggregatedLinearTrend}
 \usage{
-AggregatedLinearTrend(tss, chunk.size, aggregation.function)
+AggregatedLinearTrend(arr, chunk.size, aggregation.function)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
 \item{chunk.size}{The chunk size used to aggregate the data.}
 
@@ -23,12 +23,14 @@ function to be applied:
 }}
 }
 \value{
-List with:
-pvalue: The pvalues for all time series.
-rvalue: The rvalues for all time series.
-intercept: The intercept values for all time series.
-slope: The slope for all time series.
-stderrest: The stderr values for all time series.
+List of TSA Arrays with:
+{
+    pvalue: The pvalues for all time series.
+    rvalue: The rvalues for all time series.
+    intercept: The intercept values for all time series.
+    slope: The slope for all time series.
+    stderrest: The stderr values for all time series.
+}
 }
 \description{
 Calculates a linear least-squares regression for values of the time series that were aggregated

@@ -4,10 +4,10 @@
 \alias{LastLocationOfMinimum}
 \title{LastLocationOfMinimum}
 \usage{
-LastLocationOfMinimum(tss)
+LastLocationOfMinimum(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
 The last relative location of the minimum value of each series.

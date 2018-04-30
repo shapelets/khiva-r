@@ -4,15 +4,15 @@
 \alias{Kurtosis}
 \title{Kurtosis}
 \usage{
-Kurtosis(tss)
+Kurtosis(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-The kurtosis of each tss.
+The kurtosis of each arr.
 }
 \description{
-Returns the kurtosis of tss (calculated with the adjusted Fisher-Pearson
+Returns the kurtosis of arr (calculated with the adjusted Fisher-Pearson
 standardized moment coefficient G2).
 }

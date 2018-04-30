@@ -4,17 +4,17 @@
 \alias{C3}
 \title{C3}
 \usage{
-C3(tss, lag)
+C3(arr, lag)
 }
 \arguments{
-\item{lag}{The lag.}
+\item{arr}{TSA array with the time series.}
 
-\item{time.series}{List of arrays of type double containing the time series.}
+\item{lag}{The lag.}
 }
 \value{
 The non-linearity value for the given time series.
 }
 \description{
 Calculates the Schreiber, T. and Schmitz, A. (1997) measure of non-linearity
-for the given time series
+for the given time series.
 }

@@ -4,18 +4,18 @@
 \alias{Lls}
 \title{Lls}
 \usage{
-Lls(a, b)
+Lls(arr.a, arr.b)
 }
 \arguments{
-\item{a}{Coefficients of the linear equation problem to solve.}
+\item{a}{TSA Array with the coefficients of the linear equation problem to solve.}
 
-\item{b}{The measured values.}
+\item{b}{TSA Array with the measured values.}
 }
 \value{
 Contains the solution to the linear equation problem minimizing the norm 2.
 }
 \description{
-Calculates the minimum norm least squares solution \eqn{x} \eqn{(||A·x − b||^2)} to \eqn{A·x = b}. This
+Calculates the minimum norm least squares solution \eqn{x} \eqn{(||A·x - b||^2)} to \eqn{A·x = b}. This
 is \eqn{x = V·D\dagger·U^T·b}. Where \eqn{U} and \eqn{V} are orthogonal matrices and \eqn{Ddagger} contains
 the inverse values of the singular values contained in \eqn{D} if they are not zero, and zero otherwise.
 }

@@ -4,10 +4,10 @@
 \alias{HasDuplicateMax}
 \title{HasDuplicateMax}
 \usage{
-HasDuplicateMax(tss)
+HasDuplicateMax(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
 Array containing True if the maximum value of the time series is duplicated

@@ -4,14 +4,14 @@
 \alias{MeanChange}
 \title{MeanChange}
 \usage{
-MeanChange(tss)
+MeanChange(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
 The mean over the differences between subsequent time series values.
 }
 \description{
-Calculates the mean over the differences between subsequent time series values in tss.
+Calculates the mean over the differences between subsequent time series values in arr.
 }

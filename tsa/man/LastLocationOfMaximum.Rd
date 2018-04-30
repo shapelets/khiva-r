@@ -4,10 +4,10 @@
 \alias{LastLocationOfMaximum}
 \title{LastLocationOfMaximum}
 \usage{
-LastLocationOfMaximum(tss)
+LastLocationOfMaximum(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
 The last relative location of the maximum value of each series.

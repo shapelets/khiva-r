@@ -4,14 +4,14 @@
 \alias{Mean}
 \title{Mean}
 \usage{
-Mean(tss)
+Mean(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-The mean value of each time series within tss.
+The mean value of each time series within arr.
 }
 \description{
-Calculates the mean value for each time series within tss.
+Calculates the mean value for each time series within arr.
 }

@@ -4,15 +4,15 @@
 \alias{AbsoluteSumOfChanges}
 \title{AbsoluteSumOfChanges}
 \usage{
-AbsoluteSumOfChanges(time.series)
+AbsoluteSumOfChanges(arr)
 }
 \arguments{
-\item{time.series}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-List with the absoluteSumOfChanges
+TSA Array with the AbsoluteSumOfChanges
 }
 \description{
 Calculates the sum over the absolute value of consecutive
-changes in the time series
+changes in the time series.
 }

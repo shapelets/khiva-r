@@ -4,13 +4,13 @@
 \alias{Length}
 \title{Length}
 \usage{
-Length(tss)
+Length(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-The length of tss.
+The length of arr.
 }
 \description{
 Returns the length of the input time series.

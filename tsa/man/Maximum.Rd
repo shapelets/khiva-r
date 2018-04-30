@@ -4,14 +4,14 @@
 \alias{Maximum}
 \title{Maximum}
 \usage{
-Maximum(tss)
+Maximum(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA Array of arrays of type double containing the time series.}
 }
 \value{
-The maximum value of each time series within tss.
+The maximum value of each time series within arr.
 }
 \description{
-Calculates the maximum value for each time series within tss.
+Calculates the maximum value for each time series within arr.
 }

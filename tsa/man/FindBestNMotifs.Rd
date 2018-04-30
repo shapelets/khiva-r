@@ -7,17 +7,17 @@
 FindBestNMotifs(profile, index, n)
 }
 \arguments{
-\item{profile}{The matrix profile containing the minimum distance of each
-subsequence}
+\item{profile}{TSA Array with the matrix profile containing the minimum distance of each
+subsequence.}
 
-\item{index}{The matrix profile index containing where each minimum occurs}
+\item{index}{TSA Array with the matrix profile index containing where each minimum occurs.}
 
 \item{n}{Number of motifs to extract}
 
 \item{length_profile}{Length of the matrix profile}
 }
 \value{
-A list with the motif distance, the motif indices and the subsequence indices.
+A list of TSA Arrays with the motif distance, the motif indices and the subsequence indices.
 }
 \description{
 This function extracts the best N motifs from a previously calculated matrix profile.

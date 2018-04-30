@@ -4,13 +4,13 @@
 \alias{FftCoefficient}
 \title{FftCoefficient}
 \usage{
-FftCoefficient(tss, coefficient)
+FftCoefficient(arr, coefficient)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-List with:
+TSA Array with:
 real: The real part of the coefficient.
 imag: The imaginary part of the coefficient.
 abs: The absolute value of the coefficient.

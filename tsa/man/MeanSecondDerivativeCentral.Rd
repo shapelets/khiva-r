@@ -4,15 +4,15 @@
 \alias{MeanSecondDerivativeCentral}
 \title{MeanSecondDerivativeCentral}
 \usage{
-MeanSecondDerivativeCentral(tss)
+MeanSecondDerivativeCentral(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
 The mean value of a central approximation of
 the second derivative for each time series.
 }
 \description{
-Calculates mean value of a central approximation of the second derivative for each time series in tss.
+Calculates mean value of a central approximation of the second derivative for each time series in arr.
 }

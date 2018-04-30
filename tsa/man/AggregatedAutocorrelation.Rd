@@ -4,10 +4,10 @@
 \alias{AggregatedAutocorrelation}
 \title{AggregatedAutocorrelation}
 \usage{
-AggregatedAutocorrelation(tss, aggregation.function)
+AggregatedAutocorrelation(arr, aggregation.function)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
 \item{aggregation.function}{Function to be used in the aggregation. It receives an integer which indicates the
 function to be applied:
@@ -22,7 +22,7 @@ function to be applied:
 }}
 }
 \value{
-List whose values contains the aggregated correlation for each time series.
+TSA Array whose values contains the aggregated correlation for each time series.
 }
 \description{
 Calculates a linear least-squares regression for values of the time series that were aggregated

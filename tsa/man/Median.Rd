@@ -4,14 +4,14 @@
 \alias{Median}
 \title{Median}
 \usage{
-Median(tss)
+Median(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-The median value of each time series within tss.
+The median value of each time series within arr.
 }
 \description{
-Calculates the median value for each time series within tss.
+Calculates the median value for each time series within arr.
 }

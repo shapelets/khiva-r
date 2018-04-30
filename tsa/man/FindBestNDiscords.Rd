@@ -7,15 +7,15 @@
 FindBestNDiscords(profile, index, n)
 }
 \arguments{
-\item{profile}{The matrix profile containing the minimum distance of each
+\item{profile}{TSA Array with the matrix profile containing the minimum distance of each
 subsequence.}
 
-\item{index}{The matrix profile index containing where each minimum occurs.}
+\item{index}{TSA Array with the matrix profile index containing where each minimum occurs.}
 
 \item{n}{Number of motifs to extract.}
 }
 \value{
-A list with the discor distances, the discord indices and the subsequences indices.
+A list of TSA Arrays with the discord distances, the discord indices and the subsequences indices.
 }
 \description{
 This function extracts the best N discords from a previously calculated matrix profile.

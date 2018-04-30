@@ -4,10 +4,10 @@
 \alias{BinnedEntropy}
 \title{BinnedEntropy}
 \usage{
-BinnedEntropy(tss, max.bins)
+BinnedEntropy(arr, max.bins)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
 \item{max.bins}{The number of bins.}
 }

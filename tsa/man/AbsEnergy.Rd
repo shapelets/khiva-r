@@ -4,14 +4,14 @@
 \alias{AbsEnergy}
 \title{AbsEnergy}
 \usage{
-AbsEnergy(time.series)
+AbsEnergy(arr)
 }
 \arguments{
-\item{time.series}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-List with the Absolute Energy.
+TSA array with the Absolute Energy.
 }
 \description{
-Calculates de sum over the square values of the time series.
+Calculates the sum over the square values of the time series.
 }

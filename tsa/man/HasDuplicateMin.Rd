@@ -4,13 +4,13 @@
 \alias{HasDuplicateMin}
 \title{HasDuplicateMin}
 \usage{
-HasDuplicateMin(tss)
+HasDuplicateMin(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-List with an array containing True if the minimum of the time series is duplicated
+TSA Array with an array containing True if the minimum of the time series is duplicated
 and False otherwise.
 }
 \description{

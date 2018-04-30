@@ -4,14 +4,14 @@
 \alias{LongestStrikeAboveMean}
 \title{LongestStrikeAboveMean}
 \usage{
-LongestStrikeAboveMean(tss)
+LongestStrikeAboveMean(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
 The length of the longest consecutive subsequence in the input time series that is bigger than the mean.
 }
 \description{
-Calculates the length of the longest consecutive subsequence in tss that is bigger than the mean of tss.
+Calculates the length of the longest consecutive subsequence in arr that is bigger than the mean of arr.
 }

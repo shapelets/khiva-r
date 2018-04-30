@@ -4,16 +4,16 @@
 \alias{LargeStandardDeviation}
 \title{LargeStandardDeviation}
 \usage{
-LargeStandardDeviation(tss, r)
+LargeStandardDeviation(arr, r)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
 \item{r}{The threshold.}
 }
 \value{
-Array containing True for those time series in tss that have a large standard deviation.
+Array containing True for those time series in arr that have a large standard deviation.
 }
 \description{
-Checks if the time series within tss have a large standard deviation.
+Checks if the time series within arr have a large standard deviation.
 }

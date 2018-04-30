@@ -4,16 +4,16 @@
 \alias{Znorm}
 \title{Znorm}
 \usage{
-Znorm(tss, epsilon = 1e-08)
+Znorm(arr, epsilon = 1e-08)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA Array with the time series.}
 
 \item{epsilon}{Minimum standard deviation to consider.  It acts a a gatekeeper for
 those time series that may be constant or near constant.}
 }
 \value{
-Array with the same dimensions as tss where the time series have been
+Array with the same dimensions as arr where the time series have been
 adjusted for zero mean and one as standard deviation.
 }
 \description{

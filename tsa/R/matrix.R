@@ -7,13 +7,13 @@
 
 #' Stomp
 #'
-#' STOMP algorithm to calculate the matrix profile between 'ta' and 'tb' using a subsequence length
-#' of 'm'.
+#' STOMP algorithm to calculate the matrix profile between 'first.time.series' and 'second.time.series' using a subsequence length
+#' of 'subsequence.length'.
 #'
-#' @param firs.time.series List of arrays of type double containing the time series. 
-#' @param second.time.series List of arrays of type double containing the time series. 
-#' @param subsequence.lenth Length of the subsequence.
-#' @return A matrix profile
+#' @param first.time.series TSA Array the time series. 
+#' @param second.time.series TSA Array time series. 
+#' @param subsequence.length Length of the subsequence.
+#' @return List of TSA Arrays with the matrix profile and the index profile
 #' @export
 
 Stomp <-
@@ -22,25 +22,17 @@ Stomp <-
            subsequence.length) {
     try(out <- .C(
       "stomp",
-      as.double(first.time.series),
-      as.double(second.time.series),
-      as.integer64(length(first.time.series)),
-      as.integer64(length(second.time.series)),
+      f.ptr = first.time.series@ptr,
+      s.ptr = second.time.series@ptr,
       as.integer64(subsequence.length),
-      p = as.double(seq(
-        length = (length(second.time.series) - subsequence.length + 1),
-        from = 0,
-        to = 0
-      )),
-      i = as.integer(seq(
-        length = (length(second.time.series) - subsequence.length + 1),
-        from = 0,
-        to = 0
-      )),
+      profile = as.integer64(0),
+      index = as.integer64(0),
       PACKAGE = package
     ))
+    eval.parent(substitute(first.time.series@ptr <- out$f.ptr))
+    eval.parent(substitute(second.time.series@ptr <- out$s.ptr))
     
-    newList <- list("profile" = out$p, "index" = out$i)
+    newList <- list("profile" = createArray(out$profile), "index" = createArray(out$index))
     
     return(newList)
   }
@@ -50,31 +42,23 @@ Stomp <-
 #' STOMP algorithm to calculate the matrix profile between 't' and itself using a subsequence length
 #' of 'm'. This method filters the trivial matches.
 #'
-#' @param first.time.series List of arrays of type double containing the time series. 
-#' @param subsequence.length Lenght of the subsequence
-#' @return A matrix profile
+#' @param t TSA Array the time series. 
+#' @param m TSA Array the time series. 
+#' @return List of TSA Arrays with the matrix profile and the index profile
 #' @export
 
-StompSelfJoin <- function(first.time.series, subsequence.length) {
+StompSelfJoin <- function(t, m) {
   try(out <- .C(
     "stomp_self_join",
-    as.double(first.time.series),
-    as.integer64(length(first.time.series)),
-    as.integer64(subsequence.length),
-    p = as.double(seq(
-      length = (length(first.time.series) - subsequence.length + 1),
-      from = 0,
-      to = 0
-    )),
-    i = as.integer(seq(
-      length = (length(first.time.series) - subsequence.length + 1),
-      from = 0,
-      to = 0
-    )),
+    ptr = t@ptr,
+    as.integer64(m),
+    p = as.integer64(0),
+    i = as.integer64(0),
     PACKAGE = package
   ))
+  eval.parent(substitute(t@ptr <- out$ptr))
   
-  newList <- list("profile" = out$p, "index" = out$i)
+  newList <- list("profile" = createArray(out$p), "index" = createArray(out$i))
   
   return(newList)
 }
@@ -83,44 +67,33 @@ StompSelfJoin <- function(first.time.series, subsequence.length) {
 #' 
 #' This function extracts the best N discords from a previously calculated matrix profile.
 #
-#' @param profile The matrix profile containing the minimum distance of each
+#' @param profile TSA Array with the matrix profile containing the minimum distance of each
 #' subsequence.
-#' @param index The matrix profile index containing where each minimum occurs.
+#' @param index TSA Array with the matrix profile index containing where each minimum occurs.
 #' @param n Number of motifs to extract.
-#' @return A list with the discor distances, the discord indices and the subsequences indices.
+#' @return A list of TSA Arrays with the discord distances, the discord indices and the subsequences indices.
 #' @export
 
 FindBestNDiscords <- function(profile, index, n) {
   try(out <- .C(
     "find_best_n_discords",
-    as.double(profile),
-    as.integer(index),
-    as.integer64(length(profile)),
+    p.ptr = profile@ptr,
+    i.ptr = index@ptr,
     as.integer64(n),
-    discord.distance = as.double(seq(
-      length = n,
-      from = 0,
-      to = 0
-    )),
-    discord.index = as.integer(seq(
-      length = n,
-      from = 0,
-      to = 0
-    )),
-    subsequence.index = as.integer(seq(
-      length = n,
-      from = 0,
-      to = 0
-    )),
+    discord.distance = as.integer64(0),
+    discord.index = as.integer64(0),
+    subsequence.index = as.integer64(0),
     PACKAGE = package
   ))
   
   newList <- list(
-    "discord.distance" = out$discord.distance,
-    "discord.index" = out$discord.index,
-    "subsequence.index" = out$subsequence.index
+    "discord.distance" = createArray(out$discord.distance),
+    "discord.index" = createArray(out$discord.index),
+    "subsequence.index" = createArray(out$subsequence.index)
   )
-  
+  eval.parent(substitute(profile@ptr <- out$p.ptr))
+  eval.parent(substitute(index@ptr <- out$i.ptr))
+
   return(newList)
 }
 
@@ -128,44 +101,32 @@ FindBestNDiscords <- function(profile, index, n) {
 #' 
 #' This function extracts the best N motifs from a previously calculated matrix profile.
 #
-#' @param profile The matrix profile containing the minimum distance of each
-#' subsequence
-#' @param index The matrix profile index containing where each minimum occurs
+#' @param profile TSA Array with the matrix profile containing the minimum distance of each
+#' subsequence.
+#' @param index TSA Array with the matrix profile index containing where each minimum occurs.
 #' @param length_profile Length of the matrix profile
 #' @param n Number of motifs to extract
-#' @return A list with the motif distance, the motif indices and the subsequence indices.
+#' @return A list of TSA Arrays with the motif distance, the motif indices and the subsequence indices.
 #' @export
-
 FindBestNMotifs <- function(profile, index, n) {
   try(out <- .C(
     "find_best_n_motifs",
-    as.double(profile),
-    as.integer(index),
-    as.integer64(length(profile)),
+    p.ptr = profile@ptr,
+    i.ptr = index@ptr,
     as.integer64(n),
-    motif.distance = as.double(seq(
-      length = n,
-      from = 0,
-      to = 0
-    )),
-    motif.index = as.integer(seq(
-      length = n,
-      from = 0,
-      to = 0
-    )),
-    subsequence.index = as.integer(seq(
-      length = n,
-      from = 0,
-      to = 0
-    )),
+    motif.distance = as.integer64(0),
+    motif.index = as.integer64(0),
+    subsequence.index = as.integer64(0),
     PACKAGE = package
   ))
   
   newList <- list(
-    "motif.distance" = out$motif.distance,
-    "motif.index" = out$motif.index,
-    "subsequence.index" = out$subsequence.index
+    "motif.distance" = createArray(out$motif.distance),
+    "motif.index" = createArray(out$motif.index),
+    "subsequence.index" = createArray(out$subsequence.index)
   )
+  eval.parent(substitute(profile@ptr <- out$p.ptr))
+  eval.parent(substitute(index@ptr <- out$i.ptr))
   
   return(newList)
 }

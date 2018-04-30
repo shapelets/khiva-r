@@ -4,18 +4,20 @@
 \alias{LinearTrend}
 \title{LinearTrend}
 \usage{
-LinearTrend(tss)
+LinearTrend(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-a list with:
-pvalue: The pvalues for all time series.
-rvalue: The rvalues for all time series.
-intercept: The intercept values for all time series.
-slope: The slope for all time series.
-stdrr: The stderr values for all time series.
+List of TSA Array with:
+{
+    pvalue: The pvalues for all time series.
+    rvalue: The rvalues for all time series.
+    intercept: The intercept values for all time series.
+    slope: The slope for all time series.
+    stdrr: The stderr values for all time series.
+}
 }
 \description{
 Calculates a linear least-squares regression for the values of the time series versus the sequence from 0 to

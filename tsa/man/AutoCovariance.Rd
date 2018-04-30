@@ -4,10 +4,10 @@
 \alias{AutoCovariance}
 \title{AutoCovariance}
 \usage{
-AutoCovariance(xss, unbiased)
+AutoCovariance(arr, unbiased)
 }
 \arguments{
-\item{xss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
 \item{unbiased}{Determines whether it divides by n - lag (if true) or n (if false).}
 }

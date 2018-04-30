@@ -4,10 +4,10 @@
 \alias{FirstLocationOfMaximum}
 \title{FirstLocationOfMaximum}
 \usage{
-FirstLocationOfMaximum(tss)
+FirstLocationOfMaximum(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
 The first relative location of the maximum value to the length of the timeseries,

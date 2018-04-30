@@ -4,10 +4,10 @@
 \alias{CidCe}
 \title{CicCe}
 \usage{
-CidCe(tss, z.normalize)
+CidCe(arr, z.normalize)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
 \item{z.normalize}{Controls whether the time series should be z-normalized or not.}
 }

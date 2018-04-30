@@ -12,31 +12,21 @@
 #' is \eqn{x = V·D\dagger·U^T·b}. Where \eqn{U} and \eqn{V} are orthogonal matrices and \eqn{Ddagger} contains
 #' the inverse values of the singular values contained in \eqn{D} if they are not zero, and zero otherwise.
 #' 
-#' @param a Coefficients of the linear equation problem to solve.
-#' @param b The measured values.
+#' @param a TSA Array with the coefficients of the linear equation problem to solve.
+#' @param b TSA Array with the measured values.
 #' @return Contains the solution to the linear equation problem minimizing the norm 2.
 #' @export
-Lls <- function(a, b) {
-  a.l <- as.integer64(length(a[[1]]))
-  a.n <- as.integer64(length(a))
-  a.concatenated <- as.double(apply(cbind(a), 1, unlist))
-  
-  b.l <- as.integer64(length(b))
+Lls <- function(arr.a, arr.b) {
   
   try(out <-
         .C(
           "lls",
-          a.concatenated,
-          a.l,
-          a.n,
-          b,
-          b.l,
-          result = as.double(seq(
-            length = (a.n),
-            from = 0,
-            to = 0
-          )),
+          a.ptr = arr.a@ptr,
+          b.ptr = arr.b@ptr,
+          b = as.integer64(0),
           PACKAGE = package
         ))
-  return(out$result)
+  eval.parent(substitute(arr.b@ptr <- out$a.ptr))
+  eval.parent(substitute(arr.b@ptr <- out$b.ptr))
+  return(createArray(out$b))
 }

@@ -4,15 +4,15 @@
 \alias{CountBelowMean}
 \title{CountBelowMean}
 \usage{
-CountBelowMean(tss)
+CountBelowMean(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
 The number of values in the time series that are lower than the mean.
 }
 \description{
 Calculates the number of values in the time series that are lower than
-the mean
+the mean.
 }

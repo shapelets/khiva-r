@@ -4,17 +4,17 @@
 \alias{ApproximateEntropy}
 \title{ApproximateEntropy}
 \usage{
-ApproximateEntropy(xss, m, r)
+ApproximateEntropy(arr, m, r)
 }
 \arguments{
+\item{arr}{TSA array with the time series.}
+
 \item{m}{Length of compared run of data.}
 
 \item{r}{Filtering level, must be positive.}
-
-\item{tss}{List of arrays of type double containing the time series.}
 }
 \value{
-The vectorized approximate entropy for all the input time series in tss.
+The vectorized approximate entropy for all the input time series in arr.
 }
 \description{
 Calculates a vectorized Approximate entropy algorithm.
@@ -22,5 +22,5 @@ https://en.wikipedia.org/wiki/Approximate_entropy
 For short time-series this method is highly dependent on the parameters, but should be stable for N > 2000,
 see: Yentes et al. (2012) - The Appropriate Use of Approximate Entropy and Sample Entropy with Short Data Sets
 Other shortcomings and alternatives discussed in:
-Richman & Moorman (2000) - Physiological time-series analysis using approximate entropy and sample entropy
+Richman & Moorman (2000) - Physiological time-series analysis using approximate entropy and sample entropy.
 }

@@ -2,16 +2,14 @@
 % Please edit documentation in R/features.R
 \name{CwtCoefficients}
 \alias{CwtCoefficients}
-\title{CwtCoefficients
-Calculates a Continuous wavelet transform for the Ricker wavelet, also known as
-the "Mexican hat wavelet".}
+\title{CwtCoefficients}
 \usage{
-CwtCoefficients(tss, widths, coeff, w)
+CwtCoefficients(arr, arr.widths, coeff, w)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{widths}{Widths. List of arrays of type double containing the time series.}
+\item{arr.widths}{Widths. TSA array.}
 
 \item{coeff}{Coefficient of interest.}
 
@@ -21,7 +19,6 @@ CwtCoefficients(tss, widths, coeff, w)
 Result of calculated coefficients.
 }
 \description{
-CwtCoefficients
 Calculates a Continuous wavelet transform for the Ricker wavelet, also known as
 the "Mexican hat wavelet".
 }

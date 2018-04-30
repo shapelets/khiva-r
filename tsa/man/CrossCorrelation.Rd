@@ -4,14 +4,14 @@
 \alias{CrossCorrelation}
 \title{CrossCorrelation}
 \usage{
-CrossCorrelation(xss, yss, unbiased)
+CrossCorrelation(arr.xss, arr.yss, unbiased)
 }
 \arguments{
-\item{xss}{List of arrays of type double containing the time series.}
-
-\item{yss}{List of arrays of type double containing the time series.}
-
 \item{unbiased}{Determines whether it divides by n - lag (if true) or n (if false).}
+
+\item{xss.arr}{TSA array with the time series.}
+
+\item{yss.arr}{TSA array with the time series.}
 }
 \value{
 The cross-correlation value for the given time series.

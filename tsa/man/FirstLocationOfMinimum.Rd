@@ -4,10 +4,10 @@
 \alias{FirstLocationOfMinimum}
 \title{FistLocationOfMinimum}
 \usage{
-FirstLocationOfMinimum(tss)
+FirstLocationOfMinimum(arr)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
 The first relative location of the minimal value of each series.

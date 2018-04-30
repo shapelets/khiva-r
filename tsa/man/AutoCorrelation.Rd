@@ -4,12 +4,12 @@
 \alias{AutoCorrelation}
 \title{AutoCorrelation}
 \usage{
-AutoCorrelation(tss, max.lag, unbiased)
+AutoCorrelation(arr, max.lag, unbiased)
 }
 \arguments{
-\item{tss}{List of arrays of type double containing the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{unbiased}{Determines whether it divides by n - lag (if true) or n (if false)}
+\item{unbiased}{Determines whether it divides by n - lag (if true) or n (if false).}
 
 \item{max_lag}{The maximum lag to compute.}
 }
