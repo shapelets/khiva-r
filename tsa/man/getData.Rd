@@ -10,7 +10,7 @@ getData(a)
 \item{a}{TSA array of interest.}
 }
 \value{
-The data stored by the TSA array in a vector of its corresponding R DATA type.
+The data stored by the TSA array into a R array.
 }
 \description{
 Gets the data to the host.

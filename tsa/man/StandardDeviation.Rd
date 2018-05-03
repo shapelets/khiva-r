@@ -2,7 +2,7 @@
 % Please edit documentation in R/features.R
 \name{StandardDeviation}
 \alias{StandardDeviation}
-\title{Skewness}
+\title{StandardDeviation}
 \usage{
 StandardDeviation(arr)
 }

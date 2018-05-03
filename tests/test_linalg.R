@@ -13,8 +13,8 @@ test_that("Test Lls", {
   tb <- as.double(c(-1, -2))
   blls <-  as.double(c(3, 1))
   
-  a <- Array(data.frame(ta, tb))
-  clls <- Array(data.frame(blls))
+  a <- Array(array(c(ta, tb), dim = c(2, 2)), "f64")
+  clls <- Array(array(c(blls), dim = c(2, 1)), "f64")
   out <- Lls(a, clls)
   d <- getData(out)
   expect_equal(d[1], 1, 1e-4)

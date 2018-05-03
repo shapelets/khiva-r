@@ -4,15 +4,14 @@
 \alias{Array}
 \title{Array}
 \usage{
-Array(a)
+Array(a, type = "f32")
 }
 \arguments{
-\item{a}{data.frame which columns have same types and same dimensions.}
+\item{a}{array which columns have same types and same dimensions.}
 }
 \value{
-A TSA array created from the data stored in the data.frame.
+A TSA array created from the data stored in the array.
 }
 \description{
-Creates a tsa Array from a data.frame.
-Every columns of the data.frame represents an array and every one should have the same type and same dimensions
+Creates a tsa Array from a R array.
 }

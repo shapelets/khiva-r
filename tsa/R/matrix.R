@@ -10,8 +10,8 @@
 #' STOMP algorithm to calculate the matrix profile between 'first.time.series' and 'second.time.series' using a subsequence length
 #' of 'subsequence.length'.
 #'
-#' @param first.time.series TSA Array the time series. 
-#' @param second.time.series TSA Array time series. 
+#' @param first.time.series TSA Array the time series.
+#' @param second.time.series TSA Array time series.
 #' @param subsequence.length Length of the subsequence.
 #' @return List of TSA Arrays with the matrix profile and the index profile
 #' @export
@@ -32,18 +32,20 @@ Stomp <-
     eval.parent(substitute(first.time.series@ptr <- out$f.ptr))
     eval.parent(substitute(second.time.series@ptr <- out$s.ptr))
     
-    newList <- list("profile" = createArray(out$profile), "index" = createArray(out$index))
+    newList <-
+      list("profile" = createArray(out$profile),
+           "index" = createArray(out$index))
     
     return(newList)
   }
 
 #' StompSelfJoin
-#' 
+#'
 #' STOMP algorithm to calculate the matrix profile between 't' and itself using a subsequence length
 #' of 'm'. This method filters the trivial matches.
 #'
-#' @param t TSA Array the time series. 
-#' @param m TSA Array the time series. 
+#' @param t TSA Array the time series.
+#' @param m TSA Array the time series.
 #' @return List of TSA Arrays with the matrix profile and the index profile
 #' @export
 
@@ -58,13 +60,14 @@ StompSelfJoin <- function(t, m) {
   ))
   eval.parent(substitute(t@ptr <- out$ptr))
   
-  newList <- list("profile" = createArray(out$p), "index" = createArray(out$i))
+  newList <-
+    list("profile" = createArray(out$p), "index" = createArray(out$i))
   
   return(newList)
 }
 
 #' FindBestNDiscords
-#' 
+#'
 #' This function extracts the best N discords from a previously calculated matrix profile.
 #
 #' @param profile TSA Array with the matrix profile containing the minimum distance of each
@@ -93,12 +96,12 @@ FindBestNDiscords <- function(profile, index, n) {
   )
   eval.parent(substitute(profile@ptr <- out$p.ptr))
   eval.parent(substitute(index@ptr <- out$i.ptr))
-
+  
   return(newList)
 }
 
 #' FindBestNMotifs
-#' 
+#'
 #' This function extracts the best N motifs from a previously calculated matrix profile.
 #
 #' @param profile TSA Array with the matrix profile containing the minimum distance of each

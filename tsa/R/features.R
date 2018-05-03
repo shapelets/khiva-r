@@ -517,6 +517,38 @@ FirstLocationOfMinimum <- function(arr) {
   return(createArray(out$b))
 }
 
+#'  FriedrichCoefficients
+#'
+#'  Coefficients of polynomial \eqn{h(x)}, which has been fitted to the deterministic dynamics of Langevin model:
+#'  Largest fixed point of dynamics  \eqn{argmax_x {h(x)=0}} estimated from polynomial \eqn{h(x)`},
+#'  which has been fitted to the deterministic dynamics of Langevin model:
+#'  \deqn{
+#'       \dot(x)(t) = h(x(t)) + R \mathcal(N)(0,1)
+#'  }
+#' as described by [1]. For short time series this method is highly dependent on the parameters.
+#'
+#' [1] Friedrich et al. (2000): Physics Letters A 271, p. 217-222
+#' Extracting model equations from experimental data.
+#'
+#' @param arr: TSA array with the time series.
+#' @param m: Order of polynom to fit for estimating fixed points of dynamics.
+#' @param r: Number of quantiles to use for averaging.
+#' @return: TSA array with the coefficients for each time series.
+#' @export
+FriedrichCoefficients <- function(arr, m, r) {
+  try(out <- .C(
+    "friedrich_coefficients",
+    ptr = arr@ptr,
+    as.integer(m),
+    as.single(r),
+    b = as.integer64(0),
+    PACKAGE = package
+  ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  
+  return(createArray(out$b))
+}
+
 #' HasDuplicates
 #'
 #' Calculates if the input time series contain duplicated elements.
@@ -738,6 +770,23 @@ LinearTrend <- function(arr) {
   return(result)
 }
 
+#' Calculates all Local Maximals fot the time series in array.
+#'
+#' @param arr: TSA array with the time series.
+#' @return: TSA array with the calculated local maximals for each time series in arr.
+LocalMaximals <- function(arr) {
+  try(out <-
+        .C(
+          "local_maximals",
+          ptr = arr@ptr,
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  
+  return(createArray(out$b))
+}
+
 #' LongestStrikeAboveMean
 #'
 #' Calculates the length of the longest consecutive subsequence in arr that is bigger than the mean of arr.
@@ -787,7 +836,6 @@ LongestStrikeBelowMean <- function(arr) {
 #'   }
 #' as described by
 #' Friedrich et al. (2000): Physics Letters A 271, p. 217-222 *Extracting model equations from experimental data.
-#
 #'
 #' @param arr TSA array with the time series.
 #' @param m: Order of polynom to fit for estimating fixed points of dynamics.
@@ -966,6 +1014,30 @@ NumberCrossingM <- function(arr, m) {
   return(createArray(out$b))
 }
 
+#' NumberCwtPeaks
+#'
+#' This feature calculator searches for different peaks. To do so, the time series is smoothed by a ricker
+#' wavelet and for widths ranging from 1 to :math:'max_w`. This feature calculator returns the number of peaks that
+#' occur at enough width scales and with sufficiently high Signal-to-Noise-Ratio (SNR).
+#'
+#' @param arr: TSA array with the time series.
+#' @param max_w: The maximum width to consider.
+#' @return: TSA array with the number of peaks for each time series.
+#' @export
+NumberCwtPeaks <- function(arr, max.w) {
+  try(out <-
+        .C(
+          "number_cwt_peaks",
+          ptr = arr@ptr,
+          as.integer(max.w),
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  
+  return(createArray(out$b))
+}
+
 #' NumberPeaks
 #'
 #' Calculates the number of peaks of at least support \eqn{n} in the time series \eqn{arr}. A peak of support
@@ -990,6 +1062,46 @@ NumberPeaks <- function(arr, n) {
   return(createArray(out$b))
 }
 
+#' PartialAutocorrelation
+#'
+#' Calculates the value of the partial autocorrelation function at the given lag. The lag \eqn{k}  partial
+#' autocorrelation of a time series \eqn{\lbrace x_t, t = 1 \ldots T \rbrace} equals the partial correlation of
+#' \eqn{x_t} and \eqn{x_{t-k}}, adjusted for the intermediate variables \eqn{\lbrace x_{t-1}, \ldots, x_{t-k+1}
+#' \rbrace} ([1]). Following [2], it can be defined as:
+#'
+#' \deqn{
+#'         \alpha_k = \frac{ Cov(x_t, x_{t-k} | x_{t-1}, \ldots, x_{t-k+1})}
+#'         {\sqrt{ Var(x_t | x_{t-1}, \ldots, x_{t-k+1}) Var(x_{t-k} | x_{t-1}, \ldots, x_{t-k+1} )}}
+#'}
+#' with (a) \eqn{x_t = f(x_{t-1}, \ldots, x_{t-k+1})} and (b) \eqn{x_{t-k} = f(x_{t-1}, \ldots, x_{t-k+1})}
+#' being AR(k-1) models that can be fitted by OLS. Be aware that in (a), the regression is done on past values to
+#' predict \eqn{x_t} whereas in (b), future values are used to calculate the past value \eqn{x_{t-k}}.
+#' It is said in [1] that "for an AR(p), the partial autocorrelations \eqn{\alpha_k} will be nonzero for \eqn{k<=p}
+#' and zero for \eqn{k>p}."
+#' With this property, it is used to determine the lag of an AR-Process.
+#'
+#' [1] Box, G. E., Jenkins, G. M., Reinsel, G. C., & Ljung, G. M. (2015).
+#' Time series analysis: forecasting and control. John Wiley & Sons.
+#' [2] https://onlinecourses.science.psu.edu/stat510/node/62
+#'
+#' @param arr: TSA array with the time series.
+#' @param lags: TSA array with the lags to be calculated.
+#' @return: TSA array with the partial autocorrelation for each time series for the given lag.
+PartialAutocorrelation <- function(arr, lags) {
+  try(out <-
+        .C(
+          "partial_autocorrelation",
+          ptr = arr@ptr,
+          lags.ptr = lags@ptr,
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  eval.parent(substitute(lags@ptr <- out$lags.ptr))
+  
+  return(createArray(out$b))
+}
+
 #' PercentageOfReoccurringDatapointsToAllDatapoints
 #'
 #' Calculates the number of peaks of at least support \eqn{n} in the time series \eqn{arr}. A peak of support
@@ -1001,12 +1113,42 @@ NumberPeaks <- function(arr, n) {
 #' @return The number of m-crossings of each time series within arr.
 #' @export
 PercentageOfReoccurringDatapointsToAllDatapoints <-
-  function(arr, isSorted) {
+  function(arr, is.sorted) {
     try(out <-
           .C(
             "percentage_of_reoccurring_datapoints_to_all_datapoints",
             ptr = arr@ptr,
-            as.logical(isSorted),
+            as.logical(is.sorted),
+            b = as.integer64(0),
+            PACKAGE = package
+          ))
+    eval.parent(substitute(arr@ptr <- out$ptr))
+    
+    return(createArray(out$b))
+  }
+
+#' PercentageOfReoccurringValuesToAllValues
+#'
+#' Calculates the percentage of unique values, that are present in the time series more than once.
+#'
+#'\deqn{
+#'   \frac{\textit{number of data points occurring more than once}}{\textit{number of all data points})}
+#'}
+#'
+#' This means the percentage is normalized to the number of unique values, in contrast to the
+#' PercentageOfReoccurringDatapointsToAllDatapoints.
+#'
+#' @param arr: TSA array with the time series.
+#' @param is.sorted: Indicates if the input time series is sorted or not. Defaults to false.
+#' @return: TSA array with the percentage of unique values, that are present in the time series more than once.
+#' @export
+PercentageOfReoccurringValuesToAllValues <-
+  function(arr, is.sorted = FALSE) {
+    try(out <-
+          .C(
+            "percentage_of_reoccurring_values_to_all_values",
+            ptr = arr@ptr,
+            as.logical(is.sorted),
             b = as.integer64(0),
             PACKAGE = package
           ))
@@ -1040,6 +1182,30 @@ Quantile <- function(arr, arr.q, precision = 1e8) {
   return(createArray(out$b))
 }
 
+#' RangeCount
+#'
+#' Counts observed values within the interval [min, max).
+#'
+#' @param arr: TSA array with the time series.
+#' @param min: Value that sets the lower limit.
+#' @param max: Value that sets the upper limit.
+#' @return: TSA array with the values at the given range.
+#' @export
+RangeCount <- function(arr, min, max) {
+  try(out <-
+        .C(
+          "range_count",
+          ptr = arr@ptr,
+          as.integer(min),
+          as.single(max),
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  return(createArray(out$b))
+}
+
 #' RatioBeyondRSigma
 #'
 #' Calculates the ratio of values that are more than  \eqn{r*std(x)} (so \eqn{r} sigma away from the mean of
@@ -1056,6 +1222,27 @@ RatioBeyondRSigma <- function(arr, r) {
           "ratio_beyond_r_sigma",
           ptr = arr@ptr,
           as.single(r),
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  return(createArray(out$b))
+}
+
+#' Calculates a factor which is 1 if all values in the time series occur only once, and below one if this is
+#' not the case. In principle, it just returns:
+#'
+#' \deqn{
+#'         \frac{\textit{number_unique_values}}{\textit{number_values}}
+#' }
+#' @param arr: TSA array with the time series.
+#' @return: TSA array with the ratio of unique values with respect to the total number of values.
+#' @export
+RatioValueNumberToTimeSeriesLength <- function(arr) {
+  try(out <-
+        .C(
+          "ratio_value_number_to_time_series_length",
+          ptr = arr@ptr,
           b = as.integer64(0),
           PACKAGE = package
         ))
@@ -1107,7 +1294,37 @@ Skewness <- function(arr) {
   return(createArray(out$b))
 }
 
-#' Skewness
+#' SpktWelchDensity
+#'
+#' Estimates the cross power spectral density of the time series array at different frequencies. To do so, the
+#' time series is first shifted from the time domain to the frequency domain.
+#'
+#' Welch's method computes an estimate of the power spectral density by dividing the data into overlapping
+#' segments, computing a modified periodogram for each segment and averaging the periodograms.
+#' [1] P. Welch, "The use of the fast Fourier transform for the estimation of power spectra: A method based on time
+#' averaging over short, modified periodograms", IEEE Trans. Audio Electroacoust. vol. 15, pp. 70-73, 1967.
+#' [2] M.S. Bartlett, "Periodogram Analysis and Continuous Spectra", Biometrika, vol. 37, pp. 1-16, 1950.
+#' [3] Rabiner, Lawrence R., and B. Gold. "Theory and Application of Digital Signal Processing" Prentice-Hall, pp.
+#' 414-419, 1975.
+#'
+#' @param arr: TSA array with the time series.
+#' @param coeff: The coefficient to be returned.
+#' @return: TSA array containing the power spectrum of the different frequencies for each time series in arr.
+#' @export
+SpktWelchDensity <- function(arr, coeff) {
+  try(out <-
+        .C(
+          "spkt_welch_density",
+          ptr = arr@ptr,
+          as.integer(coeff),
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  return(createArray(out$b))
+}
+
+#' StandardDeviation
 #'
 #' Calculates the standard deviation of each time series within arr.
 #'
@@ -1146,6 +1363,44 @@ SumOfReoccurringDatapoints <- function(arr, is.sorted = FALSE) {
   return(createArray(out$b))
 }
 
+#' SumOfReoccurringValues
+#'
+#' Calculates the sum of all values, that are present in the time series more than once.
+#'
+#' @param arr: TSA array with the time series.
+#' @param is.sorted: Indicates if the input time series is sorted or not. Defaults to false.
+#' @return: TSA array with the sum of all values, that are present in the time series more than once.
+#' @export
+SumOfReoccurringValues <- function(arr, is.sorted = FALSE) {
+  try(out <-
+        .C(
+          "sum_of_reoccurring_values",
+          ptr = arr@ptr,
+          as.logical(is.sorted),
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  return(createArray(out$b))
+}
+
+#' SumValues
+#'
+#' Calculates the sum over the time series arr.
+#'
+#' @param arr: TSA array with the time series.
+#' @return: TSA array with the sum of values in each time series.
+#' @export
+SumValues <- function(arr) {
+  try(out <-
+        .C("sum_values",
+           ptr = arr@ptr,
+           b = as.integer64(0),
+           PACKAGE = package))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  return(createArray(out$b))
+}
+
 #' SymmetryLooking
 #'
 #' Calculates if the distribution of arr *looks symmetric*. This is the case if
@@ -1170,6 +1425,38 @@ SymmetryLooking <- function(arr, r) {
   return(createArray(out$b))
 }
 
+#' TimeReversalAsymmetryStatistic
+#'
+#' This function calculates the value of:
+#'
+#' \deqn{
+#'         \frac{1}{n-2lag} \sum_{i=0}^{n-2lag} x_{i + 2 \cdot lag}^2 \cdot x_{i + lag} - x_{i + lag} \cdot  x_{i}^2
+#' }
+#'which is
+#'
+#' \deqn{
+#'        \mathbb{E}[L^2(X)^2 \cdot L(X) - L(X) \cdot X^2]
+#' }
+#' where \eqn{\mathbb{E}} is the mean and \eqn{L} is the lag operator. It was proposed in [1] as a promising
+#' feature to extract from time series.
+#'
+#' @param arr: TSA array with the time series.
+#' @param lag: The lag to be computed.
+#' @return: TSA array containing the count of the given value in each time series.
+#' @export
+TimeReversalAsymmetryStatistic <- function(arr, lag) {
+  try(out <-
+        .C(
+          "time_reversal_asymmetry_statistic",
+          ptr = arr@ptr,
+          as.integer(lag),
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  return(createArray(out$b))
+}
+
 #' ValueCount
 #'
 #' Counts occurrences of value in the time series arr.
@@ -1184,6 +1471,43 @@ ValueCount <- function(arr, v) {
           "value_count",
           ptr = arr@ptr,
           as.single(v),
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  return(createArray(out$b))
+}
+
+#' Variance
+#'
+#' Computes the variance for the time series array.
+#'
+#' @param arr: TSA array with the time series.
+#' @return: TSA array containing the variance in each time series.
+#' @export
+Variance <- function(arr) {
+  try(out <-
+        .C("variance",
+           ptr = arr@ptr,
+           b = as.integer64(0),
+           PACKAGE = package))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  return(createArray(out$b))
+}
+
+#' Variance Larger Than Standard Deviation
+#'
+#' Calculates if the variance of array is greater than the standard deviation. In other words, if the variance of
+#' array is larger than 1.
+#'
+#' @param arr: TSA array with the time series.
+#' @return: TSA array denoting if the variance of array is greater than the standard deviation.
+#' @export
+VarianceLargerThanStandardDeviation <- function(arr) {
+  try(out <-
+        .C(
+          "variance_larger_than_standard_deviation",
+          ptr = arr@ptr,
           b = as.integer64(0),
           PACKAGE = package
         ))

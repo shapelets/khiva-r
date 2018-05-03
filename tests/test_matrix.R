@@ -12,13 +12,13 @@ test_that("Test stomp", {
   tb <- as.single(c(10, 11, 10, 11))
   tc <- as.single(c(10, 11, 10, 11, 10, 11, 10, 11))
   td <- as.single(c(10, 11, 10, 11, 10, 11, 10, 11))
-  a <- Array(data.frame(ta, tb))
-  b <- Array(data.frame(tc, td))
+  a <- Array(array(c(ta, tb), dim = c(4, 2)))
+  b <- Array(array(c(tc, td), dim = c(8, 2)))
   expected.index <-
     as.integer(c(0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1))
   out <- Stomp(a, b, 3)
-  profile <- getData(out$profile)
-  index <- getData(out$index)
+  profile <- c(getData(out$profile))
+  index <- c(getData(out$index))
   for (i in 1:length(expected.index)) {
     expect_equal(profile[i], 0, 1e-2)
     expect_equal(index[i], expected.index[i], 1e-2)
@@ -35,7 +35,7 @@ test_that("Test stompSelJoin", {
     as.double(c(11, 10, 10, 11, 10, 11, 11, 10, 11, 11, 10, 10, 11, 10))
   expected.index <-
     as.integer(c(6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5, 9, 10, 11, 6, 7, 8, 3, 4, 5, 0, 1, 2))
-  a <- Array(data.frame(ta, tb))
+  a <- Array(array(c(ta, tb), dim = c(14, 2)))
   out <- StompSelfJoin(a, 3)
   profile <- getData(out$profile)
   index <- getData(out$index)
@@ -53,8 +53,8 @@ test_that("Test findBestNMotifs", {
     as.double(c(10, 10, 10, 10, 10, 10, 9, 10, 10, 10, 10, 10, 11, 10, 9))
   tb <-
     as.double(c(10, 11, 10, 9))
-  a <- Array(data.frame(ta))
-  b <- Array(data.frame(tb))
+  a <- Array(array(c(ta), dim = c(15, 1)))
+  b <- Array(array(c(tb), dim = c(4, 1)))
   
   stomp.results <- Stomp(a, b, 3)
   out <-
@@ -75,13 +75,13 @@ test_that("Test findBestNDiscords", {
     as.double(c(11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11))
   tb <-
     as.double(c(9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9))
-  a <- Array(data.frame(ta))
-  b <- Array(data.frame(tb))
+  a <- Array(array(c(ta), dim = c(12, 1)))
+  b <- Array(array(c(tb), dim = c(12, 1)))
   
   stomp.results <- Stomp(a, b, 3)
   out <-
     FindBestNDiscords(stomp.results$profile, stomp.results$index, 2)
-  subsequence.index <- getData(out$subsequence.index)
+  subsequence.index <- c(getData(out$subsequence.index))
   expect_equal(subsequence.index[1], 0, 1e-2)
   expect_equal(subsequence.index[2], 9, 1e-2)
 })

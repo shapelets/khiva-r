@@ -27,36 +27,36 @@ createArray <- function(p) {
 #' @return Type id.
 #' @export
 getTypeID <- function(type) {
-  ty = -1
+  ty <- -1
   if (type == "f32") {
-    ty = 0
+    ty <- 0
   }
   if (type == "c32") {
-    stop("unsupported data type")
+    ty <- 1
   }
   if (type == "f64") {
-    ty = 2
+    ty <- 2
   }
   if (type == "c64") {
-    ty = 3
+    ty <- 3
   }
   if (type == "b8") {
-    ty = 4
+    ty <- 4
   }
   if (type == "s32") {
-    ty = 5
+    ty <- 5
   }
   if (type == "u32") {
-    ty = 6
+    ty <- 6
   }
   if (type == "u8") {
     stop("unsupported data type")
   }
   if (type == "s64") {
-    ty = 8
+    ty <- 8
   }
   if (type == "u64") {
-    ty = 9
+    ty <- 9
   }
   if (type == "s16") {
     stop("unsupported data type")
@@ -71,44 +71,84 @@ getTypeID <- function(type) {
   return (ty)
 }
 
-#' GetRType
+#' getTypeName
 #'
-#' Gets the R type corresponding to the tsa Array type of a datafra.me.
+#' Gets the type Name.
 #'
-#' @param  a R data.frame
-#' @return Type of the elements in the data.frame (All should have the same type).
+#' @param  type TSA array id.
+#' @return Type Name.
 #' @export
-GetRType <- function(a) {
-  atype <- class(a[[1]])
-  if (atype == "numeric" && !is.null(attributes(a[[1]])$Csingle)) {
-    atype <- "f32"
-  } else if (atype == "numeric" &&
-             is.null(attributes(a[[1]])$Csingle)) {
-    atype <- "f64"
-  } else if (atype == "complex") {
-    atype <- "c64"
-  } else if (atype == "logical") {
-    atype <- "b8"
-  } else if (atype == "integer") {
-    atype <- "s32"
-  } else if (atype == "integer64") {
-    atype <- "s64"
+getTypeName <- function(type) {
+  ty <- "-1"
+  if (type == 0) {
+    ty <- "f32"
   }
-  return(atype)
+  if (type == 1) {
+    stop("unsupported data type")
+  }
+  if (type == 2) {
+    ty <- "f64"
+  }
+  if (type == 3) {
+    ty <- "c64"
+  }
+  if (type == 4) {
+    ty <- "b8"
+  }
+  if (type == 5) {
+    ty <- "s32"
+  }
+  if (type == 6) {
+    ty = "u32"
+  }
+  if (type == 7) {
+    stop("unsupported data type")
+  }
+  if (type == 8) {
+    ty <- "s64"
+  }
+  if (type == 9) {
+    ty <- "u64"
+  }
+  if (type == 10) {
+    stop("unsupported data type")
+  }
+  if (type == 11) {
+    stop("unsupported data type")
+  }
+  if (ty == "-1") {
+    stop("unsupported data type")
+  }
+  return (ty)
+}
+
+#' getBoolean
+#'
+#' Gets the logical R value from C++ Boolean data type.
+#' @param a Array of bits
+#' @return Logical R array with the  R logical equivalent of a.
+getBoolean <- function(a) {
+  l <- length(a)
+  iter <- (l / 8 - 1)
+  result <- logical(length = iter + 1)
+  for (i in 0:iter) {
+    result[i + 1] <- a[i * 8 + 1]
+  }
+  return(result)
 }
 
 #' Array
 #'
-#' Creates a tsa Array from a data.frame.
-#' Every columns of the data.frame represents an array and every one should have the same type and same dimensions
+#' Creates a tsa Array from a R array.
 #'
-#' @param  a data.frame which columns have same types and same dimensions.
-#' @return A TSA array created from the data stored in the data.frame.
+#'
+#' @param  a array which columns have same types and same dimensions.
+#' @return A TSA array created from the data stored in the array.
 #' @export
-Array <- function(a) {
+Array <- function(a, type = "f32") {
   d <- as.integer64(dim(a))
-  ty = getTypeID(GetRType(a))
-  a <- c(apply(cbind(a), 2, unlist))
+  ty = getTypeID(type)
+  a <- c(a)
   if (ty == 0) {
     try(out <- .C(
       "create_array",
@@ -117,6 +157,20 @@ Array <- function(a) {
       d,
       result = as.integer64(0),
       as.integer(ty),
+      PACKAGE = package
+    ))
+  } else if (ty == 1) {
+    try(out <- .C(
+      "create_array",
+      as.single(c(rbind(Re(
+        a
+      ), Im(
+        a
+      )))),
+      as.integer(length(d)),
+      d,
+      result = as.integer64(0),
+      as.integer(1),
       PACKAGE = package
     ))
   } else {
@@ -157,7 +211,7 @@ getType <- function(arr) {
 #'
 #' Displays the TSA array.
 #'
-#' @param a data.frame which columns have same types and same dimensions.
+#' @param a TSA array.
 #' @export
 display <- function(a) {
   try(out <- .C("print", ptr = a@ptr, PACKAGE = package))
@@ -168,7 +222,7 @@ display <- function(a) {
 #'
 #' Gets the TSA array dimensions.
 #'
-#' @param a data.frame which columns have same types and same dimensions.
+#' @param a TSA array.
 #' @return TSA Array dimensions.
 #' @export
 getDims <- function(a) {
@@ -188,7 +242,7 @@ getDims <- function(a) {
 #' Gets the data to the host.
 #'
 #' @param  a TSA array of interest.
-#' @return The data stored by the TSA array in a vector of its corresponding R DATA type.
+#' @return The data stored by the TSA array into a R array.
 #' @export
 getData <- function(a) {
   b <- a
@@ -205,12 +259,30 @@ getData <- function(a) {
             .C(
               "get_data",
               ptr = b@ptr,
-              result = as.single(seq(length = elements)),
+              result = as.single(seq(
+                length = elements,
+                from = 0,
+                to = 0
+              )),
               PACKAGE = package
             ))
     },
     "1" = {
-      stop("unsupported data type")
+      try(out <-
+            .C(
+              "get_data",
+              ptr = b@ptr,
+              result = as.single(seq(
+                length = 2 * elements,
+                from = 0,
+                to = 0
+              )),
+              PACKAGE = package
+            ))
+      r.and.i <- split(out$result, 1:2)
+      out$result <-
+        complex(real = as.numeric(as.character(unlist(r.and.i[[1]]))),
+                imaginary = as.numeric(as.character(unlist(r.and.i[[2]]))))
     },
     "2" = {
       try(out <-
@@ -239,17 +311,15 @@ getData <- function(a) {
             ))
     },
     "4" = {
+      l <- 8 * elements
       try(out <-
             .C(
               "get_data",
               ptr = b@ptr,
-              result = as.logical(seq(
-                length = elements,
-                from = 0,
-                to = 0
-              )),
+              result =  bit(length = l),
               PACKAGE = package
             ))
+      out$result <- getBoolean(out$result)
     },
     "5" = {
       try(out <-
@@ -314,7 +384,7 @@ getData <- function(a) {
     }
   )
   eval.parent(substitute(a@ptr <- out$ptr))
-  return(out$result)
+  return(array(out$result, dim = as.double(dims)))
 }
 
 #' deleteArray

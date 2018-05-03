@@ -6,18 +6,17 @@
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #' Lls
-#' 
+#'
 #' Calculates the minimum norm least squares solution \eqn{x} \eqn{(||A·x - b||^2)} to \eqn{A·x = b}. This
 # 'function uses the singular value decomposition function of Arrayfire. The actual formula that this function computes
 #' is \eqn{x = V·D\dagger·U^T·b}. Where \eqn{U} and \eqn{V} are orthogonal matrices and \eqn{Ddagger} contains
 #' the inverse values of the singular values contained in \eqn{D} if they are not zero, and zero otherwise.
-#' 
+#'
 #' @param a TSA Array with the coefficients of the linear equation problem to solve.
 #' @param b TSA Array with the measured values.
 #' @return Contains the solution to the linear equation problem minimizing the norm 2.
 #' @export
 Lls <- function(arr.a, arr.b) {
-  
   try(out <-
         .C(
           "lls",

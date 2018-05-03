@@ -4,7 +4,7 @@
 \alias{PercentageOfReoccurringDatapointsToAllDatapoints}
 \title{PercentageOfReoccurringDatapointsToAllDatapoints}
 \usage{
-PercentageOfReoccurringDatapointsToAllDatapoints(arr, isSorted)
+PercentageOfReoccurringDatapointsToAllDatapoints(arr, is.sorted)
 }
 \arguments{
 \item{arr}{TSA array with the time series.}

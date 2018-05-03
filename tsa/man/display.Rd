@@ -7,7 +7,7 @@
 display(a)
 }
 \arguments{
-\item{a}{data.frame which columns have same types and same dimensions.}
+\item{a}{TSA array.}
 }
 \description{
 Displays the TSA array.
