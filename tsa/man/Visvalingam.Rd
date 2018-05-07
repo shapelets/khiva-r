@@ -7,7 +7,7 @@
 Visvalingam(arr, numPoints)
 }
 \arguments{
-\item{arr}{TSA Array with with the x-coordinates and y-coordinates of the input points (x in column 0 and y in column 1).}
+\item{arr}{TSA Array with the x-coordinates and y-coordinates of the input points (x in column 0 and y in column 1).}
 
 \item{numPoints}{Sets the number of points returned after the execution of the method.}
 }

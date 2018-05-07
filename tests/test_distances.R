@@ -42,3 +42,13 @@ test_that("Test SquaredEuclidean", {
   deleteArray(a)
   deleteArray(out)
 })
+
+test_that("Test Dtw", {
+  ta <-
+    as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
+  a <- Array(array(ta, dim = c(5, 5)))
+  out <- Dtw(a)
+  b <- c(getData(out))
+  expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 5, 0, 0, 0, 15, 10, 5, 0, 0, 20, 15, 10, 5, 0)
+  expect_equal(b, expected, 1e-6)
+})
