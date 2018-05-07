@@ -18,6 +18,8 @@ This R package called 'tsa' provides all the functionalities of the TSA library 
 This package needs of "bit64" package.
 For installing it, execute the next line in R console:
 ```
+install.packages("devtools")
+install.packages("testthat")
 install.packages("bit64")
 ```
 * Installation: For installing this R package, it is necessary to execute next command:
@@ -44,6 +46,11 @@ Set as the working directory the directory corresponding to the tests by using:
 
 ```
 setwd("<tests-directory>")
+```
+Load the test library:
+
+```
+library("testthat")
 ```
 Execute the next line for running the tests:
 
