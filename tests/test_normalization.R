@@ -108,3 +108,21 @@ test_that("Test DecimalScalingNormInPlace", {
   b <- c(getData(a))
   expect_equal(b, expected, 1e-6)
 })
+
+test_that("Test MeanNorm", {
+  ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7))
+  a <- Array(array(ta, dim = c(4, 2)))
+  expected <- (c(-0.5, -0.166666667, 0.166666667, 0.5, -0.5, -0.166666667, 0.166666667, 0.5))
+  out <- MeanNorm(a)
+  b <- c(getData(out))
+  expect_equal(b, expected, 1e-6)
+})
+
+test_that("Test MeanNormInPlace", {
+  ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7))
+  a <- Array(array(ta, dim = c(4, 2)))
+  expected <- (c(-0.5, -0.166666667, 0.166666667, 0.5, -0.5, -0.166666667, 0.166666667, 0.5))
+  MeanNormInPlace(a)
+  b <- c(getData(a))
+  expect_equal(b, expected, 1e-6)
+})

@@ -5,49 +5,39 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#' Znorm
+#' DecimalScalingNorm
 #'
-#' Calculates a new set of timeseries with zero mean and standard deviation one.
+#' Normalizes the given time series according to its maximum value and adjusts each value within the range (-1, 1).
 #'
-#' @param arr TSA Array with the time series.
-#' @param epsilon Minimum standard deviation to consider.  It acts a a gatekeeper for
-#' those time series that may be constant or near constant.
-#' @return Array with the same dimensions as arr where the time series have been
-#' adjusted for zero mean and one as standard deviation.
+#' @param tss: TSA array with the time series.
+#' @return: TSA array with the same dimensions as tss, whose values (time series in dimension 0) have been
+#' normalized by dividing each number by 10^j, where j is the number of integer digits of the max number in
+#' the time series.
 #' @export
-Znorm <- function(arr, epsilon = 0.00000001) {
+DecimalScalingNorm <- function(tss) {
   try(out <-
         .C(
-          "znorm",
-          ptr = arr@ptr,
-          as.double(epsilon),
+          "decimal_scaling_norm",
+          ptr = tss@ptr,
           b = as.integer64(0),
           PACKAGE = package
         ))
-  eval.parent(substitute(arr@ptr <- out$ptr))
+  eval.parent(substitute(tss@ptr <- out$ptr))
   return(createArray(out$b))
 }
 
-#' ZnormInPLace
+#' DecimalScalingNormInPlace
 #'
-#' Adjusts the time series in the given input and performs z-norm
-#' inplace (without allocating further memory).
+#' Same as decimal_scaling_norm, but it performs the operation in place, without allocating further memory.
 #'
-#' @param arr: TSA array with the time series.
-#' @param epsilon: epsilon Minimum standard deviation to consider.  It acts as a gatekeeper for
-#' those time series that may be constant or near constant.
+#' @param tss: TSA array with the time series.
 #' @export
-ZnormInPlace <- function(arr, epsilon = 0.00000001) {
+DecimalScalingNormInPlace <- function(tss) {
   try(out <-
-        .C(
-          "znorm_in_place",
-          ptr = arr@ptr,
-          as.double(epsilon),
-          b = as.integer64(0),
-          PACKAGE = package
-        ))
-  eval.parent(substitute(arr@ptr <- out$ptr))
-  return(createArray(out$b))
+        .C("decimal_scaling_norm_in_place",
+           ptr = tss@ptr,
+           PACKAGE = package))
+  eval.parent(substitute(tss@ptr <- out$ptr))
 }
 
 #' MaxMinNorm
@@ -109,37 +99,83 @@ MaxMinNormInPlace <-
     eval.parent(substitute(tss@ptr <- out$ptr))
   }
 
-#' DecimalScalingNorm
+#' MeanNorm
 #'
-#' Normalizes the given time series according to its maximum value and adjusts each value within the range (-1, 1).
+#' Normalizes the given time series according to its maximum-minimum value and its mean. It follows the following
+#'formulae:
+#' \deqn{ \acute{x} = \frac{x - mean(x)}{max(x) - min(x)}.}
 #'
-#' @param tss: TSA array with the time series.
-#' @return: TSA array with the same dimensions as tss, whose values (time series in dimension 0) have been
-#' normalized by dividing each number by 10^j, where j is the number of integer digits of the max number in
-#' the time series.
+#' @param tss TSA array with the time series.
+#' @return An array with the same dimensions as tss, whose values (time series in dimension 0) have been
+#' normalized by substracting the mean from each number and dividing each number by \eqn{max(x) - min(x)}, in the
+#' time series.
 #' @export
-DecimalScalingNorm <- function(tss) {
-  try(out <-
-        .C(
-          "decimal_scaling_norm",
-          ptr = tss@ptr,
-          b = as.integer64(0),
-          PACKAGE = package
-        ))
+MeanNorm <- function(tss) {
+  try(out <- .C("mean_norm",
+                ptr = tss@ptr,
+                b = as.integer64(0),
+                PACKAGE = package))
   eval.parent(substitute(tss@ptr <- out$ptr))
+  
   return(createArray(out$b))
 }
 
-#' DecimalScalingNormInPlace
+#' MeanNormInPlace
 #'
-#' Same as decimal_scaling_norm, but it performs the operation in place, without allocating further memory.
+#' Normalizes the given time series according to its maximum-minimum value and its mean. It follows the following
+#' formulae: 
+#' \deqn{ \acute{x} = \frac{x - mean(x)}{max(x) - min(x)}.}
 #'
-#' @param tss: TSA array with the time series.
+#' @param tss TSA array with the time series.
 #' @export
-DecimalScalingNormInPlace <- function(tss) {
-  try(out <-
-        .C("decimal_scaling_norm_in_place",
-           ptr = tss@ptr,
-           PACKAGE = package))
+MeanNormInPlace  <- function(tss) {
+  try(out <- .C("mean_norm_in_place",
+                ptr = tss@ptr,
+                PACKAGE = package))
   eval.parent(substitute(tss@ptr <- out$ptr))
+}
+
+#' Znorm
+#'
+#' Calculates a new set of time series with zero mean and standard deviation one.
+#'
+#' @param arr TSA Array with the time series.
+#' @param epsilon Minimum standard deviation to consider. It acts a a gatekeeper for
+#' those time series that may be constant or near constant.
+#' @return Array with the same dimensions as arr where the time series have been
+#' adjusted for zero mean and one as standard deviation.
+#' @export
+Znorm <- function(arr, epsilon = 0.00000001) {
+  try(out <-
+        .C(
+          "znorm",
+          ptr = arr@ptr,
+          as.double(epsilon),
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  return(createArray(out$b))
+}
+
+#' ZnormInPLace
+#'
+#' Adjusts the time series in the given input and performs z-norm
+#' inplace (without allocating further memory).
+#'
+#' @param arr: TSA array with the time series.
+#' @param epsilon: epsilon Minimum standard deviation to consider. It acts as a gatekeeper for
+#' those time series that may be constant or near constant.
+#' @export
+ZnormInPlace <- function(arr, epsilon = 0.00000001) {
+  try(out <-
+        .C(
+          "znorm_in_place",
+          ptr = arr@ptr,
+          as.double(epsilon),
+          b = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(arr@ptr <- out$ptr))
+  return(createArray(out$b))
 }

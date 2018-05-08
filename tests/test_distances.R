@@ -24,6 +24,16 @@ test_that("Test Euclidean", {
   deleteArray(out)
 })
 
+test_that("Test Dtw", {
+  ta <-
+    as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
+  a <- Array(array(ta, dim = c(5, 5)))
+  out <- Dtw(a)
+  b <- c(getData(out))
+  expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 5, 0, 0, 0, 15, 10, 5, 0, 0, 20, 15, 10, 5, 0)
+  expect_equal(b, expected, 1e-6)
+})
+
 test_that("Test SquaredEuclidean", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
   a <- Array(array(ta, dim = c(4, 3)))
@@ -43,12 +53,24 @@ test_that("Test SquaredEuclidean", {
   deleteArray(out)
 })
 
-test_that("Test Dtw", {
-  ta <-
-    as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
-  a <- Array(array(ta, dim = c(5, 5)))
-  out <- Dtw(a)
+test_that("Test Hamming", {
+  ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
+  a <- Array(array(ta, dim = c(5,5)))
+  out <- Hamming(a)
+  expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 5, 5, 5, 5, 0)
   b <- c(getData(out))
+  expect_equal(b, expected)
+  deleteArray(a)
+  deleteArray(out)
+})
+
+test_that("Test Manhattan", {
+  ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
+  a <- Array(array(ta, dim = c(5,5)))
+  out <- Manhattan(a)
   expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 5, 0, 0, 0, 15, 10, 5, 0, 0, 20, 15, 10, 5, 0)
-  expect_equal(b, expected, 1e-6)
+  b <- c(getData(out))
+  expect_equal(b, expected)
+  deleteArray(a)
+  deleteArray(out)
 })
