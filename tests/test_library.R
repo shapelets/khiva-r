@@ -64,3 +64,8 @@ test_that("Test GetDeviceID", {
     }
   }
 })
+
+test_that("Test Version", {
+  out <- Version()
+  expect_equal(out$result, "0.0.1")
+})

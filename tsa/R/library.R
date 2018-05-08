@@ -184,3 +184,18 @@ GetDeviceCount <- function() {
   
   return(newList)
 }
+
+#' Version
+#'
+#' Returns a string with the current version of the library.
+#'
+#' @return A string with the current version of the library.
+#' @export
+Version <- function() {
+  try(out <- .C("version",
+                result = paste(rep(" ", 40), collapse = ""),
+                PACKAGE = package))
+  newList <- list("result" = out$result)
+  
+  return(newList)
+}
