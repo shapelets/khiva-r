@@ -49,6 +49,7 @@ package <- PackageName()
   LoadLibraries()
 }
 
+#' @export
 TSABackend <- function() {
   list(
     TSA_BACKEND_DEFAULT = 0,
@@ -58,6 +59,7 @@ TSABackend <- function() {
   )
 }
 
+#' @export
 TSABackendFromOrdinal <- function(number) {
   switch(
     toString(number),

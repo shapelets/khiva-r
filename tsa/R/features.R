@@ -1087,6 +1087,7 @@ NumberPeaks <- function(arr, n) {
 #' @param arr: TSA array with the time series.
 #' @param lags: TSA array with the lags to be calculated.
 #' @return: TSA array with the partial autocorrelation for each time series for the given lag.
+#' @export
 PartialAutocorrelation <- function(arr, lags) {
   try(out <-
         .C(
