@@ -6,8 +6,6 @@
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 test_that("Test stomp", {
-  SetBackend(4)
-  SetDevice(0)
   ta <- as.single(c(10, 11, 10, 11))
   tb <- as.single(c(10, 11, 10, 11))
   tc <- as.single(c(10, 11, 10, 11, 10, 11, 10, 11))
@@ -26,9 +24,6 @@ test_that("Test stomp", {
 })
 
 test_that("Test stompSelJoin", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.double(c(10, 10, 11, 11, 10, 11, 10, 10, 11, 11, 10, 11, 10, 10))
   tb <-
@@ -40,15 +35,12 @@ test_that("Test stompSelJoin", {
   profile <- getData(out$profile)
   index <- getData(out$index)
   for (i in 1:length(expected.index)) {
-    expect_equal(profile[i], 0, 1e-2)
+    expect_equal(profile[i], 0, 2e-2)
     expect_equal(index[i], expected.index[i], 1e-2)
   }
 })
 
 test_that("Test findBestNMotifs", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.double(c(10, 10, 10, 10, 10, 10, 9, 10, 10, 10, 10, 10, 11, 10, 9))
   tb <-
@@ -68,9 +60,6 @@ test_that("Test findBestNMotifs", {
 })
 
 test_that("Test findBestNDiscords", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.double(c(11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11))
   tb <-

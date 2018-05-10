@@ -6,9 +6,6 @@
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 test_that("Test Znorm", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.double(c(0, 1, 2, 3))
   tb <-

@@ -6,6 +6,8 @@
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 test_that("Test SetBackend", {
+  prev.backend <- GetBackend()
+  prev.device <- GetDeviceID()
   out1 <- GetBackends()
   backends <- out1$result
   cuda <- bitwAnd(backends, TSABackend()$TSA_BACKEND_CUDA)
@@ -27,9 +29,14 @@ test_that("Test SetBackend", {
     out <- GetBackend()
     expect_equal(out[[1]], TSABackend()$TSA_BACKEND_CPU)
   }
+  
+  SetBackend(prev.backend)
+  SetDevice(prev.device)
 })
 
 test_that("Test GetDeviceID", {
+  prev.backend <- GetBackend()
+  prev.device <- GetDeviceID()
   out1 <- GetBackends()
   backends <- out1$result
   cuda <- bitwAnd(backends, TSABackend()$TSA_BACKEND_CUDA)
@@ -63,6 +70,9 @@ test_that("Test GetDeviceID", {
       expect_equal(out$result, i)
     }
   }
+  
+  SetBackend(prev.backend)
+  SetDevice(prev.device)
 })
 
 test_that("Test Version", {

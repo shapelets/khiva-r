@@ -22,8 +22,9 @@ install.packages("devtools")
 install.packages("testthat")
 install.packages("bit64")
 ```
-* Installation: For installing this R package, it is necessary to execute next command:
+* Installation: For installing this R package, it is necessary to execute next commands:
 ```
+options(devtools.install.args = "--no-multiarch")
 devtools::install_github("<github_url>")
 ```
 or
@@ -36,8 +37,9 @@ get into the tsa package:
 cd tsa-r
 cd tsa
 ```
-Execute next command in the R console:
+Execute next commands in the R console:
 ```
+options(devtools.install.args = "--no-multiarch")
 devtools::install()
 ```
 ### Executing the tests:

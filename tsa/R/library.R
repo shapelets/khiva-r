@@ -12,10 +12,10 @@ PackageName <- function() {
     package <- 'libtsa_c.dylib'
   }
   else if (platform == 'Windows') {
-    package <- 'libtsa_c.dll'
+    package <- 'tsa_c'
   }
   else if (platform == 'Linux') {
-    package <- 'libtsa_c.so'
+    package <- 'libtsa_c'
   }
   
   return(package)
@@ -30,8 +30,8 @@ LoadLibraries <- function() {
     dyn.load(shared.library)
   }
   else if (platform == 'Windows') {
-    shared.library <- 'C:\\Windows\\system32\\libtsa_c.dll'
-    dyn.load('C:\\Windows\\system32\\libaf.3.dll')
+    shared.library <- 'C:\\Program Files\\TSA\\lib\\tsa_c.dll'
+    dyn.load('C:\\Program Files\\ArrayFire\\v3\\lib\\af.dll')
     dyn.load(shared.library)
   }
   else if (platform == 'Linux') {

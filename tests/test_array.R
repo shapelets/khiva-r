@@ -6,9 +6,6 @@
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 test_that("Test Real1D", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <- as.double(c(1, 2, 3, 4, 5, 6, 7, 8))
   expected <- array(ta, dim = c(8, 1, 1, 1))
   a <- Array(expected)
@@ -18,9 +15,6 @@ test_that("Test Real1D", {
 })
 
 test_that("Test Real2D", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <- as.double(c(1, 2, 3, 4, 5, 6, 7, 8))
   expected <- array(ta, dim = c(4, 2, 1, 1))
   a <- Array(expected)
@@ -28,10 +22,8 @@ test_that("Test Real2D", {
   expect_equal(d, expected, 1e-4)
   deleteArray(a)
 })
+
 test_that("Test Real3D", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <- as.double(c(1, 2, 3, 4, 5, 6, 7, 8))
   expected <- array(ta, dim = c(2, 2, 2, 1))
   a <- Array(expected)
@@ -41,9 +33,6 @@ test_that("Test Real3D", {
 })
 
 test_that("Test Real4D", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.double(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16))
   expected <- array(ta, dim = c(2, 2, 2, 2))
@@ -54,9 +43,6 @@ test_that("Test Real4D", {
 })
 
 test_that("Test Complex1D", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.complex(c(1 + 1i, 2 + 2i, 3 + 3i, 4 + 4i, 5 + 5i, 6 + 6i, 7 + 7i, 8 + 8i))
   expected <- array(ta, dim = c(8, 1, 1, 1))
@@ -67,9 +53,6 @@ test_that("Test Complex1D", {
 })
 
 test_that("Test Complex2D", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.complex(c(1 + 1i, 2 + 2i, 3 + 3i, 4 + 4i, 5 + 5i, 6 + 6i, 7 + 7i, 8 + 8i))
   expected <- array(ta, dim = c(4, 2, 1, 1))
@@ -80,9 +63,6 @@ test_that("Test Complex2D", {
 })
 
 test_that("Test Complex3D", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.complex(c(1 + 1i, 2 + 2i, 3 + 3i, 4 + 4i, 5 + 5i, 6 + 6i, 7 + 7i, 8 + 8i))
   expected <- array(ta, dim = c(2, 2, 2, 1))
@@ -93,9 +73,6 @@ test_that("Test Complex3D", {
 })
 
 test_that("Test Complex4D", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.complex(
       c(

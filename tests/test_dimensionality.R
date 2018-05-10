@@ -6,9 +6,6 @@
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 test_that("Test RamerDouglasPeucker", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
   tb <-
     as.single(c(0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0))
@@ -21,9 +18,6 @@ test_that("Test RamerDouglasPeucker", {
 })
 
 test_that("Test Visvalingam", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
   tb <-
     as.single(c(0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0))
@@ -36,9 +30,6 @@ test_that("Test Visvalingam", {
 })
 
 test_that("Test Paa", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.single(c(0.0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0))
   tb <-
@@ -53,9 +44,6 @@ test_that("Test Paa", {
 })
 
 test_that("Test Sax", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
   tb <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
   
@@ -67,9 +55,6 @@ test_that("Test Sax", {
 })
 
 test_that("Test Pip", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <-
     as.single(c(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0))
   tb <-

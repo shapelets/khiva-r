@@ -6,9 +6,6 @@
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 test_that("Test Lls", {
-  SetBackend(4)
-  SetDevice(0)
-  
   ta <- as.double(c(4, 3))
   tb <- as.double(c(-1, -2))
   blls <-  as.double(c(3, 1))
