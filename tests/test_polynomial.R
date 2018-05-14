@@ -16,6 +16,9 @@ test_that("Test polyfit1", {
   out <- Polyfit(a, b, 1)
   c <- c(getData(out))
   expect_equal(c, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(b)
+  deleteArray(out)
 })
 
 test_that("Test polyfit3", {
@@ -29,6 +32,9 @@ test_that("Test polyfit3", {
   out <- Polyfit(a, b, 3)
   c <- c(getData(out))
   expect_equal(c, expected, 1e-4)
+  deleteArray(a)
+  deleteArray(b)
+  deleteArray(out)
 })
 
 test_that("Test roots", {
@@ -40,4 +46,6 @@ test_that("Test roots", {
   out <- Roots(a)
   b <- c(getData(out))
   expect_equal(b, expected, 1e-2)
+  deleteArray(a)
+  deleteArray(out)
 })

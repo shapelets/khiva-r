@@ -25,6 +25,8 @@ test_that("Test Znorm", {
     expect_equal(b[i], expected[i], 1e-3)
     expect_equal(b[i + 4], expected[i], 1e-3)
   }
+  deleteArray(a)
+  deleteArray(out)
 })
 
 test_that("Test ZnormInPlace", {
@@ -44,6 +46,7 @@ test_that("Test ZnormInPlace", {
   ZnormInPlace(a)
   b <- c(getData(a))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
 })
 
 test_that("Test MaxMinNorm", {
@@ -64,6 +67,8 @@ test_that("Test MaxMinNorm", {
   out <- MaxMinNorm(a, 2, 1)
   b <- c(getData(out))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 test_that("Test MaxMinNormInPlace", {
@@ -84,6 +89,7 @@ test_that("Test MaxMinNormInPlace", {
   MaxMinNormInPlace(a, 2, 1)
   b <- c(getData(a))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
 })
 
 test_that("Test DecimalScalingNorm", {
@@ -94,6 +100,8 @@ test_that("Test DecimalScalingNorm", {
   out <- DecimalScalingNorm(a)
   b <- c(getData(out))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 test_that("Test DecimalScalingNormInPlace", {
@@ -104,6 +112,7 @@ test_that("Test DecimalScalingNormInPlace", {
   DecimalScalingNormInPlace(a)
   b <- c(getData(a))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
 })
 
 test_that("Test MeanNorm", {
@@ -113,6 +122,8 @@ test_that("Test MeanNorm", {
   out <- MeanNorm(a)
   b <- c(getData(out))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 test_that("Test MeanNormInPlace", {
@@ -122,4 +133,5 @@ test_that("Test MeanNormInPlace", {
   MeanNormInPlace(a)
   b <- c(getData(a))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
 })

@@ -21,9 +21,13 @@ test_that("Test stomp", {
     expect_equal(profile[i], 0, 1e-2)
     expect_equal(index[i], expected.index[i], 1e-2)
   }
+  deleteArray(a)
+  deleteArray(b)
+  deleteArray(out[[1]])
+  deleteArray(out[[2]])
 })
 
-test_that("Test stompSelJoin", {
+test_that("Test stompSelfJoin", {
   ta <-
     as.double(c(10, 10, 11, 11, 10, 11, 10, 10, 11, 11, 10, 11, 10, 10))
   tb <-
@@ -38,6 +42,10 @@ test_that("Test stompSelJoin", {
     expect_equal(profile[i], 0, 2e-2)
     expect_equal(index[i], expected.index[i], 1e-2)
   }
+  deleteArray(a)
+  deleteArray(out[[1]])
+  deleteArray(out[[2]])
+  
 })
 
 test_that("Test findBestNMotifs", {
@@ -52,11 +60,16 @@ test_that("Test findBestNMotifs", {
   out <-
     FindBestNMotifs(stomp.results$profile, stomp.results$index, 2)
   motif.index <- getData(out$motif.index)
-  subsequence.index <- getData(out$subsequence)
+  subsequence.index <- getData(out$subsequence.index)
   expect_equal(motif.index[1], 12, 1e-2)
   expect_equal(motif.index[2], 11, 1e-2)
   expect_equal(subsequence.index[1], 1, 1e-2)
   expect_equal(subsequence.index[2], 0, 1e-2)
+  deleteArray(a)
+  deleteArray(b)
+  deleteArray(out[[1]])
+  deleteArray(out[[2]])
+  deleteArray(out[[3]])
 })
 
 test_that("Test findBestNDiscords", {
@@ -73,4 +86,10 @@ test_that("Test findBestNDiscords", {
   subsequence.index <- c(getData(out$subsequence.index))
   expect_equal(subsequence.index[1], 0, 1e-2)
   expect_equal(subsequence.index[2], 9, 1e-2)
+  deleteArray(a)
+  deleteArray(b)
+  deleteArray(out[[1]])
+  deleteArray(out[[2]])
+  #deleteArray(out[[3]])
+  
 })

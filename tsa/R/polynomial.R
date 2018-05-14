@@ -25,7 +25,7 @@ Polyfit <- function(x, y, deg) {
     PACKAGE = package
   ))
   eval.parent(substitute(x@ptr <- out$x.ptr))
-  eval.parent(substitute(x@ptr <- out$y.ptr))
+  eval.parent(substitute(y@ptr <- out$y.ptr))
   
   return(createArray(out$b))
 }

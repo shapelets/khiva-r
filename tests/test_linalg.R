@@ -16,4 +16,7 @@ test_that("Test Lls", {
   d <- getData(out)
   expect_equal(d[1], 1, 1e-4)
   expect_equal(d[2], 1, 1e-4)
+  deleteArray(a)
+  deleteArray(clls)
+  deleteArray(out)
 })

@@ -26,17 +26,14 @@ LoadLibraries <- function() {
   
   if (platform == 'Darwin') {
     shared.library <- '/usr/local/lib/libtsa_c.dylib'
-    dyn.load('/usr/local/lib/libaf.3.dylib')
     dyn.load(shared.library)
   }
   else if (platform == 'Windows') {
     shared.library <- 'C:\\Program Files\\TSA\\lib\\tsa_c.dll'
-    dyn.load('C:\\Program Files\\ArrayFire\\v3\\lib\\af.dll')
     dyn.load(shared.library)
   }
   else if (platform == 'Linux') {
     shared.library <- '/usr/local/lib/libtsa_c.so'
-    dyn.load('/usr/local/lib/libaf.3.so')
     dyn.load(shared.library)
   }
   

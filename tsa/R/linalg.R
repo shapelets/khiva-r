@@ -25,7 +25,7 @@ Lls <- function(arr.a, arr.b) {
           b = as.integer64(0),
           PACKAGE = package
         ))
-  eval.parent(substitute(arr.b@ptr <- out$a.ptr))
+  eval.parent(substitute(arr.a@ptr <- out$a.ptr))
   eval.parent(substitute(arr.b@ptr <- out$b.ptr))
   return(createArray(out$b))
 }

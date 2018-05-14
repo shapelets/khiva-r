@@ -14,6 +14,8 @@ test_that("Test GroupBySingleColumn", {
   out <- GroupBy(a, 0)
   b <- c(getData(out))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 test_that("Test GroupByDoubleKeyColumn", {
@@ -25,6 +27,8 @@ test_that("Test GroupByDoubleKeyColumn", {
   out <- GroupBy(a, 0, 2)
   b <- c(getData(out))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 test_that("Test GroupByDoubleKeyColumn2", {
@@ -36,6 +40,8 @@ test_that("Test GroupByDoubleKeyColumn2", {
   out <- GroupBy(a, 0, 2)
   b <- c(getData(out))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 test_that("Test GroupByDoubleKeyDoubleValueColumn", {
@@ -47,4 +53,6 @@ test_that("Test GroupByDoubleKeyDoubleValueColumn", {
   out <- GroupBy(a, 0, 2, 2)
   b <- c(getData(out))
   expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })
