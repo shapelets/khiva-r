@@ -9,9 +9,9 @@ Quantile(arr, arr.q, precision = 1e+08)
 \arguments{
 \item{arr}{TSA array with the time series.}
 
-\item{precision}{Number of decimals expected.}
+\item{arr.q}{Percentile(s) at which to extract score(s). One or many.}
 
-\item{q}{Percentile(s) at which to extract score(s). One or many.}
+\item{precision}{Number of decimals expected.}
 }
 \value{
 The number of m-crossings of each time series within arr.

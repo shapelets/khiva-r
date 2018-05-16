@@ -13,8 +13,6 @@ subsequence.}
 \item{index}{TSA Array with the matrix profile index containing where each minimum occurs.}
 
 \item{n}{Number of motifs to extract}
-
-\item{length_profile}{Length of the matrix profile}
 }
 \value{
 A list of TSA Arrays with the motif distance, the motif indices and the subsequence indices.

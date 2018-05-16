@@ -6,6 +6,9 @@
 \usage{
 SetBackend(backend)
 }
+\arguments{
+\item{backend}{The desired backend.}
+}
 \description{
 Set the backend.
 }

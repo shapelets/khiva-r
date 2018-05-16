@@ -9,12 +9,11 @@ RatioBeyondRSigma(arr, r)
 \arguments{
 \item{arr}{TSA array with the time series.}
 
-\item{q}{Percentile(s) at which to extract score(s). One or many.}
-
-\item{precision}{Number of decimals expected.}
+\item{r}{Number of times that the values should be away from.}
 }
 \value{
-The number of m-crossings of each time series within arr.
+TSA array with the ratio of values that are more than \eqn{r*std(x)} (so \eqn{r} sigma) away from
+the mean of \eqn{x}.
 }
 \description{
 Calculates the ratio of values that are more than  \eqn{r*std(x)} (so \eqn{r} sigma away from the mean of

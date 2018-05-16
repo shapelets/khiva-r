@@ -7,13 +7,13 @@
 MaxMinNorm(tss, high = 1, low = 1, epsilon = 1e-08)
 }
 \arguments{
-\item{tss:}{TSA array with the time series.}
+\item{tss}{TSA array with the time series.}
 
-\item{high:}{Maximum final value (Defaults to 1.0).}
+\item{high}{Maximum final value (Defaults to 1.0).}
 
-\item{low:}{Minimum final value (Defaults to 0.0).}
+\item{low}{Minimum final value (Defaults to 0.0).}
 
-\item{epsilon:}{Safeguard for constant (or near constant) time series as the operation implies a unit scale
+\item{epsilon}{Safeguard for constant (or near constant) time series as the operation implies a unit scale
 operation between min and max values in the tss.}
 }
 \value{

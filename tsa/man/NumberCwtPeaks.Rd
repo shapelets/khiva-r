@@ -7,9 +7,9 @@
 NumberCwtPeaks(arr, max.w)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{max_w:}{The maximum width to consider.}
+\item{max.w}{The maximum width to consider.}
 }
 \value{
 : TSA array with the number of peaks for each time series.

@@ -7,10 +7,10 @@
 Roots(p)
 }
 \arguments{
-\item{p:}{TSA array with the polynomial coefficients.}
+\item{p}{TSA array with the polynomial coefficients.}
 }
 \value{
-: TSA array with the roots of the polynomial.
+TSA array with the roots of the polynomial.
 }
 \description{
 Calculates the roots of a polynomial with coefficients given in \eqn{p}. The values in the rank-1 array

@@ -18,17 +18,18 @@ library(tsa)
 ```
 
 ## Executing the tests:
-The tests, which are located in the `<project-root-dir>/tests` directory can be executed as stated below.
+To execute the tests, set your working directory to <project-root-dir>/tsa/ and execute the following commands:
 
-It is necessary to load the testthat library:
+Before executing tests, you need to load the testthat library:
 ```R
 library(testthat)  
 ```
-And execute the next R command:
+
+Execute the next R command:
 ```R
-test_results <- test_dir("./", reporter="summary")
+devtools::test()
 ```
- 
+
 ## Documentation
 This R library follows the standard way of writing documentation of R by using Roxygen2.
 

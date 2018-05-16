@@ -9,13 +9,14 @@ PercentageOfReoccurringDatapointsToAllDatapoints(arr, is.sorted)
 \arguments{
 \item{arr}{TSA array with the time series.}
 
-\item{n}{The support of the peak.}
+\item{is.sorted}{Indicates if the input time series is sorted or not. Defaults to false..}
 }
 \value{
-The number of m-crossings of each time series within arr.
+TSA array with the percentage of unique data points, that are present in the time series more than once.
 }
 \description{
-Calculates the number of peaks of at least support \eqn{n} in the time series \eqn{arr}. A peak of support
-\eqn{n} is defined as a subsequence of \eqn{arr} where a value occurs, which is bigger than
-its \eqn{n} neighbours to the left and to the right.
+Calculates the percentage of unique data points, that are present in the time series more than once.
+\deqn{
+  \frac{\textit{number of data points occurring more than once}}{\textit{number of all data points})}
+}
 }

@@ -7,9 +7,9 @@
 ZnormInPlace(arr, epsilon = 1e-08)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{epsilon:}{epsilon Minimum standard deviation to consider. It acts as a gatekeeper for
+\item{epsilon}{epsilon Minimum standard deviation to consider. It acts as a gatekeeper for
 those time series that may be constant or near constant.}
 }
 \description{

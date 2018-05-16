@@ -9,7 +9,7 @@
 #'
 #' Normalizes the given time series according to its maximum value and adjusts each value within the range (-1, 1).
 #'
-#' @param tss: TSA array with the time series.
+#' @param tss TSA array with the time series.
 #' @return: TSA array with the same dimensions as tss, whose values (time series in dimension 0) have been
 #' normalized by dividing each number by 10^j, where j is the number of integer digits of the max number in
 #' the time series.
@@ -30,7 +30,7 @@ DecimalScalingNorm <- function(tss) {
 #'
 #' Same as decimal_scaling_norm, but it performs the operation in place, without allocating further memory.
 #'
-#' @param tss: TSA array with the time series.
+#' @param tss TSA array with the time series.
 #' @export
 DecimalScalingNormInPlace <- function(tss) {
   try(out <-
@@ -45,10 +45,10 @@ DecimalScalingNormInPlace <- function(tss) {
 #' ormalizes the given time series according to its minimum and maximum value and adjusts each value within the
 #' range [low, high].
 
-#' @param tss: TSA array with the time series.
-#' @param high: Maximum final value (Defaults to 1.0).
-#' @param low: Minimum final value (Defaults to 0.0).
-#' @param epsilon: Safeguard for constant (or near constant) time series as the operation implies a unit scale
+#' @param tss TSA array with the time series.
+#' @param high Maximum final value (Defaults to 1.0).
+#' @param low Minimum final value (Defaults to 0.0).
+#' @param epsilon Safeguard for constant (or near constant) time series as the operation implies a unit scale
 #' operation between min and max values in the tss.
 #' @return: TSA array with the same dimensions as tss where the time series have been adjusted for zero mean and
 #' one as standard deviation.
@@ -76,10 +76,10 @@ MaxMinNorm <-
 #'
 #' Same as max_min_norm, but it performs the operation in place, without allocating further memory.
 #'
-#' @param tss: TSA array with the time series.
-#' @param high: Maximum final value (Defaults to 1.0).
-#' @param low: Minimum final value (Defaults to 0.0).
-#' @param epsilon: Safeguard for constant (or near constant) time series as the operation implies a unit scale
+#' @param tss TSA array with the time series.
+#' @param high Maximum final value (Defaults to 1.0).
+#' @param low Minimum final value (Defaults to 0.0).
+#' @param epsilon Safeguard for constant (or near constant) time series as the operation implies a unit scale
 #' operation between min and max values in the tss.
 #' @export
 MaxMinNormInPlace <-
@@ -163,8 +163,8 @@ Znorm <- function(arr, epsilon = 0.00000001) {
 #' Adjusts the time series in the given input and performs z-norm
 #' inplace (without allocating further memory).
 #'
-#' @param arr: TSA array with the time series.
-#' @param epsilon: epsilon Minimum standard deviation to consider. It acts as a gatekeeper for
+#' @param arr TSA array with the time series.
+#' @param epsilon epsilon Minimum standard deviation to consider. It acts as a gatekeeper for
 #' those time series that may be constant or near constant.
 #' @export
 ZnormInPlace <- function(arr, epsilon = 0.00000001) {

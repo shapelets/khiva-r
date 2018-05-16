@@ -8,6 +8,8 @@ SumOfReoccurringDatapoints(arr, is.sorted = FALSE)
 }
 \arguments{
 \item{arr}{TSA array with the time series.}
+
+\item{is.sorted}{Indicates if the input time series is sorted or not. Defaults to false.}
 }
 \value{
 Returns the sum of all data points, that are present in the time series more than once.

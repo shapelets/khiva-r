@@ -141,7 +141,7 @@ QuantileStatistics <- function(tss, q, precision = 1e8) {
 #'
 #' @param tss Expects an input array whose dimension zero is the length of the time series (all the same) and
 #' dimension one indicates the number of time series.
-#' @param quantiles Number of quantiles to extract. From 0 to 1, step 1/quantiles.
+#' @param q Number of quantiles to extract. From 0 to 1, step 1/quantiles.
 #' @param precision Number of decimals expected.
 #' @return Matrix with the categories, one category per row, the start of the category in the first column and
 #' the end in the second category.

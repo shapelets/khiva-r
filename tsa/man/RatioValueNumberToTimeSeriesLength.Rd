@@ -2,19 +2,22 @@
 % Please edit documentation in R/features.R
 \name{RatioValueNumberToTimeSeriesLength}
 \alias{RatioValueNumberToTimeSeriesLength}
-\title{Calculates a factor which is 1 if all values in the time series occur only once, and below one if this is
-not the case. In principle, it just returns:}
+\title{RatioValueNumberToTimeSeriesLength}
 \usage{
 RatioValueNumberToTimeSeriesLength(arr)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-: TSA array with the ratio of unique values with respect to the total number of values.
+TSA array with the ratio of unique values with respect to the total number of values.
 }
 \description{
+Calculates a factor which is 1 if all values in the time series occur only once, and below one if this is
+not the case. In principle, it just returns:
+}
+\details{
 \deqn{
-        \frac{\textit{number_unique_values}}{\textit{number_values}}
+\frac{\textit{number\_unique\_values}}{\textit{number\_values}}
 }
 }

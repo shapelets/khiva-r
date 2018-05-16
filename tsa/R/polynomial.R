@@ -10,9 +10,9 @@
 #' Least squares polynomial fit. Fit a polynomial \eqn{p(x) = p[0] * x^{deg} + ... + p[deg]} of degree
 #' \eqn{deg} to points \eqn{(x, y)}. Returns a vector of coefficients \eqn{p} that minimises the squared error.
 #'
-#' @param x: TSA array with the x-coordinates of the M sample points \eqn{(x[i], y[i])}.
-#' @param y: TSA array with the y-coordinates of the sample points.
-#' @param deg: Degree of the fitting polynomial
+#' @param x TSA array with the x-coordinates of the M sample points \eqn{(x[i], y[i])}.
+#' @param y TSA array with the y-coordinates of the sample points.
+#' @param deg Degree of the fitting polynomial
 #' @return: TSA array with the polynomial coefficients, highest power first.
 #' @export
 Polyfit <- function(x, y, deg) {
@@ -39,8 +39,8 @@ Polyfit <- function(x, y, deg) {
 #' p[0] * x^n + p[1] * x^{n-1} + ... + p[n-1] * x + p[n]
 #' }
 #'
-#' @param p: TSA array with the polynomial coefficients.
-#' @return: TSA array with the roots of the polynomial.
+#' @param p TSA array with the polynomial coefficients.
+#' @return TSA array with the roots of the polynomial.
 #' @export
 Roots <- function(p) {
   try(out <- .C("roots",

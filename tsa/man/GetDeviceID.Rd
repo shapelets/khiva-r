@@ -6,8 +6,8 @@
 \usage{
 GetDeviceID()
 }
-\arguments{
-\item{device}{The active device.}
+\value{
+The active device.
 }
 \description{
 Get the device id.

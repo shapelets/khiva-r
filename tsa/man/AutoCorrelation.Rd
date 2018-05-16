@@ -9,9 +9,9 @@ AutoCorrelation(arr, max.lag, unbiased)
 \arguments{
 \item{arr}{TSA array with the time series.}
 
-\item{unbiased}{Determines whether it divides by n - lag (if true) or n (if false).}
+\item{max.lag}{The maximum lag to compute.}
 
-\item{max_lag}{The maximum lag to compute.}
+\item{unbiased}{Determines whether it divides by n - lag (if true) or n (if false).}
 }
 \value{
 The autocorrelation value for the given time series.

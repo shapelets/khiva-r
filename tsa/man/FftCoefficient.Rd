@@ -8,6 +8,8 @@ FftCoefficient(arr, coefficient)
 }
 \arguments{
 \item{arr}{TSA array with the time series.}
+
+\item{coefficient}{The coefficient to extract from the FFT.}
 }
 \value{
 TSA Array with:

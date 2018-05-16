@@ -7,10 +7,10 @@
 SumValues(arr)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-: TSA array with the sum of values in each time series.
+TSA array with the sum of values in each time series.
 }
 \description{
 Calculates the sum over the time series arr.

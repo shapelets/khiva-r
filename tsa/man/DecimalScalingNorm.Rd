@@ -7,7 +7,7 @@
 DecimalScalingNorm(tss)
 }
 \arguments{
-\item{tss:}{TSA array with the time series.}
+\item{tss}{TSA array with the time series.}
 }
 \value{
 : TSA array with the same dimensions as tss, whose values (time series in dimension 0) have been

@@ -7,10 +7,10 @@
 LocalMaximals(arr)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-: TSA array with the calculated local maximals for each time series in arr.
+TSA array with the calculated local maximals for each time series in arr.
 }
 \description{
 Calculates all Local Maximals fot the time series in array.

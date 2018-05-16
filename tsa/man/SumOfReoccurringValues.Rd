@@ -7,9 +7,9 @@
 SumOfReoccurringValues(arr, is.sorted = FALSE)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{is.sorted:}{Indicates if the input time series is sorted or not. Defaults to false.}
+\item{is.sorted}{Indicates if the input time series is sorted or not. Defaults to false.}
 }
 \value{
 : TSA array with the sum of all values, that are present in the time series more than once.

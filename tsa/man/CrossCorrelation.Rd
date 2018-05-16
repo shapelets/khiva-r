@@ -7,11 +7,11 @@
 CrossCorrelation(arr.xss, arr.yss, unbiased)
 }
 \arguments{
+\item{arr.xss}{TSA array with the time series.}
+
+\item{arr.yss}{TSA array with the time series.}
+
 \item{unbiased}{Determines whether it divides by n - lag (if true) or n (if false).}
-
-\item{xss.arr}{TSA array with the time series.}
-
-\item{yss.arr}{TSA array with the time series.}
 }
 \value{
 The cross-correlation value for the given time series.

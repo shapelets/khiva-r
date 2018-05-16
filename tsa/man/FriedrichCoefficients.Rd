@@ -7,14 +7,14 @@
 FriedrichCoefficients(arr, m, r)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{m:}{Order of polynom to fit for estimating fixed points of dynamics.}
+\item{m}{Order of polynom to fit for estimating fixed points of dynamics.}
 
-\item{r:}{Number of quantiles to use for averaging.}
+\item{r}{Number of quantiles to use for averaging.}
 }
 \value{
-: TSA array with the coefficients for each time series.
+TSA array with the coefficients for each time series.
 }
 \description{
 Coefficients of polynomial \eqn{h(x)}, which has been fitted to the deterministic dynamics of Langevin model:

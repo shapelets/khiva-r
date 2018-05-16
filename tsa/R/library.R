@@ -26,17 +26,31 @@ LoadLibraries <- function() {
   
   if (platform == 'Darwin') {
     shared.library <- '/usr/local/lib/libtsa_c.dylib'
-    dyn.load(shared.library)
+    if(!is.null(getLoadedDLLs()$libtsa_c[[3]])){
+      dyn.unload(shared.library)
+      dyn.unload('/usr/local/lib/libaf.3.dylib')
+    }
+    dyn.load('/usr/local/lib/libaf.3.dylib', local = FALSE)
+    dyn.load(shared.library, local = FALSE)
   }
   else if (platform == 'Windows') {
     shared.library <- 'C:\\Program Files\\TSA\\lib\\tsa_c.dll'
-    dyn.load(shared.library)
+    if(!is.null(getLoadedDLLs()$tsa_c[[3]])){
+      dyn.unload('C:\\Program Files\\ArrayFire\\v3\\lib\\af.dll')
+      dyn.unload(shared.library)
+    }
+    dyn.load('C:\\Program Files\\ArrayFire\\v3\\lib\\af.dll', local = FALSE)
+    dyn.load(shared.library, local = FALSE)
   }
   else if (platform == 'Linux') {
     shared.library <- '/usr/local/lib/libtsa_c.so'
-    dyn.load(shared.library)
+    if(!is.null(getLoadedDLLs()$libtsa_c[[3]])){
+      dyn.unload('/usr/local/lib/libaf.3.so')
+      dyn.unload(shared.library)
+    }
+    dyn.load('/usr/local/lib/libaf.3.so', local = FALSE)
+    dyn.load(shared.library, local = FALSE)
   }
-  
   library("bit64")
 }
 
@@ -88,7 +102,7 @@ Info <- function() {
 #' SetBackend
 #'
 #' Set the backend.
-#'
+#' @param backend The desired backend.
 #' @export
 SetBackend <- function(backend) {
   try(out <- .C("set_backend",
@@ -150,7 +164,7 @@ SetDevice <- function(device) {
 #'
 #' Get the device id.
 #'
-#' @param device The active device.
+#' @return The active device.
 #' @export
 GetDeviceID <- function() {
   try(out <- .C("get_device_id",

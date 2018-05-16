@@ -10,9 +10,9 @@ QuantilesCutStatistics(tss, q, precision = 1e-08)
 \item{tss}{Expects an input array whose dimension zero is the length of the time series (all the same) and
 dimension one indicates the number of time series.}
 
-\item{precision}{Number of decimals expected.}
+\item{q}{Number of quantiles to extract. From 0 to 1, step 1/quantiles.}
 
-\item{quantiles}{Number of quantiles to extract. From 0 to 1, step 1/quantiles.}
+\item{precision}{Number of decimals expected.}
 }
 \value{
 Matrix with the categories, one category per row, the start of the category in the first column and

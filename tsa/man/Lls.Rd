@@ -7,9 +7,9 @@
 Lls(arr.a, arr.b)
 }
 \arguments{
-\item{a}{TSA Array with the coefficients of the linear equation problem to solve.}
+\item{arr.a}{TSA Array with the coefficients of the linear equation problem to solve.}
 
-\item{b}{TSA Array with the measured values.}
+\item{arr.b}{TSA Array with the measured values.}
 }
 \value{
 Contains the solution to the linear equation problem minimizing the norm 2.

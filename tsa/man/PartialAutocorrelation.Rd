@@ -7,9 +7,9 @@
 PartialAutocorrelation(arr, lags)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{lags:}{TSA array with the lags to be calculated.}
+\item{lags}{TSA array with the lags to be calculated.}
 }
 \value{
 : TSA array with the partial autocorrelation for each time series for the given lag.

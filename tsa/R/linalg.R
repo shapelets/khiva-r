@@ -12,8 +12,8 @@
 #' is \eqn{x = V·D\dagger·U^T·b}. Where \eqn{U} and \eqn{V} are orthogonal matrices and \eqn{Ddagger} contains
 #' the inverse values of the singular values contained in \eqn{D} if they are not zero, and zero otherwise.
 #'
-#' @param a TSA Array with the coefficients of the linear equation problem to solve.
-#' @param b TSA Array with the measured values.
+#' @param arr.a TSA Array with the coefficients of the linear equation problem to solve.
+#' @param arr.b TSA Array with the measured values.
 #' @return Contains the solution to the linear equation problem minimizing the norm 2.
 #' @export
 Lls <- function(arr.a, arr.b) {

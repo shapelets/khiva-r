@@ -7,11 +7,11 @@
 Polyfit(x, y, deg)
 }
 \arguments{
-\item{x:}{TSA array with the x-coordinates of the M sample points \eqn{(x[i], y[i])}.}
+\item{x}{TSA array with the x-coordinates of the M sample points \eqn{(x[i], y[i])}.}
 
-\item{y:}{TSA array with the y-coordinates of the sample points.}
+\item{y}{TSA array with the y-coordinates of the sample points.}
 
-\item{deg:}{Degree of the fitting polynomial}
+\item{deg}{Degree of the fitting polynomial}
 }
 \value{
 : TSA array with the polynomial coefficients, highest power first.

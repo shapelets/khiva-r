@@ -7,7 +7,7 @@
 DecimalScalingNormInPlace(tss)
 }
 \arguments{
-\item{tss:}{TSA array with the time series.}
+\item{tss}{TSA array with the time series.}
 }
 \description{
 Same as decimal_scaling_norm, but it performs the operation in place, without allocating further memory.

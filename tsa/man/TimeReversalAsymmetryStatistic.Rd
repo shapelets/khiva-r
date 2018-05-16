@@ -7,12 +7,12 @@
 TimeReversalAsymmetryStatistic(arr, lag)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{lag:}{The lag to be computed.}
+\item{lag}{The lag to be computed.}
 }
 \value{
-: TSA array containing the count of the given value in each time series.
+TSA array containing the count of the given value in each time series.
 }
 \description{
 This function calculates the value of:

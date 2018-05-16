@@ -8,6 +8,8 @@ Array(a, type = "f32")
 }
 \arguments{
 \item{a}{array which columns have same types and same dimensions.}
+
+\item{type}{Desired tsa Array type. By default: f32}
 }
 \value{
 A TSA array created from the data stored in the array.

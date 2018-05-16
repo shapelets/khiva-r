@@ -7,10 +7,10 @@
 Variance(arr)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-: TSA array containing the variance in each time series.
+TSA array containing the variance in each time series.
 }
 \description{
 Computes the variance for the time series array.

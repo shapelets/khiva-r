@@ -107,7 +107,6 @@ FindBestNDiscords <- function(profile, index, n) {
 #' @param profile TSA Array with the matrix profile containing the minimum distance of each
 #' subsequence.
 #' @param index TSA Array with the matrix profile index containing where each minimum occurs.
-#' @param length_profile Length of the matrix profile
 #' @param n Number of motifs to extract
 #' @return A list of TSA Arrays with the motif distance, the motif indices and the subsequence indices.
 #' @export

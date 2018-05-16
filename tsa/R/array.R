@@ -5,6 +5,8 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+#'TSA Array class
+#'
 #' @export
 setClass("Array", representation(ptr = "integer64"))
 
@@ -142,8 +144,8 @@ getBoolean <- function(a) {
 #'
 #' Creates a tsa Array from a R array.
 #'
-#'
 #' @param  a array which columns have same types and same dimensions.
+#' @param type Desired tsa Array type. By default: f32
 #' @return A TSA array created from the data stored in the array.
 #' @export
 Array <- function(a, type = "f32") {

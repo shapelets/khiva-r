@@ -7,9 +7,9 @@
 SpktWelchDensity(arr, coeff)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{coeff:}{The coefficient to be returned.}
+\item{coeff}{The coefficient to be returned.}
 }
 \value{
 : TSA array containing the power spectrum of the different frequencies for each time series in arr.

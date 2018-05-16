@@ -7,10 +7,10 @@
 VarianceLargerThanStandardDeviation(arr)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 }
 \value{
-: TSA array denoting if the variance of array is greater than the standard deviation.
+TSA array denoting if the variance of array is greater than the standard deviation.
 }
 \description{
 Calculates if the variance of array is greater than the standard deviation. In other words, if the variance of

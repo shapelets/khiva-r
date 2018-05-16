@@ -7,9 +7,9 @@
 PercentageOfReoccurringValuesToAllValues(arr, is.sorted = FALSE)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{is.sorted:}{Indicates if the input time series is sorted or not. Defaults to false.}
+\item{is.sorted}{Indicates if the input time series is sorted or not. Defaults to false.}
 }
 \value{
 : TSA array with the percentage of unique values, that are present in the time series more than once.
@@ -19,7 +19,7 @@ Calculates the percentage of unique values, that are present in the time series 
 }
 \details{
 \deqn{
-  \frac{\textit{number of data points occurring more than once}}{\textit{number of all data points})}
+  \frac{\textit{number of values occurring more than once}}{\textit{number of all values})}
 }
 
 This means the percentage is normalized to the number of unique values, in contrast to the

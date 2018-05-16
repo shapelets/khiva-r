@@ -7,11 +7,11 @@
 RangeCount(arr, min, max)
 }
 \arguments{
-\item{arr:}{TSA array with the time series.}
+\item{arr}{TSA array with the time series.}
 
-\item{min:}{Value that sets the lower limit.}
+\item{min}{Value that sets the lower limit.}
 
-\item{max:}{Value that sets the upper limit.}
+\item{max}{Value that sets the upper limit.}
 }
 \value{
 : TSA array with the values at the given range.
