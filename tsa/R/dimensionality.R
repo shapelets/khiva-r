@@ -20,10 +20,14 @@
 #' @return Array of points with the reduced dimensionality.
 #' @export
 Paa <- function(arr, bins) {
+  arr.tmp <- arr
+  if (getDims(arr.tmp)[2] != 2 || getDims(arr.tmp)[3] != 1 || getDims(arr.tmp)[4] != 1)
+    stop("The first argument should be a TSA Array with the x-coordinates and
+         y-coordinates of the input points (x in column 0 and y in column 1).")
   try(out <-
         .C(
           "paa",
-          ptr = arr@ptr,
+          ptr = arr.tmp@ptr,
           as.integer(bins),
           b = as.integer64(0),
           PACKAGE = package
@@ -45,10 +49,14 @@ Paa <- function(arr, bins) {
 #' @return Array with the most Perceptually Important numberIPs.
 #' @export
 Pip <- function(arr, numberIPs) {
+  arr.tmp <- arr
+  if (getDims(arr.tmp)[2] != 2 || getDims(arr.tmp)[3] != 1 || getDims(arr.tmp)[4] != 1)
+    stop("The first argument should be a TSA Array with the x-coordinates and
+         y-coordinates of the input points (x in column 0 and y in column 1).")
   try(out <-
         .C(
           "pip",
-          ptr = arr@ptr,
+          ptr = arr.tmp@ptr,
           as.integer(numberIPs),
           b = as.integer64(0),
           PACKAGE = package
@@ -71,10 +79,14 @@ Pip <- function(arr, numberIPs) {
 #' @return The reduced number of points.
 #' @export
 PLABottomUp <- function(ts, max.error) {
+  arr.tmp <- ts
+  if (getDims(arr.tmp)[2] != 2 || getDims(arr.tmp)[3] != 1 || getDims(arr.tmp)[4] != 1)
+    stop("The first argument should be a TSA Array with the x-coordinates and
+         y-coordinates of the input points (x in column 0 and y in column 1).")
   try(out <-
         .C(
           "pla_bottom_up",
-          ptr = ts@ptr,
+          ptr = arr.tmp@ptr,
           as.single(max.error),
           b = as.integer64(0),
           PACKAGE = package
@@ -97,10 +109,14 @@ PLABottomUp <- function(ts, max.error) {
 #' @return The reduced number of points.
 #' @export
 PLASlidingWindow <- function(ts, max.error) {
+  arr.tmp <- ts
+  if (getDims(arr.tmp)[2] != 2 || getDims(arr.tmp)[3] != 1 || getDims(arr.tmp)[4] != 1)
+    stop("The first argument should be a TSA Array with the x-coordinates and
+         y-coordinates of the input points (x in column 0 and y in column 1).")
   try(out <-
         .C(
           "pla_sliding_window",
-          ptr = ts@ptr,
+          ptr = arr.tmp@ptr,
           as.single(max.error),
           b = as.integer64(0),
           PACKAGE = package
@@ -128,10 +144,14 @@ PLASlidingWindow <- function(ts, max.error) {
 #' column 1).
 #' @export
 RamerDouglasPeucker <- function(arr, epsilon) {
+  arr.tmp <- arr
+  if (getDims(arr.tmp)[2] != 2 || getDims(arr.tmp)[3] != 1 || getDims(arr.tmp)[4] != 1)
+    stop("The first argument should be a TSA Array with the x-coordinates and
+         y-coordinates of the input points (x in column 0 and y in column 1).")
   try(out <-
         .C(
           "ramer_douglas_peucker",
-          ptr = arr@ptr,
+          ptr = arr.tmp@ptr,
           as.double(epsilon),
           b = as.integer64(0),
           PACKAGE = package
@@ -159,10 +179,14 @@ RamerDouglasPeucker <- function(arr, epsilon) {
 #' @return Array of symbols.
 #' @export
 Sax <- function(arr, alphabetSize) {
+  arr.tmp <- arr
+  if (getDims(arr.tmp)[2] != 2 || getDims(arr.tmp)[3] != 1 || getDims(arr.tmp)[4] != 1)
+    stop("The first argument should be a TSA Array with the x-coordinates and
+         y-coordinates of the input points (x in column 0 and y in column 1).")
   try(out <-
         .C(
           "sax",
-          ptr = arr@ptr,
+          ptr = arr.tmp@ptr,
           as.integer(alphabetSize),
           b = as.integer64(0),
           PACKAGE = package
@@ -186,10 +210,14 @@ Sax <- function(arr, alphabetSize) {
 #' column 1).
 #' @export
 Visvalingam <- function(arr, numPoints) {
+  arr.tmp <- arr
+  if (getDims(arr.tmp)[2] != 2 || getDims(arr.tmp)[3] != 1 || getDims(arr.tmp)[4] != 1)
+    stop("The first argument should be a TSA Array with the x-coordinates and
+         y-coordinates of the input points (x in column 0 and y in column 1).")
   try(out <-
         .C(
           "visvalingam",
-          ptr = arr@ptr,
+          ptr = arr.tmp@ptr,
           as.integer(numPoints),
           b = as.integer64(0),
           PACKAGE = package
