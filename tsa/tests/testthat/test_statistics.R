@@ -44,7 +44,31 @@ test_that("Test CovarianceStatisticsUnbiased", {
       1.42942222
     )
   expect_equal(b, expected, 1e-6)
-  
+
+  deleteArray(a)
+  deleteArray(out)
+})
+
+test_that("Test KurtosisStatistics", {
+  ta <-
+    as.single(c(0, 1, 2, 3, 4, 5, 2, 2, 2, 20, 30, 25))
+  a <- Array(array(ta, dim = c(6, 2)))
+  out <- KurtosisStatistics(a)
+  b <- c(getData(out))
+  expected = c(-1.2,-2.66226722)
+  expect_equal(b, expected, 1e-2)
+  deleteArray(a)
+  deleteArray(out)
+})
+
+test_that("Test LjungBox", {
+  ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7))
+  a <- Array(array(ta, dim = c(4, 2)))
+  out <- LjungBox(a, 3)
+  b <- c(getData(out))
+  expected <-
+    c(6.4400, 6.4400)
+  expect_equal(b, expected, 1e-2)
   deleteArray(a)
   deleteArray(out)
 })
@@ -64,42 +88,6 @@ test_that("Test MomentStatistics", {
   deleteArray(a)
   deleteArray(out)
   deleteArray(out.four)
-})
-
-test_that("Test SampleStdevStatistics", {
-  ta <-
-    as.single(c(0, 1, 2, 3, 4, 5, 2, 2, 2, 20, 30, 25))
-  a <- Array(array(ta, dim = c(6, 2)))
-  out <- SampleStdevStatistics(a)
-  b <- c(getData(out))
-  expected = c(1.870828693, 12.988456413)
-  expect_equal(b, expected, 1e-2)
-  deleteArray(a)
-  deleteArray(out)
-})
-
-test_that("Test KurtosisStatistics", {
-  ta <-
-    as.single(c(0, 1, 2, 3, 4, 5, 2, 2, 2, 20, 30, 25))
-  a <- Array(array(ta, dim = c(6, 2)))
-  out <- KurtosisStatistics(a)
-  b <- c(getData(out))
-  expected = c(-1.2,-2.66226722)
-  expect_equal(b, expected, 1e-2)
-  deleteArray(a)
-  deleteArray(out)
-})
-
-test_that("Test SkewnessStatistics", {
-  ta <-
-    as.single(c(0, 1, 2, 3, 4, 5, 2, 2, 2, 20, 30, 25))
-  a <- Array(array(ta, dim = c(6, 2)))
-  out <- SkewnessStatistics(a)
-  b <- c(getData(out))
-  expected = c(0.0, 0.236177069879499)
-  expect_equal(b, expected, 1e-2)
-  deleteArray(a)
-  deleteArray(out)
 })
 
 test_that("Test QuantileStatistics", {
@@ -223,6 +211,30 @@ test_that("Test QuantileCutStatistics7", {
       10.285714,
       11.0
     )
+  expect_equal(b, expected, 1e-2)
+  deleteArray(a)
+  deleteArray(out)
+})
+
+test_that("Test SampleStdevStatistics", {
+  ta <-
+    as.single(c(0, 1, 2, 3, 4, 5, 2, 2, 2, 20, 30, 25))
+  a <- Array(array(ta, dim = c(6, 2)))
+  out <- SampleStdevStatistics(a)
+  b <- c(getData(out))
+  expected = c(1.870828693, 12.988456413)
+  expect_equal(b, expected, 1e-2)
+  deleteArray(a)
+  deleteArray(out)
+})
+
+test_that("Test SkewnessStatistics", {
+  ta <-
+    as.single(c(0, 1, 2, 3, 4, 5, 2, 2, 2, 20, 30, 25))
+  a <- Array(array(ta, dim = c(6, 2)))
+  out <- SkewnessStatistics(a)
+  b <- c(getData(out))
+  expected = c(0.0, 0.236177069879499)
   expect_equal(b, expected, 1e-2)
   deleteArray(a)
   deleteArray(out)
