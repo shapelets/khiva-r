@@ -8,24 +8,19 @@ This project is licensed under [MPL-v2](https://www.mozilla.org/en-US/MPL/2.0/).
 This R library called 'tsa' provides all the functionalities of the TSA library for time series analytics.
 
 ## Set up
-It is just needed to execute the next command in the R shell after setting `<project-root-dir>/tsa/` as the work directory:
+To install the library, you need to set the current working directory to the library path `<path_to_library>/tsa-r/tsa` 
+and install it by executing the following commands: 
 ```R
+setwd("path_to_library>/tsa-r/tsa")
 devtools::install()
 ```
-After that, the library is available by using:
+After that, the library is made available by executing:
 ```R
 library(tsa)  
 ```
 
-## Executing the tests:
-To execute the tests, set your working directory to <project-root-dir>/tsa/ and execute the following commands:
-
-Before executing tests, you need to load the testthat library:
-```R
-library(testthat)  
-```
-
-Execute the next R command:
+## Testing:
+To execute the tests, set your working directory to `<path_to_library>/tsa-r/tsa/` and execute the following command:
 ```R
 devtools::test()
 ```
@@ -42,15 +37,16 @@ In this sense, we use the master branch to push the release versions of the bind
 
 ### Contribution process
 In order to contribute to the code base, we follow the next process:
-1. The main branch is develop, every developer should pull the current status of the branch before stating to develop any new feature.
+1. The main branch is develop, every developer should pull the current status of the branch before starting to develop any new feature.
 `git pull`
 2. Create a new branch with the following pattern "feature/[name_of_the_feature]"
 `git checkout -b feature/exampleFeature`
 3. Develop the new feature on the the new branch. It includes testing and documentation.
 `git commit -a -m "Bla, Bla, Bla";  git push`
-4. Open a Pull Request to merge the feature branch in to develop. Currently, a pull request has to be reviewed at least by one person.
-5. Finally, delete the feature branch.
-6. Move back to develop branch.
+4. Open a Pull Request to merge the feature branch into develop. Currently, a pull request has to be reviewed by one person at least.
+6. Switch back to the develop branch.
 `git checkout develop`
+6. Finally, delete your local feature branch.
+`git branch -d feature/exampleFeature`
 7. Pull the latest changes.
 `git pull`
