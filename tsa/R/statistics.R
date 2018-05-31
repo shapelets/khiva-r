@@ -52,30 +52,23 @@ KurtosisStatistics <- function(tss) {
 #' The Ljung–Box test checks that data whithin the time series are independently distributed (i.e. the correlations in
 #' the population from which the sample is taken are 0, so that any observed correlations in the data result from
 #' randomness of the sampling process). Data are no independently distributed, if they exhibit serial correlation.
-#'
 #' The test statistic is:
-#'
 #' \deqn{
-#'   Q = n\left(n+2\right)\sum_{k=1}^h\frac{\hat{\rho}^2_k}{n-k} </math>
-#'   }
-#'
+#'    Q = n\left(n+2\right)\sum_{k=1}^h\frac{\hat{\rho}^2_k}{n-k}
+#'}
 #' where ''n'' is the sample size, \eqn{\hat{\rho}k } is the sample autocorrelation at lag ''k'', and ''h'' is the
 #' number of lags being tested. Under \eqn{H_0} the statistic Q follows a \eqn{\chi^2{(h)}}. For significance level
-#' \eqn{\alpha\}, the \eqn{critical region} for rejection of the hypothesis of randomness is:
-#'
+#' \eqn{\alpha}, the \eqn{critical region} for rejection of the hypothesis of randomness is:
 #' \deqn{
-#'   \\Q > \chi_{1-\alpha,h}^2
-#' }
-#' where \eqn{\chi_{1-\alpha,h}^2} is the \eqn{\alpha\} -quantile of the chi-squared distribution with ''h'' degrees of
+#'   Q > \chi_{1-\alpha,h}^2
+#'}
+#' where \eqn{\chi_{1-\alpha,h}^2} is the \eqn{\alpha} -quantile of the chi-squared distribution with ''h'' degrees of
 #' freedom.
-#'
-#' [1] G. M. Ljung  G. E. P. Box (1978). On a measure of lack of fit in time series models.
-#' Biometrika, Volume 65, Issue 2, 1 August 1978, Pages 297–303.
-#'
 #' @param tss Expects an input array whose dimension zero is the length of the time series (all the same) and dimension
 #' one indicates the number of time series.
 #' @param lags Number of lags being tested.
 #' @return Array containing the Ljung-Box statistic test.
+#' @export
 LjungBox <- function(tss, lags) {
   try(out <-
         .C(
