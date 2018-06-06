@@ -176,7 +176,18 @@ Array <- function(a, type = "f32") {
       as.integer(1),
       PACKAGE = package
     ))
-  } else {
+  } else if (ty == 4) {
+    try(out <- .C(
+      "create_array",
+      as.raw(a),
+      as.integer(length(d)),
+      d,
+      result = as.integer64(0),
+      as.integer(ty),
+      PACKAGE = package
+    ))
+  }
+  else {
     try(out <- .C(
       "create_array",
       a,
@@ -187,7 +198,7 @@ Array <- function(a, type = "f32") {
       PACKAGE = package
     ))
   }
-  
+
   result <- createArray(out$result)
   return (result)
 }
@@ -400,3 +411,482 @@ deleteArray <- function(arr) {
   try(out <- .C("delete_array", arr@ptr, PACKAGE = package))
   eval.parent(remove(arr))
 }
+
+# Adds two arrays.
+setMethod("+", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_add",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Subtracts two arrays.
+setMethod("-", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_sub",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Multiplies two arrays.
+setMethod("*", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_mul",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Divides two arrays.
+setMethod("/", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_div",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Performs the modulo operation.
+setMethod("%%", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_mod",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Powers an array by other one (Element-wise).
+setMethod("^", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_pow",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Compares (element-wise) if an Array is less than other.
+setMethod("<", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_lt",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Compares (element-wise) if an Array is greater than other.
+setMethod(">", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_gt",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Compares (element-wise) if an Array is less or equal than other.
+setMethod("<=", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_le",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Compares (element-wise) if an Array is greater or equal than other.
+setMethod(">=", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_ge",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Compares (element-wise) if an Array is equal to other.
+setMethod("==", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_eq",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Compares (element-wise) if an Array is not equal than other.
+setMethod("!=", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_ne",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Performs an AND operation (element-wise) with two arrays.
+setMethod("&", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_bitand",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+#' Performs an OR operation (element-wise) with two Arrays.
+setMethod("|", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
+  try(out <-
+        .C(
+          "tsa_bitor",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+
+setGeneric("matMult", function(e1, e2) {
+  standardGeneric("matMult")
+})
+
+#' matMult
+#'
+#' Performs a matrix multiplication.
+#'
+#' @export
+setMethod("matMult", signature(e1 = "Array", e2 = "Array"), function(e1, e2) {
+  try(out <-
+        .C(
+          "tsa_matmul",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+setGeneric("not.tsa", function(e1) {
+  standardGeneric("not.tsa")
+})
+
+#' not.tsa
+#'
+#' Returns the complement of the input boolean TSA array.
+#'
+#' @export
+setMethod("not.tsa", signature(e1 = "Array"), function(e1) {
+  try(out <-
+        .C(
+          "tsa_not",
+          ptr.e1 = e1@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  return(createArray(out$result))
+})
+
+setGeneric("xor.tsa", function(e1, e2) {
+  standardGeneric("xor.tsa")
+})
+
+#' xor.tsa
+#'
+#' Returns a exclusive-or between each pair of elements from two TSA arrays (element-wise).
+#'
+#' @export
+setMethod("xor.tsa", signature(e1 = "Array", e2 = "Array"), function(e1, e2) {
+  try(out <-
+        .C(
+          "tsa_bitxor",
+          ptr.e1 = e1@ptr,
+          ptr.e2 = e2@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  eval.parent(substitute(e2@ptr <- out$ptr.e2))
+  return(createArray(out$result))
+})
+
+setGeneric("bitShiftL", function(e1, n) {
+  standardGeneric("bitShiftL")
+})
+
+#' bitShiftL
+#'
+#' Shifts each element of the input TSA array n positions to left.
+#'
+#' @export
+setMethod("bitShiftL", signature(e1 = "Array", n = "numeric"), function(e1, n) {
+  try(out <-
+        .C(
+          "tsa_bitshiftl",
+          ptr.e1 = e1@ptr,
+          as.integer(n),
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  return(createArray(out$result))
+})
+
+setGeneric("bitShiftR", function(e1, n) {
+  standardGeneric("bitShiftR")
+})
+
+#' bitShifR
+#'
+#' Shifts each element of the input TSA array n positions to right.
+#'
+#' @export
+setMethod("bitShiftR", signature(e1 = "Array", n = "numeric"), function(e1, n) {
+  try(out <-
+        .C(
+          "tsa_bitshiftr",
+          ptr.e1 = e1@ptr,
+          as.integer(n),
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(e1@ptr <- out$ptr.e1))
+  return(createArray(out$result))
+})
+
+setGeneric("copy", function(a) {
+  standardGeneric("copy")
+})
+
+#' copy
+#'
+#' Performs a deep copy of the array.
+#'
+#' @export
+setMethod("copy", signature(a = "Array"), function(a) {
+  try(out <-
+        .C(
+          "copy",
+          ptr.a = a@ptr,
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(a@ptr <- out$ptr.a))
+  return(createArray(out$result))
+})
+
+setGeneric("asType", function(a, type) {
+  standardGeneric("asType")
+})
+
+#' asType
+#'
+#' Returns a copy of the TSA array with the specified base type.
+#'
+#' @export
+setMethod("asType", signature(a = "Array", type = "character"), function(a, type) {
+  ty <- getTypeID(type)
+  try(out <-
+        .C(
+          "tsa_as",
+          ptr.a = a@ptr,
+          as.integer(ty),
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(a@ptr <- out$ptr.a))
+  return(createArray(out$result))
+})
+
+setGeneric("getRow", function(a, index) {
+  standardGeneric("getRow")
+})
+
+#' getRow
+#'
+#' Returns the row specified by index.
+#'
+#' @export
+setMethod("getRow", signature(a = "Array", index = "numeric"), function(a, index) {
+  try(out <-
+        .C(
+          "tsa_row",
+          ptr.a = a@ptr,
+          as.integer(index),
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(a@ptr <- out$ptr.a))
+  return(createArray(out$result))
+})
+
+setGeneric("getCol", function(a, index) {
+  standardGeneric("getCol")
+})
+
+#' getCol
+#'
+#' Returns the column specified by index.
+#'
+#' @export
+setMethod("getCol", signature(a = "Array", index = "numeric"), function(a, index) {
+  try(out <-
+        .C(
+          "tsa_col",
+          ptr.a = a@ptr,
+          as.integer(index),
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(a@ptr <- out$ptr.a))
+  return(createArray(out$result))
+})
+
+
+setGeneric("getRows", function(a, first, last) {
+  standardGeneric("getRows")
+})
+
+#' getRows
+#'
+#' Returns a sequence of rows limited by first and last, both included.
+#'
+#' @export
+setMethod("getRows", signature(a = "Array", first = "numeric", last = "numeric"), function(a, first, last) {
+  try(out <-
+        .C(
+          "tsa_rows",
+          ptr.a = a@ptr,
+          as.integer(first),
+          as.integer(last),
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(a@ptr <- out$ptr.a))
+  return(createArray(out$result))
+})
+
+setGeneric("getCols", function(a, first, last) {
+  standardGeneric("getCols")
+})
+
+#' getCols
+#'
+#' Returns a sequence of columns limited by first and last, both included.
+#'
+#' @export
+setMethod("getCols", signature(a = "Array", first = "numeric", last = "numeric"), function(a, first, last) {
+  try(out <-
+        .C(
+          "tsa_cols",
+          ptr.a = a@ptr,
+          as.integer(first),
+          as.integer(last),
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(a@ptr <- out$ptr.a))
+  return(createArray(out$result))
+})
+
+setGeneric("transpose", function(a, conjugate) {
+  standardGeneric("transpose")
+})
+
+#' transpose
+#'
+#' Transpose the TSA Array.
+#'
+#' @export
+setMethod("transpose", signature(a = "Array", conjugate = "logical"), function(a, conjugate) {
+  try(out <-
+        .C(
+          "tsa_transpose",
+          ptr.a = a@ptr,
+          as.logical(conjugate),
+          result = as.integer64(0),
+          PACKAGE = package
+        ))
+  eval.parent(substitute(a@ptr <- out$ptr.a))
+  return(createArray(out$result))
+})

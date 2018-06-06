@@ -130,3 +130,206 @@ test_that("Test GetType", {
   expect_equal(e, "c64")
   deleteArray(a)
 })
+
+test_that("Test Plus", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(1, 2, 3, 4)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a + b
+  expect_equal( c(getData(c)), c(2,4,6,8))
+})
+
+test_that("Test Times", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(1, 2, 3, 4)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a * b
+  expect_equal( c(getData(c)), c(1, 4, 9, 16))
+})
+
+test_that("Test Minus", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(1, 2, 3, 4)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a - b
+  expect_equal( c(getData(c)), c(0, 0, 0, 0))
+})
+
+test_that("Test Divide", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(1, 2, 3, 4)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a / b
+  expect_equal( c(getData(c)), c(1, 1, 1, 1), 1e-5)
+})
+
+test_that("Test Mod", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(2, 2, 2, 2)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a %% b
+  expect_equal( c(getData(c)), c(1, 0, 1, 0), 1e-5)
+})
+
+test_that("Test Power", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(2, 2, 2, 2)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a ^ b
+  expect_equal( c(getData(c)), c(1, 4, 9, 16), 1e-5)
+})
+
+test_that("Test Lt", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(2, 2, 2, 2)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a < b
+  expect_equal( c(getData(c)), c(TRUE, FALSE, FALSE, FALSE))
+})
+
+test_that("Test Gt", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(2, 2, 2, 2)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a > b
+  expect_equal( c(getData(c)), c(FALSE, FALSE, TRUE, TRUE))
+})
+
+test_that("Test Le", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(2, 2, 2, 2)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a <= b
+  expect_equal( c(getData(c)), c(TRUE, TRUE, FALSE, FALSE))
+})
+
+test_that("Test Ge", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(2, 2, 2, 2)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a >= b
+  expect_equal( c(getData(c)), c(FALSE, TRUE, TRUE, TRUE))
+})
+
+test_that("Test Eq", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(1, 2, 3, 5)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a == b
+  expect_equal( c(getData(c)), c(TRUE, TRUE, TRUE, FALSE))
+})
+
+test_that("Test Neq", {
+  ta <- c(1, 2, 3, 4)
+  tb <- c(1, 2, 3, 5)
+  a <- Array(array(ta, dim = c(4,1,1,1) ))
+  b <- Array(array(tb, dim = c(4,1,1,1) ))
+  c <- a != b
+  expect_equal( c(getData(c)), c(FALSE, FALSE, FALSE, TRUE))
+})
+
+test_that("Test And", {
+  ta <- c(TRUE, TRUE, TRUE, TRUE)
+  tb <- c(TRUE, FALSE, TRUE, FALSE)
+  a <- Array(array(ta, dim = c(4,1,1,1) ), "b8")
+  b <- Array(array(tb, dim = c(4,1,1,1) ), "b8")
+  c <- a & b
+  expect_equal( c(getData(c)), c(TRUE, FALSE, TRUE, FALSE))
+})
+
+test_that("Test Or", {
+  ta <- c(TRUE, TRUE, TRUE, TRUE)
+  tb <- c(TRUE, FALSE, TRUE, FALSE)
+  a <- Array(array(ta, dim = c(4,1,1,1) ), "b8")
+  b <- Array(array(tb, dim = c(4,1,1,1) ), "b8")
+  c <- a | b
+  expect_equal( c(getData(c)), c(TRUE, TRUE, TRUE, TRUE))
+})
+
+test_that("Test Xor", {
+  ta <- c(TRUE, TRUE, TRUE, TRUE)
+  tb <- c(TRUE, FALSE, TRUE, FALSE)
+  a <- Array(array(ta, dim = c(4,1,1,1) ), "b8")
+  b <- Array(array(tb, dim = c(4,1,1,1) ), "b8")
+  c <- xor.tsa(a,b)
+  expect_equal( c(getData(c)), c(FALSE, TRUE, FALSE, TRUE))
+})
+
+test_that("Test Bitshift", {
+  ta <- as.integer(c(2, 4, 6, 8))
+  a <- Array(array(ta, dim = c(4,1,1,1) ), "s32")
+  c <- bitShiftR(a, 1)
+  expect_equal( c(getData(c)), c(1, 2, 3, 4))
+})
+
+test_that("Test Bitsra", {
+  ta <- as.integer(c(2, 4, 6, 8))
+  a <- Array(array(ta, dim = c(4,1,1,1) ), "s32")
+  c <- bitShiftL(a, 1)
+  expect_equal( c(getData(c)), c(4, 8, 12, 16))
+})
+
+test_that("Test CTranspose", {
+  ta = as.complex(c(0-1i, 4 +2i, 2 +1i, 0 -2i))
+  a <- Array(array(ta, dim= c(2, 2, 1, 1)), "c32")
+  c <- transpose(a, TRUE)
+  expect_equal( c(getData(c)), c(0 +1i, 2-1i, 4 -2i, 0 + 2i))
+})
+
+test_that("Test Col", {
+  a <- Array(array(c(1, 3, 2 ,4), dim=c(2,2)))
+  c <- getCol(a, 0)
+  expect_equal( c(getData(c)), c(1, 3))
+
+})
+
+test_that("Test Cols", {
+  a <- Array(array(c(1, 4, 2, 5, 3, 6), dim=c(2,3)))
+  c <- getCols(a, 0, 1)
+  expect_equal( c(getData(c)), c(1, 4, 2, 5))
+})
+
+test_that("Test Row", {
+  a <- Array(array(c(1, 3, 2, 4), dim=c(2,2)))
+  c <- getRow(a, 0)
+  expect_equal( c(getData(c)), c(1, 2))
+})
+
+test_that("Test Rows", {
+  a <- Array(array(c(1, 4, 2, 5, 3, 6), dim=c(3, 2)))
+  c <- getRows(a, 0, 1)
+  expect_equal( c(getData(c)), c(1, 4, 5, 3))
+})
+
+test_that(" Test Mtimes", {
+  a <- Array(array(c(1, 2, 3, 4), dim = c(4, 1, 1, 1)))
+  b <- Array(array(c(1, 2, 3, 4), dim = c(1, 4, 1, 1)))
+  c <- matMult(a, b)
+  expect_equal( c(getData(c)), c(1, 2, 3, 4, 2, 4, 6, 8, 3, 6, 9, 12, 4, 8, 12, 16))
+})
+
+test_that("Test As", {
+  a <- Array(array(as.integer(c(1, 2, 3, 4)), dim = c(4, 1, 1, 1)), "s32")
+  b <- asType(a, "f32")
+  expect_equal( c(getData(b)), c(1, 2, 3, 4))
+  expect_equal(getType(b), 0)
+})
+
+test_that("Test Copy", {
+  a <- Array(array(c(1.1, 2.1, 3.1, 4.1), dim = c(4, 1, 1, 1)))
+  b <- copy(a)
+  expect_equal( c(getData(b)), c(getData(a)))
+  expect_equal(getType(b), getType(a))
+})
+

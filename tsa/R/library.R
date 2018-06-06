@@ -7,7 +7,7 @@
 
 PackageName <- function() {
   platform <- Sys.info()['sysname']
-  
+
   if (platform == 'Darwin') {
     package <- 'libtsa_c.dylib'
   }
@@ -17,13 +17,13 @@ PackageName <- function() {
   else if (platform == 'Linux') {
     package <- 'libtsa_c'
   }
-  
+
   return(package)
 }
 
 LoadLibraries <- function() {
   platform <- Sys.info()['sysname']
-  
+
   if (platform == 'Darwin') {
     shared.library <- '/usr/local/lib/libtsa_c.dylib'
     if(!is.null(getLoadedDLLs()$libtsa_c[[3]])){
@@ -124,7 +124,7 @@ GetBackend <- function() {
                   to = 0
                 )),
                 PACKAGE = package))
-  
+
   return(TSABackendFromOrdinal(out$result))
 }
 
@@ -142,9 +142,9 @@ GetBackends <- function() {
                   to = 0
                 )),
                 PACKAGE = package))
-  
+
   newList <- list("result" = out$result)
-  
+
   return(newList)
 }
 
@@ -175,7 +175,7 @@ GetDeviceID <- function() {
                 )),
                 PACKAGE = package))
   newList <- list("result" = out$result)
-  
+
   return(newList)
 }
 
@@ -194,7 +194,7 @@ GetDeviceCount <- function() {
                 )),
                 PACKAGE = package))
   newList <- list("result" = out$result)
-  
+
   return(newList)
 }
 
@@ -209,6 +209,6 @@ Version <- function() {
                 result = paste(rep(" ", 40), collapse = ""),
                 PACKAGE = package))
   newList <- list("result" = out$result)
-  
+
   return(newList)
 }
