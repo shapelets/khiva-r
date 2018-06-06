@@ -1,26 +1,29 @@
 # README #
-This is the TSA binding for connecting the R programming language and the TSA library.
+This is the KHIVA binding for connecting the R programming language and the KHIVA library.
 
 ## License
 This project is licensed under [MPL-v2](https://www.mozilla.org/en-US/MPL/2.0/).
  
 ## Quick Summary
-This R library called 'tsa' provides all the functionalities of the TSA library for time series analytics.
+This R library called 'khiva' provides all the functionalities of the KHIVA library for time series analytics.
 
 ## Set up
-To install the library, you need to set the current working directory to the library path `<path_to_library>/tsa-r/tsa` 
+To install the library, you need to set the current working directory to the library path `<path_to_library>/khiva-r/khiva` 
 and install it by executing the following commands: 
 ```R
-setwd("path_to_library>/tsa-r/tsa")
+setwd("path_to_library>/khiva-r/khiva")
+options(devtools.install.args = "--no-multiarch")
 devtools::install()
 ```
 After that, the library is made available by executing:
 ```R
-library(tsa)  
+library(khiva)  
 ```
 
+Note that "khiva" imports the "bit64" package by default, so in order to use "khiva" you should have installed the "bit64" package.
+
 ## Testing:
-To execute the tests, set your working directory to `<path_to_library>/tsa-r/tsa/` and execute the following command:
+To execute the tests, set your working directory to `<path_to_library>/khiva-r/khiva/` and execute the following command:
 ```R
 devtools::test()
 ```
@@ -33,7 +36,7 @@ This R library follows the standard way of writing documentation of R by using R
 ### Branching model
 Our branching model has two permanent branches, **develop** and **master**. 
 We aim at using `develop` as the main branch, where all features are merged. 
-In this sense, we use the master branch to push the release versions of the binding for the TSA library.
+In this sense, we use the master branch to push the release versions of the binding for the KHIVA library.
 
 ### Contribution process
 In order to contribute to the code base, we follow the next process:
