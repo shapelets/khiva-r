@@ -20,5 +20,5 @@ knitr::opts_chunk$set(
 
 ## Welcome to khiva
 
-khiva is an R Package for analysisng time series.
+khiva is an R Package for big sequence analytics on GPU.
 
