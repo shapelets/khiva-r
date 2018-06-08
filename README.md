@@ -8,6 +8,10 @@ This project is licensed under [MPL-v2](https://www.mozilla.org/en-US/MPL/2.0/).
 This R library called 'khiva' provides all the functionalities of the KHIVA library for time series analytics.
 
 ## Set up
+
+Note that "khiva" imports the "bit64" package by default, so in order to use "khiva" you should have installed the "bit64" package.
+
+### Installing from source
 To install the library, you need to set the current working directory to the library path `<path_to_library>/khiva-r/khiva` 
 and install it by executing the following commands: 
 ```R
@@ -20,7 +24,16 @@ After that, the library is made available by executing:
 library(khiva)  
 ```
 
-Note that "khiva" imports the "bit64" package by default, so in order to use "khiva" you should have installed the "bit64" package.
+### Installing from Github
+
+To install the library using the Github repository, it is just needed to execute the following command: 
+```R
+devtools::install_github("shapelets/khiva-r@master")
+```
+After that, the library is made available by executing:
+```R
+library(khiva)  
+```
 
 ## Testing:
 To execute the tests, set your working directory to `<path_to_library>/khiva-r/khiva/` and execute the following command:
