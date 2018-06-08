@@ -406,13 +406,14 @@ getData <- function(a) {
 #' Releases the array.
 #'
 #' @param  arr KHIVA array to release.
-#' @export
 deleteArray <- function(arr) {
   try(out <- .C("delete_array", arr@ptr, PACKAGE = package))
   eval.parent(remove(arr))
 }
 
-# Adds two arrays.
+#' Adds two arrays.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("+", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -428,6 +429,8 @@ setMethod("+", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Subtracts two arrays.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("-", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -443,6 +446,8 @@ setMethod("-", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Multiplies two arrays.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("*", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -458,6 +463,8 @@ setMethod("*", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Divides two arrays.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("/", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -473,6 +480,8 @@ setMethod("/", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Performs the modulo operation.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("%%", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -488,6 +497,8 @@ setMethod("%%", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Powers an array by other one (Element-wise).
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("^", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -503,6 +514,8 @@ setMethod("^", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Compares (element-wise) if an Array is less than other.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("<", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -518,6 +531,8 @@ setMethod("<", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Compares (element-wise) if an Array is greater than other.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod(">", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -533,6 +548,8 @@ setMethod(">", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Compares (element-wise) if an Array is less or equal than other.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("<=", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -548,6 +565,8 @@ setMethod("<=", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Compares (element-wise) if an Array is greater or equal than other.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod(">=", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -563,6 +582,8 @@ setMethod(">=", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Compares (element-wise) if an Array is equal to other.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("==", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -578,6 +599,8 @@ setMethod("==", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Compares (element-wise) if an Array is not equal than other.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("!=", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -593,6 +616,8 @@ setMethod("!=", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Performs an AND operation (element-wise) with two arrays.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("&", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -608,6 +633,8 @@ setMethod("&", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
 })
 
 #' Performs an OR operation (element-wise) with two Arrays.
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setMethod("|", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   try(out <-
         .C(
@@ -622,7 +649,12 @@ setMethod("|", signature(e1 = "Array", e2 = "Array"), function (e1, e2) {
   return(createArray(out$result))
 })
 
-
+#' matMult
+#'
+#' Performs a matrix multiplication.
+#'
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setGeneric("matMult", function(e1, e2) {
   standardGeneric("matMult")
 })
@@ -631,6 +663,8 @@ setGeneric("matMult", function(e1, e2) {
 #'
 #' Performs a matrix multiplication.
 #'
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 #' @export
 setMethod("matMult", signature(e1 = "Array", e2 = "Array"), function(e1, e2) {
   try(out <-
@@ -646,6 +680,11 @@ setMethod("matMult", signature(e1 = "Array", e2 = "Array"), function(e1, e2) {
   return(createArray(out$result))
 })
 
+#' not.khiva
+#'
+#' Returns the complement of the input boolean KHIVA array.
+#'
+#' @param e1 Khiva array.
 setGeneric("not.khiva", function(e1) {
   standardGeneric("not.khiva")
 })
@@ -654,6 +693,7 @@ setGeneric("not.khiva", function(e1) {
 #'
 #' Returns the complement of the input boolean KHIVA array.
 #'
+#' @param e1 Khiva array.
 #' @export
 setMethod("not.khiva", signature(e1 = "Array"), function(e1) {
   try(out <-
@@ -667,6 +707,12 @@ setMethod("not.khiva", signature(e1 = "Array"), function(e1) {
   return(createArray(out$result))
 })
 
+#' xor.khiva
+#'
+#' Returns a exclusive-or between each pair of elements from two KHIVA arrays (element-wise).
+#' 
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 setGeneric("xor.khiva", function(e1, e2) {
   standardGeneric("xor.khiva")
 })
@@ -674,7 +720,9 @@ setGeneric("xor.khiva", function(e1, e2) {
 #' xor.khiva
 #'
 #' Returns a exclusive-or between each pair of elements from two KHIVA arrays (element-wise).
-#'
+#' 
+#' @param e1 Khiva array.
+#' @param e2 Khiva array.
 #' @export
 setMethod("xor.khiva", signature(e1 = "Array", e2 = "Array"), function(e1, e2) {
   try(out <-
@@ -690,6 +738,12 @@ setMethod("xor.khiva", signature(e1 = "Array", e2 = "Array"), function(e1, e2) {
   return(createArray(out$result))
 })
 
+#' bitShiftL
+#'
+#' Shifts each element of the input KHIVA array n positions to left.
+#'
+#' @param e1 Khiva array.
+#' @param n Bits to shift.
 setGeneric("bitShiftL", function(e1, n) {
   standardGeneric("bitShiftL")
 })
@@ -698,6 +752,8 @@ setGeneric("bitShiftL", function(e1, n) {
 #'
 #' Shifts each element of the input KHIVA array n positions to left.
 #'
+#' @param e1 Khiva array.
+#' @param n Bits to shift.
 #' @export
 setMethod("bitShiftL", signature(e1 = "Array", n = "numeric"), function(e1, n) {
   try(out <-
@@ -712,6 +768,12 @@ setMethod("bitShiftL", signature(e1 = "Array", n = "numeric"), function(e1, n) {
   return(createArray(out$result))
 })
 
+#' bitShifR
+#'
+#' Shifts each element of the input KHIVA array n positions to right.
+#'
+#' @param e1 Khiva array.
+#' @param n bits to shift.
 setGeneric("bitShiftR", function(e1, n) {
   standardGeneric("bitShiftR")
 })
@@ -720,6 +782,8 @@ setGeneric("bitShiftR", function(e1, n) {
 #'
 #' Shifts each element of the input KHIVA array n positions to right.
 #'
+#' @param e1 Khiva array.
+#' @param n bits to shift.
 #' @export
 setMethod("bitShiftR", signature(e1 = "Array", n = "numeric"), function(e1, n) {
   try(out <-
@@ -734,6 +798,11 @@ setMethod("bitShiftR", signature(e1 = "Array", n = "numeric"), function(e1, n) {
   return(createArray(out$result))
 })
 
+#' copy
+#'
+#' Performs a deep copy of the array.
+#'
+#' @param a Khiva array.
 setGeneric("copy", function(a) {
   standardGeneric("copy")
 })
@@ -742,6 +811,7 @@ setGeneric("copy", function(a) {
 #'
 #' Performs a deep copy of the array.
 #'
+#' @param a Khiva array.
 #' @export
 setMethod("copy", signature(a = "Array"), function(a) {
   try(out <-
@@ -755,6 +825,12 @@ setMethod("copy", signature(a = "Array"), function(a) {
   return(createArray(out$result))
 })
 
+#' asType
+#'
+#' Returns a copy of the KHIVA array with the specified base type.
+#' 
+#' @param a Khiva array.
+#' @param type Desired type.
 setGeneric("asType", function(a, type) {
   standardGeneric("asType")
 })
@@ -762,7 +838,9 @@ setGeneric("asType", function(a, type) {
 #' asType
 #'
 #' Returns a copy of the KHIVA array with the specified base type.
-#'
+#' 
+#' @param a Khiva array.
+#' @param type Desired type.
 #' @export
 setMethod("asType", signature(a = "Array", type = "character"), function(a, type) {
   ty <- getTypeID(type)
@@ -778,6 +856,12 @@ setMethod("asType", signature(a = "Array", type = "character"), function(a, type
   return(createArray(out$result))
 })
 
+#' getRow
+#'
+#' Returns the row specified by index.
+#'
+#' @param a Khiva array.
+#' @param index Row index.
 setGeneric("getRow", function(a, index) {
   standardGeneric("getRow")
 })
@@ -786,6 +870,8 @@ setGeneric("getRow", function(a, index) {
 #'
 #' Returns the row specified by index.
 #'
+#' @param a Khiva array.
+#' @param index Row index.
 #' @export
 setMethod("getRow", signature(a = "Array", index = "numeric"), function(a, index) {
   try(out <-
@@ -800,6 +886,12 @@ setMethod("getRow", signature(a = "Array", index = "numeric"), function(a, index
   return(createArray(out$result))
 })
 
+#' getCol
+#'
+#' Returns the column specified by index.
+#'
+#' @param a Khiva array.
+#' @param index Column index.
 setGeneric("getCol", function(a, index) {
   standardGeneric("getCol")
 })
@@ -808,6 +900,8 @@ setGeneric("getCol", function(a, index) {
 #'
 #' Returns the column specified by index.
 #'
+#' @param a Khiva array.
+#' @param index Column index.
 #' @export
 setMethod("getCol", signature(a = "Array", index = "numeric"), function(a, index) {
   try(out <-
@@ -822,7 +916,13 @@ setMethod("getCol", signature(a = "Array", index = "numeric"), function(a, index
   return(createArray(out$result))
 })
 
-
+#' getRows
+#'
+#' Returns a sequence of rows limited by first and last, both included.
+#'
+#' @param a Khiva Array.
+#' @param first Index of the first row.
+#' @param last Index of the last row.
 setGeneric("getRows", function(a, first, last) {
   standardGeneric("getRows")
 })
@@ -831,6 +931,9 @@ setGeneric("getRows", function(a, first, last) {
 #'
 #' Returns a sequence of rows limited by first and last, both included.
 #'
+#' @param a Khiva Array.
+#' @param first Index of the first row.
+#' @param last Index of the last row.
 #' @export
 setMethod("getRows", signature(a = "Array", first = "numeric", last = "numeric"), function(a, first, last) {
   try(out <-
@@ -846,6 +949,13 @@ setMethod("getRows", signature(a = "Array", first = "numeric", last = "numeric")
   return(createArray(out$result))
 })
 
+#' getCols
+#'
+#' Returns a sequence of columns limited by first and last, both included.
+#'
+#' @param a Khiva Array.
+#' @param first Index of the first column.
+#' @param last Index of the second column.
 setGeneric("getCols", function(a, first, last) {
   standardGeneric("getCols")
 })
@@ -854,6 +964,9 @@ setGeneric("getCols", function(a, first, last) {
 #'
 #' Returns a sequence of columns limited by first and last, both included.
 #'
+#' @param a Khiva Array.
+#' @param first Index of the first column.
+#' @param last Index of the second column.
 #' @export
 setMethod("getCols", signature(a = "Array", first = "numeric", last = "numeric"), function(a, first, last) {
   try(out <-
@@ -869,6 +982,12 @@ setMethod("getCols", signature(a = "Array", first = "numeric", last = "numeric")
   return(createArray(out$result))
 })
 
+#' transpose
+#'
+#' Transpose the KHIVA Array.
+#'
+#' @param a Khiva Array.
+#' @param conjugate Indicates if the tranpose is conjugated or not.
 setGeneric("transpose", function(a, conjugate) {
   standardGeneric("transpose")
 })
@@ -877,6 +996,8 @@ setGeneric("transpose", function(a, conjugate) {
 #'
 #' Transpose the KHIVA Array.
 #'
+#' @param a Khiva Array.
+#' @param conjugate Indicates if the tranpose is conjugated or not.
 #' @export
 setMethod("transpose", signature(a = "Array", conjugate = "logical"), function(a, conjugate) {
   try(out <-

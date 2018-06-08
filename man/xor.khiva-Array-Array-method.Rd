@@ -7,6 +7,11 @@
 \usage{
 \S4method{xor.khiva}{Array,Array}(e1, e2)
 }
+\arguments{
+\item{e1}{Khiva array.}
+
+\item{e2}{Khiva array.}
+}
 \description{
 Returns a exclusive-or between each pair of elements from two KHIVA arrays (element-wise).
 }

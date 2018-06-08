@@ -7,6 +7,11 @@
 \usage{
 \S4method{getRow}{Array,numeric}(a, index)
 }
+\arguments{
+\item{a}{Khiva array.}
+
+\item{index}{Row index.}
+}
 \description{
 Returns the row specified by index.
 }

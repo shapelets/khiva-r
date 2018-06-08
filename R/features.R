@@ -1442,9 +1442,9 @@ SymmetryLooking <- function(arr, r) {
 #'which is
 #'
 #' \deqn{
-#'        \mathbb{E}[L^2(X)^2 \cdot L(X) - L(X) \cdot X^2]
+#'        {E}[L^2(X)^2 \cdot L(X) - L(X) \cdot X^2]
 #' }
-#' where \eqn{\mathbb{E}} is the mean and \eqn{L} is the lag operator. It was proposed in [1] as a promising
+#' where \eqn{{E}} is the mean and \eqn{L} is the lag operator. It was proposed in [1] as a promising
 #' feature to extract from time series.
 #' 
 #' @param arr KHIVA array with the time series.

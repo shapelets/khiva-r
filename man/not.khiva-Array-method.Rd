@@ -7,6 +7,9 @@
 \usage{
 \S4method{not.khiva}{Array}(e1)
 }
+\arguments{
+\item{e1}{Khiva array.}
+}
 \description{
-Returns the complement of the input boolean KHIVA array..
+Returns the complement of the input boolean KHIVA array.
 }

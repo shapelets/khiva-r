@@ -60,6 +60,10 @@ package <- PackageName()
   LoadLibraries()
 }
 
+#' KHIVABAckend
+#' 
+#' Defines the Khiva Backend values.
+#' 
 #' @export
 KHIVABackend <- function() {
   list(
@@ -70,6 +74,9 @@ KHIVABackend <- function() {
   )
 }
 
+#' Gets the Backend from an ordinal.
+#' 
+#' @param number The backend ordinal.
 #' @export
 KHIVABackendFromOrdinal <- function(number) {
   switch(

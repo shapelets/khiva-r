@@ -5,20 +5,19 @@ This is the Khiva binding for connecting the R programming language and the Khiv
 This project is licensed under [MPL-v2](https://www.mozilla.org/en-US/MPL/2.0/).
  
 ## Quick Summary
-This R library called 'khiva' provides all the functionalities of the Khiva library for time series analytics.
+This R library called 'khiva' provides all the functionalities of the Khiva C++ library for time series analytics.
 
 ## Set up
 
-Note that "khiva" imports the "bit64" package by default, so in order to use "khiva" you should have installed the "bit64" package.
+Note that Khiva imports the "bit64" package by default, so in order to use Khiva you should have installed the "bit64" package.
 
-In order to use this R binding, is is needed to have the Khiva C++ Librayr installed.
+In order to use this R binding, is is needed to have the Khiva C++ Library installed.
 Next, we explain two methods of how to install the Khiva R library.
 
 ### Installing from source
-To install the library, you need to set the current working directory to the library path `<path_to_library>/khiva-r/khiva` 
+To install the library, you need to set the current working directory to the library path 
 and install it by executing the following commands: 
 ```R
-setwd("path_to_library>/khiva-r/khiva")
 options(devtools.install.args = "--no-multiarch")
 devtools::install()
 ```
@@ -31,15 +30,16 @@ library(khiva)
 
 To install the library using the Github repository, it is just needed to execute the following command: 
 ```R
-devtools::install_github("shapelets/khiva-r@master")
+options(devtools.install.args = "--no-multiarch")
+devtools::install_github("shapelets/khiva-r")
 ```
-After that, the library is made available by executing:
+After that, we made the library available by executing:
 ```R
 library(khiva)  
 ```
 
 ## Testing:
-To execute the tests, set your working directory to `<path_to_library>/khiva-r/khiva/` and execute the following command:
+To execute the tests, set your working directory to the library path and execute the following command:
 ```R
 devtools::test()
 ```
