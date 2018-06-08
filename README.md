@@ -1,15 +1,18 @@
 # README #
-This is the KHIVA binding for connecting the R programming language and the KHIVA library.
+This is the Khiva binding for connecting the R programming language and the Khiva C++ library.
 
 ## License
 This project is licensed under [MPL-v2](https://www.mozilla.org/en-US/MPL/2.0/).
  
 ## Quick Summary
-This R library called 'khiva' provides all the functionalities of the KHIVA library for time series analytics.
+This R library called 'khiva' provides all the functionalities of the Khiva library for time series analytics.
 
 ## Set up
 
 Note that "khiva" imports the "bit64" package by default, so in order to use "khiva" you should have installed the "bit64" package.
+
+In order to use this R binding, is is needed to have the Khiva C++ Librayr installed.
+Next, we explain two methods of how to install the Khiva R library.
 
 ### Installing from source
 To install the library, you need to set the current working directory to the library path `<path_to_library>/khiva-r/khiva` 
@@ -49,7 +52,7 @@ This R library follows the standard way of writing documentation of R by using R
 ### Branching model
 Our branching model has two permanent branches, **develop** and **master**. 
 We aim at using `develop` as the main branch, where all features are merged. 
-In this sense, we use the master branch to push the release versions of the binding for the KHIVA library.
+In this sense, we use the master branch to push the release versions of the binding for the Khiva library.
 
 ### Contribution process
 In order to contribute to the code base, we follow the next process:
