@@ -47,5 +47,5 @@ devtools::test()
 ## Documentation
 This R library follows the standard way of writing documentation of R by using Roxygen2.
 
-### Contributing
+## Contributing
 The rules to contribute to this project are described [here](CONTRIBUTING.md)
