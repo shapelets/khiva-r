@@ -10,18 +10,15 @@ environment:
     AF_PATH: C:\Program Files\ArrayFire\v3
     KHIVA_PATH: C:\Program Files\Khiva\v0
     PATH: $(AF_PATH)\lib;$(KHIVA_PATH)\lib;C:\Program Files\R\R-3.5.0\bin;$(PATH)
-cache:
-    - C:\Program Files\ArrayFire
-    - C:\Program Files\Khiva
 clone_folder: C:\khiva-r
 platform:
     - x64
 before_build:
-    - ps: if(!(Test-Path -Path "C:\Program Files\ArrayFire" )){ appveyor DownloadFile "https://www.dropbox.com/s/ndt1eaouriiu4qi/ArrayFire-v3.5.1.zip?dl=1" -FileName ArrayFire-v3.5.1.zip }
-    - ps: if(!(Test-Path -Path "C:\Program Files\ArrayFire" )){ 7z x ArrayFire-v3.5.1.zip -o"C:\Program Files" }
+    - appveyor DownloadFile "https://www.dropbox.com/s/ndt1eaouriiu4qi/ArrayFire-v3.5.1.zip?dl=1" -FileName ArrayFire-v3.5.1.zip
+    - 7z x ArrayFire-v3.5.1.zip -o"C:\Program Files"
     - reg add HKCU\Software\Kitware\CMake\Packages\ArrayFire /v ArrayFire_CMake_DIR /d "C:\Program Files\ArrayFire\v3\cmake" /f
-    - ps: if(!(Test-Path -Path "C:\Program Files\Khiva" )){ appveyor DownloadFile "https://github.com/shapelets/khiva/releases/download/v0.1.0/khiva-v0.1.0-unattended.exe" -FileName khiva-v0.1.0-unattended.exe }
-    - ps: if(!(Test-Path -Path "C:\Program Files\Khiva" )){ .\khiva-v0.1.0-unattended.exe /S }
+    - appveyor DownloadFile "https://github.com/shapelets/khiva/releases/download/v0.1.0/khiva-v0.1.0-unattended.exe" -FileName khiva-v0.1.0-unattended.exe
+    - .\khiva-v0.1.0-unattended.exe /S
     - start /wait choco install r.project
     - Rscript .CI\appveyor\install.R
 build_script:
