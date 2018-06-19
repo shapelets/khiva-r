@@ -5,6 +5,10 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+testthat::setup(
+  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
+)
+
 test_that("Test C3", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
   tb <- as.single(c(6, 7, 8, 9, 10, 11))

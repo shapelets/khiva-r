@@ -1,0 +1,32 @@
+# Copyright (c) 2018 Shapelets.io
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+language: r
+services:
+  - docker
+
+before_install:
+  - docker pull shapelets/khiva
+  - docker run -i -t -d --name CI shapelets/khiva-r
+  - docker exec -it CI /bin/bash -c "mkdir -p /home/travis/build/shapelets/khiva-r"
+  - docker cp . CI:/home/travis/build/shapelets/khiva-r
+
+script:
+  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r;
+  apt-get update; apt-get install libxml2-dev libxslt-dev; R; library(devtools);
+  install.packages("bit64"); install.packages("testthat"); library(testthat);
+  install.packages("roxygen2"); library(roxygen2);  devtools::document(); devtools::test(); devtools::install();
+  install.packages("shiny"); library(shiny); install.packages("DT"); library(DT);
+  install.packages("covr"); library("covr"); save.image(file='CIsession.RData'); q(); n"
+
+script:
+  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; R; load('CIsession.RData');
+  covr::to_cobertura(covr::package_coverage()); save.image(file='CIsession.RData'); q(); n"
+  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; mv ./cobertura.xml ./coverage.xml"
+
+after_success:
+  - docker cp CI:/home/travis/build/shapelets/khiva-r/coverage.xml .
+  - bash <(curl -s https://codecov.io/bash)
