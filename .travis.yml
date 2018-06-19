@@ -15,15 +15,15 @@ before_install:
   - docker cp . CI:/home/travis/build/shapelets/khiva-r
 
 script:
-  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r;
-  apt-get update; apt-get install libxml2-dev libxslt-dev; R; library(devtools);
-  install.packages("bit64"); install.packages("testthat"); library(testthat);
-  install.packages("roxygen2"); library(roxygen2);  devtools::document(); devtools::test(); devtools::install();
-  install.packages("shiny"); library(shiny); install.packages("DT"); library(DT);
+  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; \
+  apt-get update; apt-get install libxml2-dev libxslt-dev; R; library(devtools); \
+  install.packages("bit64"); install.packages("testthat"); library(testthat); \
+  install.packages("roxygen2"); library(roxygen2);  devtools::document(); devtools::test(); devtools::install(); \
+  install.packages("shiny"); library(shiny); install.packages("DT"); library(DT); \
   install.packages("covr"); library("covr"); save.image(file='CIsession.RData'); q(); n"
 
 script:
-  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; R; load('CIsession.RData');
+  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; R; load('CIsession.RData'); \
   covr::to_cobertura(covr::package_coverage()); save.image(file='CIsession.RData'); q(); n"
   - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; mv ./cobertura.xml ./coverage.xml"
 
