@@ -9,6 +9,8 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
+context("Khiva R tests")
+
 test_that("Test stomp", {
   ta <- as.single(c(10, 11, 10, 11))
   tb <- as.single(c(10, 11, 10, 11))

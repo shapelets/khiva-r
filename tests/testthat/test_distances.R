@@ -9,6 +9,8 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
+context("Khiva R tests")
+
 test_that("Test Euclidean", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
   a <- Array(array(ta, dim = c(4, 3)))

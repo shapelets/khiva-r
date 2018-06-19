@@ -9,6 +9,8 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
+context("Khiva R tests")
+
 test_that("Test CovarianceStatistics Unbiased", {
   ta <- as.single(c(-2.1,-1, 4.3, 3, 1.1, 0.12, 3, 1.1, 0.12))
   a <- Array(array(ta, dim = c(3, 3)))
