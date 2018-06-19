@@ -9,6 +9,8 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
+context("Khiva R tests")
+
 test_that("Test Real1D", {
   ta <- as.double(c(1, 2, 3, 4, 5, 6, 7, 8))
   expected <- array(ta, dim = c(8, 1, 1, 1))

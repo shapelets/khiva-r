@@ -9,6 +9,8 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
+context("Khiva R tests")
+
 test_that("Test SetBackend", {
   prev.backend <- GetBackend()
   prev.device <- GetDeviceID()
