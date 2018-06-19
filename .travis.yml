@@ -16,7 +16,7 @@ before_install:
 install:
   - |
     docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; \
-    apt-get update; apt-get install libxml2-dev libxslt-dev; R"
+    apt-get update; apt-get install libxml2-dev libxslt-dev -y; R"
   - |
     library(devtools); install.packages("bit64"); install.packages("testthat"); library(testthat); \
     install.packages("roxygen2"); library(roxygen2);  devtools::document(); devtools::test(); devtools::install(); \
