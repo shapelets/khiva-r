@@ -9,6 +9,8 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
+context("Khiva R tests")
+
 test_that("Test polyfit1", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
   tb <- as.single(c(0, 1, 2, 3, 4, 5))
