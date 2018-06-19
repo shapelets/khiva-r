@@ -5,6 +5,10 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+testthat::setup(
+  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
+)
+
 test_that("Test Real1D", {
   ta <- as.double(c(1, 2, 3, 4, 5, 6, 7, 8))
   expected <- array(ta, dim = c(8, 1, 1, 1))
