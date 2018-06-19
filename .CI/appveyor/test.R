@@ -6,5 +6,5 @@
 
 load('CIsession.RData')
 options(testthat.output_file = "test-out.xml")
-devtools::test(repoter = 'junit')
+devtools::test(reporter = 'junit')
 save.image(file='CIsession.RData')
