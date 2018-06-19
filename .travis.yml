@@ -20,7 +20,7 @@ install:
 
 
 script:
-  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; Rscript .CI/Script.R"
+  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; Rscript .CI/script.R"
   - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; mv ./cobertura.xml ./coverage.xml"
 
 after_success:
