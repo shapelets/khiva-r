@@ -11,5 +11,4 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     Rscript .CI/travis/script-osx.R
 else
     Rscript .CI/travis/script-linux.R
-    mv ./cobertura.xml ./coverage.xml
 fi

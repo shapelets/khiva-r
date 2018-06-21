@@ -6,6 +6,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    brew install r
     Rscript .CI/travis/install-osx.R
 else
     apt-get update

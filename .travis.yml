@@ -24,6 +24,7 @@ matrix:
       sudo: required
       r: "release"
       after_success:
+       - mv ./cobertura.xml ./coverage.xml
        - bash <(curl -s https://codecov.io/bash)
     - os: osx
       osx_image: xcode9.3
