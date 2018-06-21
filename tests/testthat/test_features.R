@@ -26,7 +26,7 @@ test_that("Test C3", {
 context("Khiva CidCe tests")
 
 test_that("Test CidCe", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     ta <- as.single(c(0, 1, 2, 3, 4, 5))
@@ -49,13 +49,17 @@ test_that("Test CidCe", {
 context("Khiva AbsEnergy tests")
 
 test_that("Test AbsEnergy", {
-  ta <- as.single(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
-  a <- Array(array(ta, dim = c(10, 1)))
-  out <- AbsEnergy(a)
-  b <- c(getData(out))
-  expect_equal(b[1], 385, 1e-6)
-  deleteArray(a)
-  deleteArray(out)
+  # Filtering this test in travis for OSX. Problem inside ArrayFire
+  travis.platform <- Sys.info()['sysname']
+    if (travis.platform != 'Darwin') {
+    ta <- as.single(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+    a <- Array(array(ta, dim = c(10, 1)))
+    out <- AbsEnergy(a)
+    b <- c(getData(out))
+    expect_equal(b[1], 385, 1e-6)
+    deleteArray(a)
+    deleteArray(out)
+  }
 })
 
 context("Khiva AbsoluteSumOfChanges tests")
