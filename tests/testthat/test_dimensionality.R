@@ -62,20 +62,16 @@ test_that("Test Paa", {
 context("Khiva Sax tests")
 
 test_that("Test Sax", {
-  # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
-    ta <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
-    tb <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
+  ta <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
+  tb <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
 
-    a <- Array(array(c(ta, tb), dim = c(5, 2)))
-    out <- Sax(a, 3)
-    b <- c(getData(out))
-    expected <- as.integer(c(0, 0, 1, 2, 2, 0, 0, 1, 2, 2))
-    expect_equal(b, expected)
-    deleteArray(a)
-    deleteArray(out)
-  }
+  a <- Array(array(c(ta, tb), dim = c(5, 2)))
+  out <- Sax(a, 3)
+  b <- c(getData(out))
+  expected <- as.integer(c(0, 0, 1, 2, 2, 0, 0, 1, 2, 2))
+  expect_equal(b, expected)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 context("Khiva Pip tests")

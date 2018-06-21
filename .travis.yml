@@ -6,6 +6,8 @@
 
 language: r
 
+sudo: required
+
 cache:
     directories:
       - ${TRAVIS_BUILD_DIR}/installers
@@ -15,22 +17,18 @@ matrix:
   include:
     - os: linux
       dist: trusty
-      sudo: required
       r: "3.5.0"
     - os: linux
       dist: trusty
-      sudo: required
       r: "3.4.3"
       after_success:
        - mv ./cobertura.xml ./coverage.xml
        - bash <(curl -s https://codecov.io/bash)
     - os: osx
       osx_image: xcode9.3
-      sudo: required
       r: "3.5.0"
     - os: osx
       osx_image: xcode9.3
-      sudo: required
       r: "3.4.3"
 
 before_install:
