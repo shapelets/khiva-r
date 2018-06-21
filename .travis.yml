@@ -6,25 +6,38 @@
 
 language: r
 
-services:
-  - docker
+cache:
+    directories:
+      - ${TRAVIS_BUILD_DIR}/installers
+
+matrix:
+  fast_finish: true
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
+      r: "oldrel"
+      after_success:
+        - codecov
+    - os: linux
+      dist: trusty
+      sudo: required
+      r: "release"
+      after_success:
+       - bash <(curl -s https://codecov.io/bash)
+    - os: osx
+      osx_image: xcode9.3
+      language: cpp
+      compiler: clang
+      r: "release"
 
 before_install:
-  - docker pull shapelets/khiva
-  - docker run -i -t -d --name CI shapelets/khiva-r
-  - docker exec -it CI /bin/bash -c "mkdir -p /home/travis/build/shapelets/khiva-r"
-  - docker cp . CI:/home/travis/build/shapelets/khiva-r
-
+  - source .CI/travis/install-arrayfire.sh
+  - source .CI/travis/install-khiva.sh
 install:
-  - |
-    docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; \
-    apt-get update; apt-get install libxml2-dev libxslt-dev -y; Rscript .CI/travis/install.R"
-
-
+  - source .CI/travis/install.sh
 script:
-  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; Rscript .CI/travis/script.R"
-  - docker exec -it CI /bin/bash -c "cd /home/travis/build/shapelets/khiva-r; mv ./cobertura.xml ./coverage.xml"
+  - source .CI/travis/build_and_test.sh
 
-after_success:
-  - docker cp CI:/home/travis/build/shapelets/khiva-r/coverage.xml .
-  - bash <(curl -s https://codecov.io/bash)
+
+
