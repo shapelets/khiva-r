@@ -6,8 +6,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    if [ ! -e "installers/ArrayFire-no-gl-v3.5.1_OSX.pkg" ]; then
-        wget http://arrayfire.s3.amazonaws.com/3.5.1/ArrayFire-no-gl-v3.5.1_OSX.pkg -O installers/ArrayFire-no-gl-v3.5.1_OSX.pkg
+    if [ ! -e "installers/arrayfire-cpu-3.5.1.pkg" ]; then
+        wget https://github.com/shapelets/arrayfire/releases/download/untagged-6977f9d2de57fa9f8b56/arrayfire-cpu-3.5.1.pkg -O installers/arrayfire-cpu-3.5.1.pkg
     fi
 
     # Installs arrayfire
