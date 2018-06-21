@@ -8,7 +8,7 @@
 # Build the project
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    R CMD BATCH .CI/travis/script-osx.R
+    Rscript .CI/travis/script-osx.R
 else
     Rscript .CI/travis/script-linux.R
 fi
