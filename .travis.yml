@@ -17,8 +17,6 @@ matrix:
       dist: trusty
       sudo: required
       r: "3.5.0"
-      after_success:
-        - codecov
     - os: linux
       dist: trusty
       sudo: required
@@ -28,12 +26,13 @@ matrix:
        - bash <(curl -s https://codecov.io/bash)
     - os: osx
       osx_image: xcode9.3
-      language: generic
+      sudo: required
       r: "3.5.0"
     - os: osx
       osx_image: xcode9.3
-      language: generic
+      sudo: required
       r: "3.4.3"
+
 
 before_install:
   - source .CI/travis/install-arrayfire.sh
