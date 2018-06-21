@@ -33,7 +33,6 @@ matrix:
       sudo: required
       r: "3.4.3"
 
-
 before_install:
   - source .CI/travis/install-arrayfire.sh
   - source .CI/travis/install-khiva.sh
