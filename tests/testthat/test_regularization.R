@@ -13,8 +13,8 @@ context("Khiva GroupBySingleColumn tests")
 
 test_that("Test GroupBySingleColumn", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     a <-
       Array(array(as.single(c(
         0, 1, 1, 2, 2, 3, 0, 3, 3, 1, 1, 2
@@ -32,8 +32,8 @@ context("Khiva GroupByDoubleKeyColumn tests")
 
 test_that("Test GroupByDoubleKeyColumn", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     a <-
       Array(array(as.single(
         c(0, 1, 1, 2, 2, 3, 1, 2, 2, 3, 3, 4, 0, 3, 3, 1, 1, 2)
@@ -51,8 +51,8 @@ context("Khiva GroupByDoubleKeyColumn2 tests")
 
 test_that("Test GroupByDoubleKeyColumn2", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     a <-
       Array(array(as.single(c(
         0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 2, 3, 4, 5
@@ -70,8 +70,8 @@ context("Khiva GroupByDoubleKeyDoubleValueColumn tests")
 
 test_that("Test GroupByDoubleKeyDoubleValueColumn", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     a <-
       Array(array(as.single(
         c(0, 0, 0, 2, 2, 2, 2, 2, 4, 4, 0, 1, 2, 3, 4, 1, 1, 1, 1, 1)

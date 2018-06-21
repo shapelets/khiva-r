@@ -367,8 +367,8 @@ test_that("Test Xor", {
 context("Khiva Bitshift tests")
 
 test_that("Test Bitshift", {
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.integer(c(2, 4, 6, 8))
     a <- Array(array(ta, dim = c(4,1,1,1) ), "s32")
     c <- bitShiftR(a, 1)
@@ -381,8 +381,8 @@ test_that("Test Bitshift", {
 context("Khiva Bitsra tests")
 
 test_that("Test Bitsra", {
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.integer(c(2, 4, 6, 8))
     a <- Array(array(ta, dim = c(4,1,1,1) ), "s32")
     c <- bitShiftL(a, 1)

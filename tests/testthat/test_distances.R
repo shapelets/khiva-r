@@ -13,8 +13,8 @@ context("Khiva Euclidean tests")
 
 test_that("Test Euclidean", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
     a <- Array(array(ta, dim = c(4, 3)))
     out <- Euclidean(a)
@@ -38,8 +38,8 @@ context("Khiva Dtw tests")
 
 test_that("Test Dtw", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <-
       as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
     a <- Array(array(ta, dim = c(5, 5)))
@@ -54,8 +54,8 @@ context("Khiva SquaredEuclidean tests")
 
 test_that("Test SquaredEuclidean", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
     a <- Array(array(ta, dim = c(4, 3)))
     out <- SquaredEuclidean(a)
@@ -79,8 +79,8 @@ context("Khiva Hamming tests")
 
 test_that("Test Hamming", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
     a <- Array(array(ta, dim = c(5,5)))
     out <- Hamming(a)
@@ -96,8 +96,8 @@ context("Khiva Manhattan tests")
 
 test_that("Test Manhattan", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
     a <- Array(array(ta, dim = c(5,5)))
     out <- Manhattan(a)

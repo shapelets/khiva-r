@@ -13,8 +13,8 @@ context("Khiva Lls tests")
 
 test_that("Test Lls", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.double(c(4, 3))
     tb <- as.double(c(-1, -2))
     blls <-  as.double(c(3, 1))

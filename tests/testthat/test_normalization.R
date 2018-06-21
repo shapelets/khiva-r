@@ -108,8 +108,8 @@ context("Khiva DecimalScalingNorm tests")
 
 test_that("Test DecimalScalingNorm", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, -2, 3))
     tb <- as.single(c(40, 50, 60, -70))
     expected <- c(0.0, 0.1, -0.2, 0.3, 0.4, 0.5, 0.6, -0.7)
@@ -126,8 +126,8 @@ context("Khiva DecimalScalingNormInPlace tests")
 
 test_that("Test DecimalScalingNormInPlace", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, -2, 3))
     tb <- as.single(c(40, 50, 60, -70))
     expected <- (c(0.0, 0.1, -0.2, 0.3, 0.4, 0.5, 0.6, -0.7))

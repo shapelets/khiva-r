@@ -13,8 +13,8 @@ context("Khiva RamerDouglasPeucker tests")
 
 test_that("Test RamerDouglasPeucker", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
     tb <-
       as.single(c(0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0))
@@ -33,8 +33,8 @@ context("Khiva Visvalingam tests")
 
 test_that("Test Visvalingam", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
     tb <-
       as.single(c(0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0))
@@ -53,8 +53,8 @@ context("Khiva Paa tests")
 
 test_that("Test Paa", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <-
       as.single(c(0.0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0))
     tb <-
@@ -75,8 +75,8 @@ context("Khiva Sax tests")
 
 test_that("Test Sax", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
     tb <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
 

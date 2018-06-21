@@ -27,8 +27,8 @@ context("Khiva CidCe tests")
 
 test_that("Test CidCe", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, 2, 3, 4, 5))
     tb <- as.single(c(6, 7, 8, 9, 10, 11))
     a <- Array(array(c(ta, tb), dim = c(6, 2)))
@@ -50,8 +50,8 @@ context("Khiva AbsEnergy tests")
 
 test_that("Test AbsEnergy", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-    if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+    if (travis.platform != 'osx') {
     ta <- as.single(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
     a <- Array(array(ta, dim = c(10, 1)))
     out <- AbsEnergy(a)
@@ -82,8 +82,8 @@ context("Khiva CrossCorrelation tests")
 
 test_that("Test CrossCorrelation", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 2, 3, 4))
     tb <- as.single(c(4, 6, 8, 10, 12))
     a <- Array(array(ta, dim = c(4, 1)))
@@ -105,8 +105,8 @@ context("Khiva AutoCovariance tests")
 
 test_that("Test AutoCovariance", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, 2, 3))
     tb <- as.single(c(10, 11, 12, 13))
     a <- Array(array(c(ta, tb), dim = c(4, 2)))
@@ -129,8 +129,8 @@ context("Khiva CrossCovariance tests")
 
 test_that("Test CrossCovariance", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, 2, 3))
     tb <- as.single(c(10, 11, 12, 13))
     tc <- as.single(c(4, 6, 8, 10, 12))
@@ -157,15 +157,18 @@ test_that("Test CrossCovariance", {
 context("Khiva ApproximateEntropy tests")
 
 test_that("Test ApproximateEntropy", {
-  ta <- as.single(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
-  tb <- as.single(c(11, 12, 13, 14, 15, 16, 17, 18, 19, 20))
-  a <- Array(array(ta, dim = c(10, 2)))
-  out <- ApproximateEntropy(a, 4, 0.5)
-  b <- c(getData(out))
-  expect_equal(b[1], 0.13484275341033936, 1e-6)
-  expect_equal(b[2], 0.13484275341033936, 1e-6)
-  deleteArray(a)
-  deleteArray(out)
+  # Filtering this test in travis for OSX. Problem inside ArrayFire
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
+    ta <- as.single(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+    a <- Array(array(ta, dim = c(10, 2)))
+    out <- ApproximateEntropy(a, 4, 0.5)
+    b <- c(getData(out))
+    expect_equal(b[1], 0.13484275341033936, 1e-6)
+    expect_equal(b[2], 0.13484275341033936, 1e-6)
+    deleteArray(a)
+    deleteArray(out)
+  }
 })
 
 context("Khiva AutoCorrelation tests")
@@ -194,8 +197,8 @@ context("Khiva BinnedEntropy tests")
 
 test_that("Test BinnedEntropy", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
                       14, 15, 16, 17, 18, 19, 20))
     tb <-
@@ -357,8 +360,8 @@ context("Khiva Kurtosis tests")
 
 test_that("Test Kurtosis", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, 2, 3, 4, 5))
     tb <- as.single(c(2, 2, 2, 20, 30, 25))
     a <- Array(array(c(ta, tb), dim = c(6, 2)))
@@ -580,8 +583,8 @@ context("Khiva AggregatedAutocorrelationMean tests")
 
 test_that("Test AggregatedAutocorrelationMean", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 2, 3, 4, 5, 6))
     tb <- as.single(c(7, 8, 9, 10, 11, 12))
     a <- Array(array(c(ta, tb), dim = c(6, 2)))
@@ -599,8 +602,8 @@ context("Khiva AggregatedAutocorrelationMedian tests")
 
 test_that("Test AggregatedAutocorrelationMedian", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 2, 3, 4, 5, 6))
     tb <- as.single(c(7, 8, 9, 10, 11, 12))
     a <- Array(array(c(ta, tb), dim = c(6, 2)))
@@ -617,8 +620,8 @@ context("Khiva AggregatedAutocorrelationMin tests")
 
 test_that("Test AggregatedAutocorrelationMin", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 2, 3, 4, 5, 6))
     tb <- as.single(c(7, 8, 9, 10, 11, 12))
     a <- Array(array(c(ta, tb), dim = c(6, 2)))
@@ -636,8 +639,8 @@ context("Khiva AggregatedAutocorrelationMax tests")
 
 test_that("Test AggregatedAutocorrelationMax", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 2, 3, 4, 5, 6))
     tb <- as.single(c(7, 8, 9, 10, 11, 12))
     a <- Array(array(c(ta, tb), dim = c(6, 2)))
@@ -654,8 +657,8 @@ context("Khiva AggregatedAutocorrelationStdev tests")
 
 test_that("Test AggregatedAutocorrelationStdev", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 2, 3, 4, 5, 6))
     tb <- as.single(c(7, 8, 9, 10, 11, 12))
     a <- Array(array(c(ta, tb), dim = c(6, 2)))
@@ -672,8 +675,8 @@ context("Khiva AggregatedAutocorrelationVar tests")
 
 test_that("Test AggregatedAutocorrelationVar", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 2, 3, 4, 5, 6))
     tb <- as.single(c(7, 8, 9, 10, 11, 12))
     a <- Array(array(c(ta, tb), dim = c(6, 2)))
@@ -690,8 +693,8 @@ context("Khiva AggregatedAutocorrelationMean tests")
 
 test_that("Test AggregatedLinearTrendMean", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5))
     a <- Array(array(ta, dim = c(12, 1)))
     out <- AggregatedLinearTrend(a, 3, 0)
@@ -722,8 +725,8 @@ context("Khiva AggregatedLinearTrendMin tests")
 
 test_that("Test AggregatedLinearTrendMin", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5))
     a <- Array(array(ta, dim = c(12, 1)))
     out <- AggregatedLinearTrend(a, 3, 2)
@@ -754,8 +757,8 @@ context("Khiva CwtCoefficients tests")
 
 test_that("Test CwtCoefficients", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0.1, 0.2, 0.3))
     tb <- as.single(c(0.1, 0.2, 0.3))
     a <- Array(array(c(ta, tb), dim = c(3, 2)))
@@ -905,9 +908,9 @@ test_that("Test MaxLangevinFixedPoint", {
 context("Khiva FftAggregated tests")
 
 test_that("Test FftAggregated", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  # Filtering this test in travis for OSX. Problem inside ArrayFire
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <-
       as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
     tb <-
@@ -984,8 +987,8 @@ context("Khiva RatioBeyondRSigma tests")
 
 test_that("Test RatioBeyondRSigma", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-    if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+    if (travis.platform != 'osx') {
     ta <-
       as.single(c(3, 0, 0, 4, 0, 0, 13))
     tb <-
@@ -1004,8 +1007,8 @@ context("Khiva SampleEntropy tests")
 
 test_that("Test SampleEntropy", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <-
       as.single(c(3, 0, 0, 4, 0, 0, 13))
     tb <-
@@ -1024,8 +1027,8 @@ context("Khiva Skewness tests")
 
 test_that("Test Skewness", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <-
       as.single(c(3, 0, 0, 4, 0, 0, 13))
     tb <-
@@ -1060,8 +1063,8 @@ context("Khiva SumOfReoccurringDatapoints tests")
 
 test_that("Test SumOfReoccurringDatapoints", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <-
       as.single(c(3, 3, 0, 4, 0, 13, 13))
     tb <-
@@ -1134,8 +1137,8 @@ context("Khiva NumberCwtPeaks tests")
 
 test_that("Test NumberCwtPeaks", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <-
       as.single(c(1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1))
     tb <-
@@ -1154,8 +1157,8 @@ context("Khiva PartialAutocorrelation tests")
 
 test_that("Test PartialAutocorrelation", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     numel <- 3000
     step <- 1 / (numel - 1)
     ta <- as.single(seq(length = 3000))
@@ -1201,8 +1204,8 @@ context("Khiva PercentageOfReoccurringValuesToAllValues tests")
 
 test_that("Test PercentageOfReoccurringValuesToAllValues", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(1, 1, 2, 3, 4, 4, 5, 6))
     tb <- as.single(c(1, 2, 2, 3, 4, 5, 6, 7))
     a <- Array(array(c(ta, tb), dim = c(8, 2)))
@@ -1233,8 +1236,8 @@ context("Khiva RatioValueNumberToTimeSeriesLength tests")
 
 test_that("Test RatioValueNumberToTimeSeriesLength", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(3, 0, 0, 4, 0, 0, 13))
     tb <- as.single(c(3, 5, 0, 4, 6, 0, 13))
     a <- Array(array(c(ta, tb), dim = c(7, 2)))
@@ -1251,8 +1254,8 @@ context("Khiva SpktWelchDensity tests")
 
 test_that("Test SpktWelchDensity", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(0, 1, 1, 3, 4, 5, 6, 7, 8, 9))
     tb <- as.single(c(0, 1, 1, 3, 4, 5, 6, 7, 8, 9))
     a <- Array(array(c(ta, tb), dim = c(10, 2)))
@@ -1269,8 +1272,8 @@ context("Khiva SumOfReoccurringValues tests")
 
 test_that("Test SumOfReocurringValues", {
    # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.info()['sysname']
-  if (travis.platform != 'Darwin') {
+  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
+  if (travis.platform != 'osx') {
     ta <- as.single(c(4, 4, 6, 6, 7))
     tb <- as.single(c(4, 7, 7, 8, 8))
     a <- Array(array(c(ta, tb), dim = c(5, 2)))
