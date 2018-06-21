@@ -9,7 +9,7 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
-context("Khiva R tests")
+context("Khiva Linear tests")
 
 test_that("Test Linear", {
   ta <-
@@ -66,6 +66,8 @@ test_that("Test Linear", {
   deleteArray(out$pvalue)
   deleteArray(out$stderrest)
 })
+
+context("Khiva LinearMultipleTimeSeries tests")
 
 test_that("Test LinearMultipleTimeSeries", {
   ta <-

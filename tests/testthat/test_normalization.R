@@ -9,7 +9,7 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
-context("Khiva R tests")
+context("Khiva Znorm tests")
 
 test_that("Test Znorm", {
   ta <-
@@ -35,6 +35,8 @@ test_that("Test Znorm", {
   deleteArray(out)
 })
 
+context("Khiva ZnormInPlace tests")
+
 test_that("Test ZnormInPlace", {
   ta <- as.single(c(0, 1, 2, 3))
   tb <- as.single(c(4, 5, 6, 7))
@@ -54,6 +56,8 @@ test_that("Test ZnormInPlace", {
   expect_equal(b, expected, 1e-6)
   deleteArray(a)
 })
+
+context("Khiva MaxMinNorm tests")
 
 test_that("Test MaxMinNorm", {
   ta <- as.single(c(0, 1, 2, 3))
@@ -77,6 +81,8 @@ test_that("Test MaxMinNorm", {
   deleteArray(out)
 })
 
+context("Khiva MaxMinNormInPlace tests")
+
 test_that("Test MaxMinNormInPlace", {
   ta <- as.single(c(0, 1, 2, 3))
   tb <- as.single(c(4, 5, 6, 7))
@@ -98,6 +104,8 @@ test_that("Test MaxMinNormInPlace", {
   deleteArray(a)
 })
 
+context("Khiva DecimalScalingNorm tests")
+
 test_that("Test DecimalScalingNorm", {
   ta <- as.single(c(0, 1, -2, 3))
   tb <- as.single(c(40, 50, 60, -70))
@@ -110,6 +118,8 @@ test_that("Test DecimalScalingNorm", {
   deleteArray(out)
 })
 
+context("Khiva DecimalScalingNormInPlace tests")
+
 test_that("Test DecimalScalingNormInPlace", {
   ta <- as.single(c(0, 1, -2, 3))
   tb <- as.single(c(40, 50, 60, -70))
@@ -121,6 +131,8 @@ test_that("Test DecimalScalingNormInPlace", {
   deleteArray(a)
 })
 
+context("Khiva MeanNorm tests")
+
 test_that("Test MeanNorm", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7))
   a <- Array(array(ta, dim = c(4, 2)))
@@ -131,6 +143,8 @@ test_that("Test MeanNorm", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva MeanNormInPlace tests")
 
 test_that("Test MeanNormInPlace", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7))

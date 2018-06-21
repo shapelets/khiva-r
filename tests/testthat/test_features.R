@@ -9,7 +9,7 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
-context("Khiva R tests")
+context("Khiva C3 tests")
 
 test_that("Test C3", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
@@ -22,6 +22,8 @@ test_that("Test C3", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva CidCe tests")
 
 test_that("Test CidCe", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
@@ -40,6 +42,8 @@ test_that("Test CidCe", {
   deleteArray(out)
 })
 
+context("Khiva AbsEnergy tests")
+
 test_that("Test AbsEnergy", {
   ta <- as.single(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
   a <- Array(array(ta, dim = c(10, 1)))
@@ -49,6 +53,8 @@ test_that("Test AbsEnergy", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva AbsoluteSumOfChanges tests")
 
 test_that("Test AbsoluteSumOfChanges", {
   ta <- as.single(c(0, 1, 2, 3))
@@ -63,6 +69,8 @@ test_that("Test AbsoluteSumOfChanges", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva CrossCorrelation tests")
 
 test_that("Test CrossCorrelation", {
   ta <- as.single(c(1, 2, 3, 4))
@@ -81,6 +89,8 @@ test_that("Test CrossCorrelation", {
   deleteArray(b)
 })
 
+context("Khiva AutoCovariance tests")
+
 test_that("Test AutoCovariance", {
   ta <- as.single(c(0, 1, 2, 3))
   tb <- as.single(c(10, 11, 12, 13))
@@ -98,6 +108,8 @@ test_that("Test AutoCovariance", {
   deleteArray(out)
   deleteArray(a)
 })
+
+context("Khiva CrossCovariance tests")
 
 test_that("Test CrossCovariance", {
   ta <- as.single(c(0, 1, 2, 3))
@@ -122,6 +134,8 @@ test_that("Test CrossCovariance", {
   deleteArray(out)
 })
 
+context("Khiva ApproximateEntropy tests")
+
 test_that("Test ApproximateEntropy", {
   ta <- as.single(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
   tb <- as.single(c(11, 12, 13, 14, 15, 16, 17, 18, 19, 20))
@@ -133,6 +147,8 @@ test_that("Test ApproximateEntropy", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva AutoCorrelation tests")
 
 test_that("Test AutoCorrelation", {
   ta <- as.single(c(0, 1, 2, 3))
@@ -154,6 +170,8 @@ test_that("Test AutoCorrelation", {
   
 })
 
+context("Khiva BinnedEntropy tests")
+
 test_that("Test BinnedEntropy", {
   ta <- as.single(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
                     14, 15, 16, 17, 18, 19, 20))
@@ -170,6 +188,8 @@ test_that("Test BinnedEntropy", {
   deleteArray(out)
 })
 
+context("Khiva CountAboveMean tests")
+
 test_that("Test CountAboveMean", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
   tb <- as.single(c(6, 7, 8, 9, 10, 11))
@@ -184,6 +204,8 @@ test_that("Test CountAboveMean", {
   deleteArray(out)
 })
 
+context("Khiva CountBelowMean tests")
+
 test_that("Test CountBelowMean", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
   tb <- as.single(c(6, 7, 8, 9, 10, 11))
@@ -195,6 +217,8 @@ test_that("Test CountBelowMean", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva EnergyRatioByChunks tests")
 
 test_that("Test EnergyRatioBychunks", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
@@ -215,6 +239,8 @@ test_that("Test EnergyRatioBychunks", {
   expect_equal(b[2], 0.669623060, 1e-6)
 })
 
+context("Khiva CountBelowMean tests")
+
 test_that("Test CountBelowMean", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
   tb <- as.single(c(6, 7, 8, 9, 10, 11))
@@ -226,6 +252,8 @@ test_that("Test CountBelowMean", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva FirstLocationOfMaximum tests")
 
 test_that("Test FirstLocationOfMaximum", {
   ta <- as.single(c(5, 4, 3, 5, 0, 1, 5, 3, 2, 1))
@@ -239,6 +267,8 @@ test_that("Test FirstLocationOfMaximum", {
   deleteArray(out)
 })
 
+context("Khiva FirstLocationOfMinimum tests")
+
 test_that("Test FirstLocationOfMinimum", {
   ta <- as.single(c(5, 4, 3, 0, 0, 1))
   tb <- as.single(c(5, 4, 3, 0, 2, 1))
@@ -250,6 +280,8 @@ test_that("Test FirstLocationOfMinimum", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva HasDuplicates tests")
 
 test_that("Test HasDuplicates", {
   ta <- as.single(c(5, 4, 3, 0, 0, 1))
@@ -265,6 +297,8 @@ test_that("Test HasDuplicates", {
   deleteArray(out)
 })
 
+context("Khiva HasDuplicateMax tests")
+
 test_that("Test HasDuplicateMax", {
   ta <- as.single(c(5, 4, 3, 0, 5, 1))
   tb <- as.single(c(5, 4, 3, 0, 2, 1))
@@ -278,6 +312,8 @@ test_that("Test HasDuplicateMax", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva IndexMassQuantile tests")
 
 test_that("Test IndexMassQuantile", {
   ta <- as.single(c(5, 4, 3, 0, 5, 1))
@@ -293,6 +329,8 @@ test_that("Test IndexMassQuantile", {
   deleteArray(out)
 })
 
+context("Khiva Kurtosis tests")
+
 test_that("Test Kurtosis", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
   tb <- as.single(c(2, 2, 2, 20, 30, 25))
@@ -306,6 +344,8 @@ test_that("Test Kurtosis", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva LargeStandardDeviation tests")
 
 test_that("Test LargeStandardDeviation", {
   ta <- as.single(c(-1, -1, -1, 1, 1, 1))
@@ -321,6 +361,8 @@ test_that("Test LargeStandardDeviation", {
   deleteArray(out)
 })
 
+context("Khiva LastLocationOfMaximum tests")
+
 test_that("Test LastLocationOfMaximum", {
   ta <- as.single(c(0, 4, 3, 5, 5, 1))
   tb <- as.single(c(0, 4, 3, 2, 5, 1))
@@ -332,6 +374,8 @@ test_that("Test LastLocationOfMaximum", {
   expect_equal(c[1], 0.8333333333333334, 1e-6)
   expect_equal(c[2], 0.8333333333333334, 1e-6)
 })
+
+context("Khiva LastLocationOfMinimum tests")
 
 test_that("Test LastLocationOfMinimum", {
   ta <- as.single(c(0, 4, 3, 5, 5, 1, 0, 4))
@@ -347,6 +391,8 @@ test_that("Test LastLocationOfMinimum", {
   expect_equal(c[2], 0.875, 1e-6)
 })
 
+context("Khiva Length tests")
+
 test_that("Test Length", {
   ta <- as.single(c(0, 4, 3, 5, 5, 1))
   tb <- as.single(c(0, 4, 3, 2, 5, 1))
@@ -360,6 +406,8 @@ test_that("Test Length", {
   expect_equal(c[1], 6, 1e-6)
   expect_equal(c[2], 6, 1e-6)
 })
+
+context("Khiva LinearTrend tests")
 
 test_that("Test LinearTrend", {
   ta <- as.single(c(0, 4, 3, 5, 5, 1))
@@ -393,6 +441,8 @@ test_that("Test LinearTrend", {
   deleteArray(out$stdrr)
 })
 
+context("Khiva HasDuplicateMin tests")
+
 test_that("Test HasDuplicateMin", {
   ta <- as.single(c(5, 4, 3, 0, 0, 1))
   tb <- as.single(c(5, 4, 3, 0, 2, 1))
@@ -404,6 +454,8 @@ test_that("Test HasDuplicateMin", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva LongestStrikeAboveMean tests")
 
 test_that("Test LongestStrikeAboveMean", {
   ta <-
@@ -419,6 +471,8 @@ test_that("Test LongestStrikeAboveMean", {
   deleteArray(out)
 })
 
+context("Khiva LongestStrikeBelowMean tests")
+
 test_that("Test LongestStrikeBelowMean", {
   ta <-
     as.single(c(20, 20, 20, 1, 1, 1, 20, 20, 20, 20, 1, 1, 1, 1, 1, 1, 1, 1, 20, 20))
@@ -432,6 +486,8 @@ test_that("Test LongestStrikeBelowMean", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva Maximum tests")
 
 test_that("Test Maximum", {
   ta <-
@@ -447,6 +503,8 @@ test_that("Test Maximum", {
   deleteArray(out)
 })
 
+context("Khiva MeanAbsoluteChange tests")
+
 test_that("Test MeanAbsoluteChange", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
   tb <- as.single(c(8, 10, 12, 14, 16, 18))
@@ -458,6 +516,8 @@ test_that("Test MeanAbsoluteChange", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva FftCoefficient tests")
 
 test_that("Test FftCoefficient", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
@@ -488,6 +548,8 @@ test_that("Test FftCoefficient", {
   deleteArray(out$angle)
 })
 
+context("Khiva AggregatedAutocorrelationMean tests")
+
 test_that("Test AggregatedAutocorrelationMean", {
   ta <- as.single(c(1, 2, 3, 4, 5, 6))
   tb <- as.single(c(7, 8, 9, 10, 11, 12))
@@ -499,6 +561,9 @@ test_that("Test AggregatedAutocorrelationMean", {
   deleteArray(a)
   deleteArray(out)
 })
+
+
+context("Khiva AggregatedAutocorrelationMedian tests")
 
 test_that("Test AggregatedAutocorrelationMedian", {
   ta <- as.single(c(1, 2, 3, 4, 5, 6))
@@ -512,6 +577,8 @@ test_that("Test AggregatedAutocorrelationMedian", {
   deleteArray(out)
 })
 
+context("Khiva AggregatedAutocorrelationMin tests")
+
 test_that("Test AggregatedAutocorrelationMin", {
   ta <- as.single(c(1, 2, 3, 4, 5, 6))
   tb <- as.single(c(7, 8, 9, 10, 11, 12))
@@ -523,6 +590,9 @@ test_that("Test AggregatedAutocorrelationMin", {
   deleteArray(a)
   deleteArray(out)
 })
+
+
+context("Khiva AggregatedAutocorrelationMax tests")
 
 test_that("Test AggregatedAutocorrelationMax", {
   ta <- as.single(c(1, 2, 3, 4, 5, 6))
@@ -536,6 +606,8 @@ test_that("Test AggregatedAutocorrelationMax", {
   deleteArray(out)
 })
 
+context("Khiva AggregatedAutocorrelationStdev tests")
+
 test_that("Test AggregatedAutocorrelationStdev", {
   ta <- as.single(c(1, 2, 3, 4, 5, 6))
   tb <- as.single(c(7, 8, 9, 10, 11, 12))
@@ -548,6 +620,8 @@ test_that("Test AggregatedAutocorrelationStdev", {
   deleteArray(out)
 })
 
+context("Khiva AggregatedAutocorrelationVar tests")
+
 test_that("Test AggregatedAutocorrelationVar", {
   ta <- as.single(c(1, 2, 3, 4, 5, 6))
   tb <- as.single(c(7, 8, 9, 10, 11, 12))
@@ -559,6 +633,8 @@ test_that("Test AggregatedAutocorrelationVar", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva AggregatedAutocorrelationMean tests")
 
 test_that("Test AggregatedLinearTrendMean", {
   ta <- as.single(c(2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5))
@@ -586,6 +662,8 @@ test_that("Test AggregatedLinearTrendMean", {
   deleteArray(out$stderrest)
 })
 
+context("Khiva AggregatedLinearTrendMin tests")
+
 test_that("Test AggregatedLinearTrendMin", {
   ta <- as.single(c(2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5))
   a <- Array(array(ta, dim = c(12, 1)))
@@ -612,6 +690,8 @@ test_that("Test AggregatedLinearTrendMin", {
   deleteArray(out$stderrest)
 })
 
+context("Khiva CwtCoefficients tests")
+
 test_that("Test CwtCoefficients", {
   ta <- as.single(c(0.1, 0.2, 0.3))
   tb <- as.single(c(0.1, 0.2, 0.3))
@@ -627,6 +707,8 @@ test_that("Test CwtCoefficients", {
   deleteArray(out)
 })
 
+context("Khiva MeanSecondDerivativeCentral tests")
+
 test_that("Test MeanSecondDerivativeCentral", {
   ta <- as.single(c(1, 3, 7, 4, 8))
   tb <- as.single(c(2, 5, 1, 7, 4))
@@ -638,6 +720,8 @@ test_that("Test MeanSecondDerivativeCentral", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva Minimum tests")
 
 test_that("Test Minimum", {
   ta <-
@@ -674,6 +758,8 @@ test_that("Test Minimum", {
   deleteArray(out)
 })
 
+context("Khiva NumberCrossingM tests")
+
 test_that("Test NumberCrossingM", {
   ta <-
     as.single(c(1, 2, 1, 1, -3, -4, 7, 8, 9, 10, -2, 1, -3, 5, 6, 7, -10))
@@ -687,6 +773,8 @@ test_that("Test NumberCrossingM", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva Mean tests")
 
 test_that("Test Mean", {
   ta <-
@@ -702,6 +790,8 @@ test_that("Test Mean", {
   deleteArray(out)
 })
 
+context("Khiva Median tests")
+
 test_that("Test Median", {
   ta <-
     as.single(c(20, 20, 20, 18, 25, 19, 20, 20, 20, 20, 40, 30, 1, 50, 1, 1, 5, 1, 20, 20))
@@ -715,6 +805,8 @@ test_that("Test Median", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva MeanChange tests")
 
 test_that("Test MeanChange", {
   ta <-
@@ -730,6 +822,8 @@ test_that("Test MeanChange", {
   deleteArray(out)
 })
 
+context("Khiva MaxLangevinFixedPoint tests")
+
 test_that("Test MaxLangevinFixedPoint", {
   ta <-
     as.single(c(0, 1, 2, 3, 4, 5))
@@ -743,6 +837,8 @@ test_that("Test MaxLangevinFixedPoint", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva FftAggregated tests")
 
 test_that("Test FftAggregated", {
   ta <-
@@ -764,6 +860,8 @@ test_that("Test FftAggregated", {
   deleteArray(out)
 })
 
+context("Khiva NumberPeaks tests")
+
 test_that("Test NumberPeaks", {
   ta <-
     as.single(c(3, 0, 0, 4, 0, 0, 13))
@@ -777,6 +875,8 @@ test_that("Test NumberPeaks", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva PercentageOfReoccurringDatapointsToAllDatapoints tests")
 
 test_that("Test PercentageOfReocurringDatapointsToAllDatapoints", {
   ta <-
@@ -792,6 +892,8 @@ test_that("Test PercentageOfReocurringDatapointsToAllDatapoints", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva Quantile tests")
 
 test_that("Test Quantile", {
   ta <-
@@ -810,6 +912,8 @@ test_that("Test Quantile", {
   deleteArray(out)
 })
 
+context("Khiva RatioBeyondRSigma tests")
+
 test_that("Test RatioBeyondRSigma", {
   ta <-
     as.single(c(3, 0, 0, 4, 0, 0, 13))
@@ -823,6 +927,8 @@ test_that("Test RatioBeyondRSigma", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva SampleEntropy tests")
 
 test_that("Test SampleEntropy", {
   ta <-
@@ -838,6 +944,8 @@ test_that("Test SampleEntropy", {
   deleteArray(out)
 })
 
+context("Khiva Skewness tests")
+
 test_that("Test Skewness", {
   ta <-
     as.single(c(3, 0, 0, 4, 0, 0, 13))
@@ -851,6 +959,8 @@ test_that("Test Skewness", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva StandardDeviation tests")
 
 test_that("Test StandardDeviation", {
   ta <-
@@ -866,6 +976,8 @@ test_that("Test StandardDeviation", {
   deleteArray(out)
 })
 
+context("Khiva SumOfReoccurringDatapoints tests")
+
 test_that("Test SumOfReoccurringDatapoints", {
   ta <-
     as.single(c(3, 3, 0, 4, 0, 13, 13))
@@ -879,6 +991,8 @@ test_that("Test SumOfReoccurringDatapoints", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva SymmetryLooking tests")
 
 test_that("Test SymmetryLooking", {
   ta <-
@@ -894,6 +1008,8 @@ test_that("Test SymmetryLooking", {
   deleteArray(out)
 })
 
+context("Khiva ValueCount tests")
+
 test_that("Test ValueCount", {
   ta <-
     as.single(c(20, 20, 20, 18, 25, 19, 20, 20, 20, 20, 40, 30, 1, 50, 1, 1, 5, 1, 20, 20))
@@ -907,6 +1023,8 @@ test_that("Test ValueCount", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva FriedrichCoefficients tests")
 
 test_that("Test FriedrichCoefficients", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
@@ -928,6 +1046,8 @@ test_that("Test FriedrichCoefficients", {
   deleteArray(out)
 })
 
+context("Khiva NumberCwtPeaks tests")
+
 test_that("Test NumberCwtPeaks", {
   ta <-
     as.single(c(1, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1, 1))
@@ -941,6 +1061,8 @@ test_that("Test NumberCwtPeaks", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva PartialAutocorrelation tests")
 
 test_that("Test PartialAutocorrelation", {
   numel <- 3000
@@ -983,6 +1105,8 @@ test_that("Test PartialAutocorrelation", {
   deleteArray(out)
 })
 
+context("Khiva PercentageOfReoccurringValuesToAllValues tests")
+
 test_that("Test PercentageOfReoccurringValuesToAllValues", {
   ta <- as.single(c(1, 1, 2, 3, 4, 4, 5, 6))
   tb <- as.single(c(1, 2, 2, 3, 4, 5, 6, 7))
@@ -994,6 +1118,8 @@ test_that("Test PercentageOfReoccurringValuesToAllValues", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva RangeCount tests")
 
 test_that("Test RangeCount", {
   ta <- as.single(c(3, 0, 0, 4, 0, 0, 13))
@@ -1007,6 +1133,8 @@ test_that("Test RangeCount", {
   deleteArray(out)
 })
 
+context("Khiva RatioValueNumberToTimeSeriesLength tests")
+
 test_that("Test RatioValueNumberToTimeSeriesLength", {
   ta <- as.single(c(3, 0, 0, 4, 0, 0, 13))
   tb <- as.single(c(3, 5, 0, 4, 6, 0, 13))
@@ -1018,6 +1146,8 @@ test_that("Test RatioValueNumberToTimeSeriesLength", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva SpktWelchDensity tests")
 
 test_that("Test SpktWelchDensity", {
   ta <- as.single(c(0, 1, 1, 3, 4, 5, 6, 7, 8, 9))
@@ -1031,6 +1161,8 @@ test_that("Test SpktWelchDensity", {
   deleteArray(out)
 })
 
+context("Khiva SumOfReoccurringValues tests")
+
 test_that("Test SumOfReocurringValues", {
   ta <- as.single(c(4, 4, 6, 6, 7))
   tb <- as.single(c(4, 7, 7, 8, 8))
@@ -1043,6 +1175,8 @@ test_that("Test SumOfReocurringValues", {
   deleteArray(out)
 })
 
+context("Khiva SumValues tests")
+
 test_that("Test SumValues", {
   ta <- as.single(c(1, 2, 3, 4.1))
   tb <- as.single(c(-1.2, -2, -3, -4))
@@ -1054,6 +1188,8 @@ test_that("Test SumValues", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva TimeReversalAsymmetryStatistic tests")
 
 test_that("Test TimeReversalAsymmetryStatistic", {
   ta <-
@@ -1069,6 +1205,8 @@ test_that("Test TimeReversalAsymmetryStatistic", {
   deleteArray(out)
 })
 
+context("Khiva Variance tests")
+
 test_that("Test Variance", {
   ta <- as.single(c(1, 1, -1, -1))
   tb <- as.single(c(1, 2, -2, -1))
@@ -1080,6 +1218,8 @@ test_that("Test Variance", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva VarianceLargerThanStandardDeviation tests")
 
 test_that("Test VarianceLargerThanStandardDeviation", {
   ta <-

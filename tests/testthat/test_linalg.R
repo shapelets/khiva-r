@@ -9,7 +9,7 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
-context("Khiva R tests")
+context("Khiva Lls tests")
 
 test_that("Test Lls", {
   ta <- as.double(c(4, 3))

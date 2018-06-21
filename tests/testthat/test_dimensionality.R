@@ -9,7 +9,7 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
-context("Khiva R tests")
+context("Khiva RamerDouglasPeucker tests")
 
 test_that("Test RamerDouglasPeucker", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
@@ -25,6 +25,8 @@ test_that("Test RamerDouglasPeucker", {
   deleteArray(out)
 })
 
+context("Khiva Visvalingam tests")
+
 test_that("Test Visvalingam", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
   tb <-
@@ -38,6 +40,8 @@ test_that("Test Visvalingam", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva Paa tests")
 
 test_that("Test Paa", {
   ta <-
@@ -54,6 +58,8 @@ test_that("Test Paa", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva Sax tests")
 
 test_that("Test Sax", {
   # Filtering this test in travis for OSX. Problem inside ArrayFire
@@ -72,6 +78,8 @@ test_that("Test Sax", {
   }
 })
 
+context("Khiva Pip tests")
+
 test_that("Test Pip", {
   ta <-
     as.single(c(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0))
@@ -88,6 +96,8 @@ test_that("Test Pip", {
   deleteArray(out)
 })
 
+context("Khiva PLABottomUp tests")
+
 test_that("Test PLABottomUp", {
   x <- c(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0)
   y <- c(0.0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0)
@@ -99,6 +109,8 @@ test_that("Test PLABottomUp", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva PLASlidingWindow tests")
 
 test_that("Test PLASlidingWindow", {
   x <- c(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0)

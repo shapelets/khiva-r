@@ -9,7 +9,7 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
-context("Khiva R tests")
+context("Khiva stomp tests")
 
 test_that("Test stomp", {
   ta <- as.single(c(10, 11, 10, 11))
@@ -33,6 +33,8 @@ test_that("Test stomp", {
   deleteArray(out[[2]])
 })
 
+context("Khiva stompSelfJoin tests")
+
 test_that("Test stompSelfJoin", {
   ta <-
     as.double(c(10, 10, 11, 11, 10, 11, 10, 10, 11, 11, 10, 11, 10, 10))
@@ -53,6 +55,8 @@ test_that("Test stompSelfJoin", {
   deleteArray(out[[2]])
   
 })
+
+context("Khiva findBestNMotifs tests")
 
 test_that("Test findBestNMotifs", {
   ta <-
@@ -77,6 +81,8 @@ test_that("Test findBestNMotifs", {
   deleteArray(out[[2]])
   deleteArray(out[[3]])
 })
+
+context("Khiva findBestNDiscords tests")
 
 test_that("Test findBestNDiscords", {
   ta <-
