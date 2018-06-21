@@ -5,11 +5,17 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+testthat::setup(
+  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
+)
+
+context("Khiva RamerDouglasPeucker tests")
+
 test_that("Test RamerDouglasPeucker", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
   tb <-
     as.single(c(0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0))
-  
+
   a <- Array(array(c(ta, tb), dim = c(10, 2)))
   out <- RamerDouglasPeucker(a, 1.0)
   b <- c(getData(out))
@@ -19,11 +25,13 @@ test_that("Test RamerDouglasPeucker", {
   deleteArray(out)
 })
 
+context("Khiva Visvalingam tests")
+
 test_that("Test Visvalingam", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
   tb <-
     as.single(c(0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0))
-  
+
   a <- Array(array(c(ta, tb), dim = c(10, 2)))
   out <- Visvalingam(a, 5)
   b <- c(getData(out))
@@ -33,12 +41,14 @@ test_that("Test Visvalingam", {
   deleteArray(out)
 })
 
+context("Khiva Paa tests")
+
 test_that("Test Paa", {
   ta <-
     as.single(c(0.0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0))
   tb <-
     as.single(c(0.0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0))
-  
+
   a <- Array(array(c(ta, tb), dim = c(10, 2)))
   out <- Paa(a, 5)
   b <- c(getData(out))
@@ -49,10 +59,12 @@ test_that("Test Paa", {
   deleteArray(out)
 })
 
+context("Khiva Sax tests")
+
 test_that("Test Sax", {
   ta <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
   tb <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
-  
+
   a <- Array(array(c(ta, tb), dim = c(5, 2)))
   out <- Sax(a, 3)
   b <- c(getData(out))
@@ -61,6 +73,8 @@ test_that("Test Sax", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva Pip tests")
 
 test_that("Test Pip", {
   ta <-
@@ -78,6 +92,8 @@ test_that("Test Pip", {
   deleteArray(out)
 })
 
+context("Khiva PLABottomUp tests")
+
 test_that("Test PLABottomUp", {
   x <- c(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0)
   y <- c(0.0, 0.1, -0.1, 5.0, 6.0, 7.0, 8.1, 9.0, 9.0, 9.0)
@@ -89,6 +105,8 @@ test_that("Test PLABottomUp", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva PLASlidingWindow tests")
 
 test_that("Test PLASlidingWindow", {
   x <- c(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0)

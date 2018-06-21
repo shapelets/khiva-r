@@ -5,6 +5,12 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+testthat::setup(
+  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
+)
+
+context("Khiva SetBackend tests")
+
 test_that("Test SetBackend", {
   prev.backend <- GetBackend()
   prev.device <- GetDeviceID()
@@ -33,6 +39,8 @@ test_that("Test SetBackend", {
   SetBackend(prev.backend)
   SetDevice(prev.device)
 })
+
+context("Khiva GetDeviceID tests")
 
 test_that("Test GetDeviceID", {
   prev.backend <- GetBackend()
@@ -75,7 +83,9 @@ test_that("Test GetDeviceID", {
   SetDevice(prev.device)
 })
 
+context("Khiva Version tests")
+
 test_that("Test Version", {
   out <- Version()
-  expect_equal(out$result, "0.0.1")
+  expect_equal(out$result, "0.1.0")
 })

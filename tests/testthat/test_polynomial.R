@@ -5,6 +5,12 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+testthat::setup(
+  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
+)
+
+context("Khiva polyfit1 tests")
+
 test_that("Test polyfit1", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5))
   tb <- as.single(c(0, 1, 2, 3, 4, 5))
@@ -21,6 +27,8 @@ test_that("Test polyfit1", {
   deleteArray(out)
 })
 
+context("Khiva polyfit3 tests")
+
 test_that("Test polyfit3", {
   ta <- as.single(c(0.0, 1.0, 2.0, 3.0, 4.0, 5.0))
   tb <- as.single(c(0.0, 0.8, 0.9, 0.1,-0.8,-1.0))
@@ -36,6 +44,8 @@ test_that("Test polyfit3", {
   deleteArray(b)
   deleteArray(out)
 })
+
+context("Khiva roots tests")
 
 test_that("Test roots", {
   ta <- as.single(c(5,-20, 5, 50,-20,-40))

@@ -1,0 +1,40 @@
+# Copyright (c) 2018 Shapelets.io
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+language: r
+
+sudo: required
+
+cache:
+    directories:
+      - ${TRAVIS_BUILD_DIR}/installers
+
+matrix:
+  fast_finish: true
+  include:
+    - os: linux
+      dist: trusty
+      r: "3.5.0"
+    - os: linux
+      dist: trusty
+      r: "3.4.3"
+      after_success:
+       - mv ./cobertura.xml ./coverage.xml
+       - bash <(curl -s https://codecov.io/bash)
+    - os: osx
+      osx_image: xcode9.3
+      r: "3.5.0"
+    - os: osx
+      osx_image: xcode9.3
+      r: "3.4.3"
+
+before_install:
+  - source .CI/travis/install-arrayfire.sh
+  - source .CI/travis/install-khiva.sh
+install:
+  - source .CI/travis/install.sh
+script:
+  - source .CI/travis/build_and_test.sh

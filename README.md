@@ -1,3 +1,12 @@
+# Khiva-r
+
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://github.com/shapelets/khiva-java/blob/master/LICENSE.txt)  
+
+| Branch        | Build Linux and Mac OS                                                                                                         |  Build Windows                                                                                                                                                           | Code Coverage                                                                                                                                      |
+| --------------|:------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|
+| master        | [![Build Status](https://travis-ci.org/shapelets/khiva-r.svg?branch=master)](https://travis-ci.org/shapelets/khiva-r/branches) | [![Build status](https://ci.appveyor.com/api/projects/status/49yh3arn9fx3ij0l/branch/master?svg=true)](https://ci.appveyor.com/project/shapelets/khiva-r/branch/master)  |[![Coverage Status](https://codecov.io/gh/shapelets/khiva-r/branch/master/graph/badge.svg)](https://codecov.io/gh/shapelets/khiva-r/branch/master)  |
+| develop       | [![Build Status](https://travis-ci.org/shapelets/khiva-r.svg?branch=develop)](https://travis-ci.org/shapelets/khiva-r/branches)| [![Build status](https://ci.appveyor.com/api/projects/status/49yh3arn9fx3ij0l/branch/develop?svg=true)](https://ci.appveyor.com/project/shapelets/khiva-r/branch/develop)|[![Coverage Status](https://codecov.io/gh/shapelets/khiva-r/branch/develop/graph/badge.svg)](https://codecov.io/gh/shapelets/khiva-r/branch/develop)|
+
 # README #
 This is the KHIVA binding for connecting the R programming language and the KHIVA library.
 
@@ -48,24 +57,6 @@ devtools::test()
 This R library follows the standard way of writing documentation of R by using Roxygen2.
 
 ## Contributing
+The rules to contribute to this project are described [here](CONTRIBUTING.md)
 
-### Branching model
-Our branching model has two permanent branches, **develop** and **master**. 
-We aim at using `develop` as the main branch, where all features are merged. 
-In this sense, we use the master branch to push the release versions of the binding for the KHIVA library.
-
-### Contribution process
-In order to contribute to the code base, we follow the next process:
-1. The main branch is develop, every developer should pull the current status of the branch before starting to develop any new feature.
-`git pull`
-2. Create a new branch with the following pattern "feature/[name_of_the_feature]"
-`git checkout -b feature/exampleFeature`
-3. Develop the new feature on the the new branch. It includes testing and documentation.
-`git commit -a -m "Bla, Bla, Bla";  git push`
-4. Open a Pull Request to merge the feature branch into develop. Currently, a pull request has to be reviewed by one person at least.
-6. Switch back to the develop branch.
-`git checkout develop`
-6. Finally, delete your local feature branch.
-`git branch -d feature/exampleFeature`
-7. Pull the latest changes.
-`git pull`
+[![Powered by Shapelets](https://img.shields.io/badge/powered%20by-Shapelets-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://shapelets.io)

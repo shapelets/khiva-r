@@ -5,6 +5,12 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+testthat::setup(
+  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
+)
+
+context("Khiva GroupBySingleColumn tests")
+
 test_that("Test GroupBySingleColumn", {
   a <-
     Array(array(as.single(c(
@@ -17,6 +23,8 @@ test_that("Test GroupBySingleColumn", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva GroupByDoubleKeyColumn tests")
 
 test_that("Test GroupByDoubleKeyColumn", {
   a <-
@@ -31,6 +39,8 @@ test_that("Test GroupByDoubleKeyColumn", {
   deleteArray(out)
 })
 
+context("Khiva GroupByDoubleKeyColumn2 tests")
+
 test_that("Test GroupByDoubleKeyColumn2", {
   a <-
     Array(array(as.single(c(
@@ -43,6 +53,8 @@ test_that("Test GroupByDoubleKeyColumn2", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva GroupByDoubleKeyDoubleValueColumn tests")
 
 test_that("Test GroupByDoubleKeyDoubleValueColumn", {
   a <-

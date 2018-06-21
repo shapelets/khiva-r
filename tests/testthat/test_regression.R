@@ -5,6 +5,12 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+testthat::setup(
+  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
+)
+
+context("Khiva Linear tests")
+
 test_that("Test Linear", {
   ta <-
     as.single(
@@ -44,22 +50,24 @@ test_that("Test Linear", {
   rvalue <- c(getData(out$rvalue))
   pvalue <- c(getData(out$pvalue))
   stderrest <- c(getData(out$stderrest))
-  
+
   expect_equal(slope[1], 0.344864266, 1e-6)
   expect_equal(intercept[1], 0.268578232, 1e-6)
   expect_equal(rvalue[1], 0.283552942, 1e-6)
   expect_equal(pvalue[1], 0.427239418, 1e-6)
   expect_equal(stderrest[1], 0.412351891, 1e-6)
-  
+
   deleteArray(a)
   deleteArray(b)
-  
+
   deleteArray(out$slope)
   deleteArray(out$intercept)
   deleteArray(out$rvalue)
   deleteArray(out$pvalue)
   deleteArray(out$stderrest)
 })
+
+context("Khiva LinearMultipleTimeSeries tests")
 
 test_that("Test LinearMultipleTimeSeries", {
   ta <-
@@ -120,22 +128,22 @@ test_that("Test LinearMultipleTimeSeries", {
   rvalue <- c(getData(out$rvalue))
   pvalue <- c(getData(out$pvalue))
   stderrest <- c(getData(out$stderrest))
-  
+
   expect_equal(slope[1], 0.344864266, 1e-6)
   expect_equal(intercept[1], 0.268578232, 1e-6)
   expect_equal(rvalue[1], 0.283552942, 1e-6)
   expect_equal(pvalue[1], 0.427239418, 1e-6)
   expect_equal(stderrest[1], 0.412351891, 1e-6)
-  
+
   expect_equal(slope[2], 0.344864266, 1e-6)
   expect_equal(intercept[2], 0.268578232, 1e-6)
   expect_equal(rvalue[2], 0.283552942, 1e-6)
   expect_equal(pvalue[2], 0.427239418, 1e-6)
   expect_equal(stderrest[2], 0.412351891, 1e-6)
-  
+
   deleteArray(a)
   deleteArray(b)
-  
+
   deleteArray(out$slope)
   deleteArray(out$intercept)
   deleteArray(out$rvalue)

@@ -5,6 +5,12 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+testthat::setup(
+  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
+)
+
+context("Khiva CovarianceStatistics Unbiased tests")
+
 test_that("Test CovarianceStatistics Unbiased", {
   ta <- as.single(c(-2.1,-1, 4.3, 3, 1.1, 0.12, 3, 1.1, 0.12))
   a <- Array(array(ta, dim = c(3, 3)))
@@ -26,7 +32,9 @@ test_that("Test CovarianceStatistics Unbiased", {
   deleteArray(out)
 })
 
-test_that("Test CovarianceStatisticsUnbiased", {
+context("Khiva CovarianceStatisticsbiased tests")
+
+test_that("Test CovarianceStatisticsbiased", {
   ta <- as.single(c(-2.1,-1, 4.3, 3, 1.1, 0.12, 3, 1.1, 0.12))
   a <- Array(array(ta, dim = c(3, 3)))
   out <- CovarianceStatistics(a, FALSE)
@@ -49,6 +57,8 @@ test_that("Test CovarianceStatisticsUnbiased", {
   deleteArray(out)
 })
 
+context("Khiva KurtosisStatistics tests")
+
 test_that("Test KurtosisStatistics", {
   ta <-
     as.single(c(0, 1, 2, 3, 4, 5, 2, 2, 2, 20, 30, 25))
@@ -61,6 +71,8 @@ test_that("Test KurtosisStatistics", {
   deleteArray(out)
 })
 
+context("Khiva LjungBox tests")
+
 test_that("Test LjungBox", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7))
   a <- Array(array(ta, dim = c(4, 2)))
@@ -72,6 +84,8 @@ test_that("Test LjungBox", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva MomentStatistics tests")
 
 test_that("Test MomentStatistics", {
   ta <-
@@ -90,6 +104,8 @@ test_that("Test MomentStatistics", {
   deleteArray(out.four)
 })
 
+context("Khiva QuantileStatistics tests")
+
 test_that("Test QuantileStatistics", {
   ta <-
     as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
@@ -104,6 +120,8 @@ test_that("Test QuantileStatistics", {
   deleteArray(q)
   deleteArray(out)
 })
+
+context("Khiva QuantileCutStatistics2 tests")
 
 test_that("Test QuantileCutStatistics2", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
@@ -142,6 +160,8 @@ test_that("Test QuantileCutStatistics2", {
   deleteArray(out)
 })
 
+context("Khiva QuantileCutStatistics3 tests")
+
 test_that("Test QuantileCutStatistics3", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
   a <- Array(array(ta, dim = c(6, 2)))
@@ -178,6 +198,8 @@ test_that("Test QuantileCutStatistics3", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva QuantileCutStatistics7 tests")
 
 test_that("Test QuantileCutStatistics7", {
   ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
@@ -216,6 +238,8 @@ test_that("Test QuantileCutStatistics7", {
   deleteArray(out)
 })
 
+context("Khiva SampleStdevStatistics tests")
+
 test_that("Test SampleStdevStatistics", {
   ta <-
     as.single(c(0, 1, 2, 3, 4, 5, 2, 2, 2, 20, 30, 25))
@@ -227,6 +251,8 @@ test_that("Test SampleStdevStatistics", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva SkewnessStatistics tests")
 
 test_that("Test SkewnessStatistics", {
   ta <-

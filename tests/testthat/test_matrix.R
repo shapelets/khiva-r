@@ -5,6 +5,12 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+testthat::setup(
+  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
+)
+
+context("Khiva stomp tests")
+
 test_that("Test stomp", {
   ta <- as.single(c(10, 11, 10, 11))
   tb <- as.single(c(10, 11, 10, 11))
@@ -27,6 +33,8 @@ test_that("Test stomp", {
   deleteArray(out[[2]])
 })
 
+context("Khiva stompSelfJoin tests")
+
 test_that("Test stompSelfJoin", {
   ta <-
     as.double(c(10, 10, 11, 11, 10, 11, 10, 10, 11, 11, 10, 11, 10, 10))
@@ -45,8 +53,9 @@ test_that("Test stompSelfJoin", {
   deleteArray(a)
   deleteArray(out[[1]])
   deleteArray(out[[2]])
-  
 })
+
+context("Khiva findBestNMotifs tests")
 
 test_that("Test findBestNMotifs", {
   ta <-
@@ -55,7 +64,7 @@ test_that("Test findBestNMotifs", {
     as.double(c(10, 11, 10, 9))
   a <- Array(array(c(ta), dim = c(15, 1)))
   b <- Array(array(c(tb), dim = c(4, 1)))
-  
+
   stomp.results <- Stomp(a, b, 3)
   out <-
     FindBestNMotifs(stomp.results$profile, stomp.results$index, 2)
@@ -72,6 +81,8 @@ test_that("Test findBestNMotifs", {
   deleteArray(out[[3]])
 })
 
+context("Khiva findBestNDiscords tests")
+
 test_that("Test findBestNDiscords", {
   ta <-
     as.double(c(11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11))
@@ -79,7 +90,7 @@ test_that("Test findBestNDiscords", {
     as.double(c(9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9))
   a <- Array(array(c(ta), dim = c(12, 1)))
   b <- Array(array(c(tb), dim = c(12, 1)))
-  
+
   stomp.results <- Stomp(a, b, 3)
   out <-
     FindBestNDiscords(stomp.results$profile, stomp.results$index, 2)
