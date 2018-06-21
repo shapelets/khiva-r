@@ -16,24 +16,24 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      r: "oldrel"
+      r: "3.5.0"
       after_success:
         - codecov
     - os: linux
       dist: trusty
       sudo: required
-      r: "release"
+      r: "3.3.3"
       after_success:
        - mv ./cobertura.xml ./coverage.xml
        - bash <(curl -s https://codecov.io/bash)
     - os: osx
       osx_image: xcode9.3
       language: generic
-      r: "oldrel"
+      r: "3.5.0"
     - os: osx
       osx_image: xcode9.3
       language: generic
-      r: "release"
+      r: "3.3.3"
 
 before_install:
   - source .CI/travis/install-arrayfire.sh
