@@ -6,7 +6,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    if [ ! -e "installers/khiva-v0.1.0.pkg" ]; then
+    if [ ! -e "installers/khiva-v0.1.0-OnlyCPU.pkg" ]; then
         wget https://github.com/shapelets/khiva/releases/download/v0.1.0/khiva-v0.1.0-OnlyCPU.pkg -O installers/khiva-v0.1.0-OnlyCPU.pkg
     fi
 
