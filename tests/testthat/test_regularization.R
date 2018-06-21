@@ -12,75 +12,59 @@ testthat::setup(
 context("Khiva GroupBySingleColumn tests")
 
 test_that("Test GroupBySingleColumn", {
-  # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    a <-
-      Array(array(as.single(c(
-        0, 1, 1, 2, 2, 3, 0, 3, 3, 1, 1, 2
-      )), dim = c(6, 2)))
-    expected <- (c(0, 3, 1, 2))
-    out <- GroupBy(a, 0)
-    b <- c(getData(out))
-    expect_equal(b, expected, 1e-6)
-    deleteArray(a)
-    deleteArray(out)
-  }
+  a <-
+    Array(array(as.single(c(
+      0, 1, 1, 2, 2, 3, 0, 3, 3, 1, 1, 2
+    )), dim = c(6, 2)))
+  expected <- (c(0, 3, 1, 2))
+  out <- GroupBy(a, 0)
+  b <- c(getData(out))
+  expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 context("Khiva GroupByDoubleKeyColumn tests")
 
 test_that("Test GroupByDoubleKeyColumn", {
-  # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    a <-
-      Array(array(as.single(
-        c(0, 1, 1, 2, 2, 3, 1, 2, 2, 3, 3, 4, 0, 3, 3, 1, 1, 2)
-      ), dim = c(6, 3)))
-    expected <- (c(0, 3, 1, 2))
-    out <- GroupBy(a, 0, 2)
-    b <- c(getData(out))
-    expect_equal(b, expected, 1e-6)
-    deleteArray(a)
-    deleteArray(out)
-  }
+  a <-
+    Array(array(as.single(
+      c(0, 1, 1, 2, 2, 3, 1, 2, 2, 3, 3, 4, 0, 3, 3, 1, 1, 2)
+    ), dim = c(6, 3)))
+  expected <- (c(0, 3, 1, 2))
+  out <- GroupBy(a, 0, 2)
+  b <- c(getData(out))
+  expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 context("Khiva GroupByDoubleKeyColumn2 tests")
 
 test_that("Test GroupByDoubleKeyColumn2", {
-  # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    a <-
-      Array(array(as.single(c(
-        0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 2, 3, 4, 5
-      )), dim = c(5, 3)))
-    expected <- (c(1, 2, 3.5, 5))
-    out <- GroupBy(a, 0, 2)
-    b <- c(getData(out))
-    expect_equal(b, expected, 1e-6)
-    deleteArray(a)
-    deleteArray(out)
-  }
+  a <-
+    Array(array(as.single(c(
+      0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 2, 3, 4, 5
+    )), dim = c(5, 3)))
+  expected <- (c(1, 2, 3.5, 5))
+  out <- GroupBy(a, 0, 2)
+  b <- c(getData(out))
+  expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 context("Khiva GroupByDoubleKeyDoubleValueColumn tests")
 
 test_that("Test GroupByDoubleKeyDoubleValueColumn", {
-  # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    a <-
-      Array(array(as.single(
-        c(0, 0, 0, 2, 2, 2, 2, 2, 4, 4, 0, 1, 2, 3, 4, 1, 1, 1, 1, 1)
-      ), dim = c(5, 4)))
-    expected <- (c(1, 3.5, 1, 1))
-    out <- GroupBy(a, 0, 2, 2)
-    b <- c(getData(out))
-    expect_equal(b, expected, 1e-6)
-    deleteArray(a)
-    deleteArray(out)
-  }
+  a <-
+    Array(array(as.single(
+      c(0, 0, 0, 2, 2, 2, 2, 2, 4, 4, 0, 1, 2, 3, 4, 1, 1, 1, 1, 1)
+    ), dim = c(5, 4)))
+  expected <- (c(1, 3.5, 1, 1))
+  out <- GroupBy(a, 0, 2, 2)
+  b <- c(getData(out))
+  expect_equal(b, expected, 1e-6)
+  deleteArray(a)
+  deleteArray(out)
 })

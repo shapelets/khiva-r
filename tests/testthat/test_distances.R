@@ -12,99 +12,79 @@ testthat::setup(
 context("Khiva Euclidean tests")
 
 test_that("Test Euclidean", {
-  # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
-    a <- Array(array(ta, dim = c(4, 3)))
-    out <- Euclidean(a)
-    b <- c(getData(out))
-    expect_equal(b[1], 0, 1e-6)
-    expect_equal(b[2], 0, 1e-6)
-    expect_equal(b[3], 0, 1e-6)
-    expect_equal(b[4], 8, 1e-6)
-    expect_equal(b[5], 0, 1e-6)
-    expect_equal(b[6], 0, 1e-6)
-    expect_equal(b[7], 16, 1e-6)
-    expect_equal(b[8], 8, 1e-6)
-    expect_equal(b[9], 0, 1e-6)
+  ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
+  a <- Array(array(ta, dim = c(4, 3)))
+  out <- Euclidean(a)
+  b <- c(getData(out))
+  expect_equal(b[1], 0, 1e-6)
+  expect_equal(b[2], 0, 1e-6)
+  expect_equal(b[3], 0, 1e-6)
+  expect_equal(b[4], 8, 1e-6)
+  expect_equal(b[5], 0, 1e-6)
+  expect_equal(b[6], 0, 1e-6)
+  expect_equal(b[7], 16, 1e-6)
+  expect_equal(b[8], 8, 1e-6)
+  expect_equal(b[9], 0, 1e-6)
 
-    deleteArray(a)
-    deleteArray(out)
-  }
+  deleteArray(a)
+  deleteArray(out)
 })
 
 context("Khiva Dtw tests")
 
 test_that("Test Dtw", {
-  # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    ta <-
-      as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
-    a <- Array(array(ta, dim = c(5, 5)))
-    out <- Dtw(a)
-    b <- c(getData(out))
-    expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 5, 0, 0, 0, 15, 10, 5, 0, 0, 20, 15, 10, 5, 0)
-    expect_equal(b, expected, 1e-6)
-  }
+  ta <-
+    as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
+  a <- Array(array(ta, dim = c(5, 5)))
+  out <- Dtw(a)
+  b <- c(getData(out))
+  expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 5, 0, 0, 0, 15, 10, 5, 0, 0, 20, 15, 10, 5, 0)
+  expect_equal(b, expected, 1e-6)
 })
 
 context("Khiva SquaredEuclidean tests")
 
 test_that("Test SquaredEuclidean", {
-  # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
-    a <- Array(array(ta, dim = c(4, 3)))
-    out <- SquaredEuclidean(a)
-    b <- c(getData(out))
-    expect_equal(b[1], 0, 1e-6)
-    expect_equal(b[2], 0, 1e-6)
-    expect_equal(b[3], 0, 1e-6)
-    expect_equal(b[4], 64, 1e-6)
-    expect_equal(b[5], 0, 1e-6)
-    expect_equal(b[6], 0, 1e-6)
-    expect_equal(b[7], 256, 1e-6)
-    expect_equal(b[8], 64, 1e-6)
-    expect_equal(b[9], 0, 1e-6)
+  ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
+  a <- Array(array(ta, dim = c(4, 3)))
+  out <- SquaredEuclidean(a)
+  b <- c(getData(out))
+  expect_equal(b[1], 0, 1e-6)
+  expect_equal(b[2], 0, 1e-6)
+  expect_equal(b[3], 0, 1e-6)
+  expect_equal(b[4], 64, 1e-6)
+  expect_equal(b[5], 0, 1e-6)
+  expect_equal(b[6], 0, 1e-6)
+  expect_equal(b[7], 256, 1e-6)
+  expect_equal(b[8], 64, 1e-6)
+  expect_equal(b[9], 0, 1e-6)
 
-    deleteArray(a)
-    deleteArray(out)
-  }
+  deleteArray(a)
+  deleteArray(out)
 })
 
 context("Khiva Hamming tests")
 
 test_that("Test Hamming", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
-    a <- Array(array(ta, dim = c(5,5)))
-    out <- Hamming(a)
-    expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 5, 5, 5, 5, 0)
-    b <- c(getData(out))
-    expect_equal(b, expected)
-    deleteArray(a)
-    deleteArray(out)
-  }
+  ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
+  a <- Array(array(ta, dim = c(5,5)))
+  out <- Hamming(a)
+  expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 5, 5, 5, 5, 0)
+  b <- c(getData(out))
+  expect_equal(b, expected)
+  deleteArray(a)
+  deleteArray(out)
 })
 
 context("Khiva Manhattan tests")
 
 test_that("Test Manhattan", {
-  # Filtering this test in travis for OSX. Problem inside ArrayFire.
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
-    a <- Array(array(ta, dim = c(5,5)))
-    out <- Manhattan(a)
-    expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 5, 0, 0, 0, 15, 10, 5, 0, 0, 20, 15, 10, 5, 0)
-    b <- c(getData(out))
-    expect_equal(b, expected)
-    deleteArray(a)
-    deleteArray(out)
-  }
+  ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
+  a <- Array(array(ta, dim = c(5,5)))
+  out <- Manhattan(a)
+  expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 10, 5, 0, 0, 0, 15, 10, 5, 0, 0, 20, 15, 10, 5, 0)
+  b <- c(getData(out))
+  expect_equal(b, expected)
+  deleteArray(a)
+  deleteArray(out)
 })

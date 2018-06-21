@@ -367,29 +367,23 @@ test_that("Test Xor", {
 context("Khiva Bitshift tests")
 
 test_that("Test Bitshift", {
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    ta <- as.integer(c(2, 4, 6, 8))
-    a <- Array(array(ta, dim = c(4,1,1,1) ), "s32")
-    c <- bitShiftR(a, 1)
-    expect_equal( c(getData(c)), c(1, 2, 3, 4))
-    deleteArray(a)
-    deleteArray(c)
-  }
+  ta <- as.integer(c(2, 4, 6, 8))
+  a <- Array(array(ta, dim = c(4,1,1,1) ), "s32")
+  c <- bitShiftR(a, 1)
+  expect_equal( c(getData(c)), c(1, 2, 3, 4))
+  deleteArray(a)
+  deleteArray(c)
 })
 
 context("Khiva Bitsra tests")
 
 test_that("Test Bitsra", {
-  travis.platform <- Sys.getenv("TRAVIS_OS_NAME")
-  if (travis.platform != 'osx') {
-    ta <- as.integer(c(2, 4, 6, 8))
-    a <- Array(array(ta, dim = c(4,1,1,1) ), "s32")
-    c <- bitShiftL(a, 1)
-    expect_equal( c(getData(c)), c(4, 8, 12, 16))
-    deleteArray(a)
-    deleteArray(c)
-  }
+  ta <- as.integer(c(2, 4, 6, 8))
+  a <- Array(array(ta, dim = c(4,1,1,1) ), "s32")
+  c <- bitShiftL(a, 1)
+  expect_equal( c(getData(c)), c(4, 8, 12, 16))
+  deleteArray(a)
+  deleteArray(c)
 })
 
 context("Khiva Ctranspose tests")
