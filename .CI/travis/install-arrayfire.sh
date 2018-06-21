@@ -11,7 +11,7 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     fi
 
     # Installs arrayfire
-    sudo installer -pkg installers/ArrayFire-no-gl-v3.5.1_OSX.pkg -target /
+    sudo installer -pkg installers/arrayfire-cpu-3.5.1.pkg -target /
 else
     if [ ! -e "installers/ArrayFire-no-gl-v3.5.1_Linux_x86_64.sh" ]; then
         wget http://arrayfire.s3.amazonaws.com/3.5.1/ArrayFire-no-gl-v3.5.1_Linux_x86_64.sh -O installers/ArrayFire-no-gl-v3.5.1_Linux_x86_64.sh
