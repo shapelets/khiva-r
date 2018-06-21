@@ -9,7 +9,7 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
-context("Khiva R tests")
+context("Khiva GroupBySingleColumn tests")
 
 test_that("Test GroupBySingleColumn", {
   a <-
@@ -24,6 +24,8 @@ test_that("Test GroupBySingleColumn", {
   deleteArray(out)
 })
 
+context("Khiva GroupByDoubleKeyColumn tests")
+
 test_that("Test GroupByDoubleKeyColumn", {
   a <-
     Array(array(as.single(
@@ -37,6 +39,8 @@ test_that("Test GroupByDoubleKeyColumn", {
   deleteArray(out)
 })
 
+context("Khiva GroupByDoubleKeyColumn2 tests")
+
 test_that("Test GroupByDoubleKeyColumn2", {
   a <-
     Array(array(as.single(c(
@@ -49,6 +53,8 @@ test_that("Test GroupByDoubleKeyColumn2", {
   deleteArray(a)
   deleteArray(out)
 })
+
+context("Khiva GroupByDoubleKeyDoubleValueColumn tests")
 
 test_that("Test GroupByDoubleKeyDoubleValueColumn", {
   a <-

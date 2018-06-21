@@ -5,5 +5,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 load('CIsession.RData')
+library("methods")
+devtools::document()
+devtools::install()
+devtools::test()
 covr::to_cobertura(covr::package_coverage())
-save.image(file='CIsession.RData')
