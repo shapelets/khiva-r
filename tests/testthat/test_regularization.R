@@ -12,7 +12,7 @@ testthat::setup(
 context("Khiva GroupBySingleColumn tests")
 
 test_that("Test GroupBySingleColumn", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     a <-
@@ -31,7 +31,7 @@ test_that("Test GroupBySingleColumn", {
 context("Khiva GroupByDoubleKeyColumn tests")
 
 test_that("Test GroupByDoubleKeyColumn", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     a <-
@@ -50,7 +50,7 @@ test_that("Test GroupByDoubleKeyColumn", {
 context("Khiva GroupByDoubleKeyColumn2 tests")
 
 test_that("Test GroupByDoubleKeyColumn2", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     a <-
@@ -69,7 +69,7 @@ test_that("Test GroupByDoubleKeyColumn2", {
 context("Khiva GroupByDoubleKeyDoubleValueColumn tests")
 
 test_that("Test GroupByDoubleKeyDoubleValueColumn", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     a <-

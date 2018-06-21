@@ -12,7 +12,7 @@ testthat::setup(
 context("Khiva Linear tests")
 
 test_that("Test Linear", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     ta <-
@@ -74,7 +74,7 @@ test_that("Test Linear", {
 context("Khiva LinearMultipleTimeSeries tests")
 
 test_that("Test LinearMultipleTimeSeries", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     ta <-

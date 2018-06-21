@@ -12,7 +12,7 @@ testthat::setup(
 context("Khiva Euclidean tests")
 
 test_that("Test Euclidean", {
-  # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
@@ -37,7 +37,7 @@ test_that("Test Euclidean", {
 context("Khiva Dtw tests")
 
 test_that("Test Dtw", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     ta <-
@@ -53,7 +53,7 @@ test_that("Test Dtw", {
 context("Khiva SquaredEuclidean tests")
 
 test_that("Test SquaredEuclidean", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     ta <- as.single(c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
@@ -78,20 +78,24 @@ test_that("Test SquaredEuclidean", {
 context("Khiva Hamming tests")
 
 test_that("Test Hamming", {
-  ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
-  a <- Array(array(ta, dim = c(5,5)))
-  out <- Hamming(a)
-  expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 5, 5, 5, 5, 0)
-  b <- c(getData(out))
-  expect_equal(b, expected)
-  deleteArray(a)
-  deleteArray(out)
+   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  travis.platform <- Sys.info()['sysname']
+  if (travis.platform != 'Darwin') {
+    ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))
+    a <- Array(array(ta, dim = c(5,5)))
+    out <- Hamming(a)
+    expected = c(0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 5, 0, 0, 0, 5, 5, 5, 0, 0, 5, 5, 5, 5, 0)
+    b <- c(getData(out))
+    expect_equal(b, expected)
+    deleteArray(a)
+    deleteArray(out)
+  }
 })
 
 context("Khiva Manhattan tests")
 
 test_that("Test Manhattan", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     ta <- as.single(c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5))

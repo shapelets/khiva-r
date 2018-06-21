@@ -107,7 +107,7 @@ test_that("Test MaxMinNormInPlace", {
 context("Khiva DecimalScalingNorm tests")
 
 test_that("Test DecimalScalingNorm", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     ta <- as.single(c(0, 1, -2, 3))
@@ -125,7 +125,7 @@ test_that("Test DecimalScalingNorm", {
 context("Khiva DecimalScalingNormInPlace tests")
 
 test_that("Test DecimalScalingNormInPlace", {
-   # Filtering this test in travis for OSX. Problem inside ArrayFire
+  # Filtering this test in travis for OSX. Problem inside ArrayFire.
   travis.platform <- Sys.info()['sysname']
   if (travis.platform != 'Darwin') {
     ta <- as.single(c(0, 1, -2, 3))
