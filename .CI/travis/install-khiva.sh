@@ -5,15 +5,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     if [ ! -e "installers/khiva-v0.1.0.pkg" ]; then
-        wget https://github.com/shapelets/khiva/releases/download/v0.1.0/khiva-v0.1.0.pkg -O installers/khiva-v0.1.0.pkg
+        wget https://github.com/shapelets/khiva/releases/download/v0.1.0/khiva-v0.1.0-OnlyCPU.pkg -O installers/khiva-v0.1.0-OnlyCPU.pkg
     fi
 
-    # Installs arrayfire
-    sudo installer -pkg installers/khiva-v0.1.0.pkg -target /
-
+    sudo installer -pkg installers/khiva-v0.1.0-OnlyCPU.pkg -target /
 else
     if [ ! -e "installers/khiva-v0.1.0-ci.sh" ]; then
         wget https://github.com/shapelets/khiva/releases/download/v0.1.0/khiva-v0.1.0-ci.sh -O installers/khiva-v0.1.0-ci.sh
