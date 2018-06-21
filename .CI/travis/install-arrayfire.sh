@@ -7,7 +7,7 @@
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     if [ ! -e "installers/arrayfire-cpu-3.5.1.pkg" ]; then
-        wget https://github.com/shapelets/arrayfire/releases/download/untagged-6977f9d2de57fa9f8b56/arrayfire-cpu-3.5.1.pkg -O installers/arrayfire-cpu-3.5.1.pkg
+        wget https://github.com/shapelets/arrayfire/releases/download/v3.5.1/arrayfire-cpu-3.5.1.pkg -O installers/arrayfire-cpu-3.5.1.pkg
     fi
 
     # Installs arrayfire
