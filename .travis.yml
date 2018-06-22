@@ -11,6 +11,7 @@ sudo: required
 cache:
     directories:
       - ${TRAVIS_BUILD_DIR}/installers
+      - /usr/local/lib/R/site-library
 
 matrix:
   fast_finish: true

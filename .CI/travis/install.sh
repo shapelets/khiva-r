@@ -8,7 +8,7 @@
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     Rscript .CI/travis/install-osx.R
 else
-    apt-get update
-    apt-get install libxml2-dev libxslt-dev -y
+    sudo apt-get update
+    sudo apt-get install libxml2-dev libxslt-dev -y
     Rscript .CI/travis/install-linux.R
 fi
