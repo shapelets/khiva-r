@@ -7,4 +7,5 @@
 load('CIsession.RData')
 options(testthat.output_file = "test-out.xml")
 devtools::test(reporter = 'junit')
+covr::to_cobertura(covr::package_coverage())
 save.image(file='CIsession.RData')
