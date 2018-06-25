@@ -5,8 +5,4 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    Rscript .CI/travis/script-osx.R
-else
-    Rscript .CI/travis/script-linux.R
-fi
+Rscript .CI/travis/script.R
