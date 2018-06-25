@@ -6,10 +6,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    # Libxml2 present
+    Rscript .CI/travis/install.R
 else
     sudo apt-get update
     sudo apt-get install libxml2-dev libxslt-dev -y
+    Rscript .CI/travis/install.R
 fi
 
-Rscript .CI/travis/install.R
