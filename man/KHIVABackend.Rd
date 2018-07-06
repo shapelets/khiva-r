@@ -2,7 +2,7 @@
 % Please edit documentation in R/library.R
 \name{KHIVABackend}
 \alias{KHIVABackend}
-\title{KHIVABAckend}
+\title{KHIVABackend}
 \usage{
 KHIVABackend()
 }

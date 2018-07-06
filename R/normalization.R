@@ -42,7 +42,7 @@ DecimalScalingNormInPlace <- function(tss) {
 
 #' MaxMinNorm
 #'
-#' ormalizes the given time series according to its minimum and maximum value and adjusts each value within the
+#' Normalizes the given time series according to its minimum and maximum value and adjusts each value within the
 #' range [low, high].
 
 #' @param tss KHIVA array with the time series.

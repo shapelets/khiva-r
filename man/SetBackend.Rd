@@ -7,8 +7,8 @@
 SetBackend(backend)
 }
 \arguments{
-\item{backend}{The desired backend.}
+\item{backend}{The selected backend.}
 }
 \description{
-Set the backend.
+Sets the backend.
 }

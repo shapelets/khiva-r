@@ -7,8 +7,8 @@
 GetDeviceID()
 }
 \value{
-The active device.
+An integer with the active device ID.
 }
 \description{
-Get the device id.
+Gets the device ID from the active device.
 }

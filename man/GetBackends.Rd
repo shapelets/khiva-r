@@ -7,8 +7,8 @@
 GetBackends()
 }
 \value{
-The available backends.
+An integer with all available backends.
 }
 \description{
-Get the active available backends.
+Gets all available backends.
 }
