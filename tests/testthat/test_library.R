@@ -103,7 +103,7 @@ getVersionFromFile <- function(){
   platform <- Sys.info()['sysname']
   
   if (platform == 'Windows') {
-    pathFile <- 'C:/Program Files/Khiva/include/khiva/version.h'
+    pathFile <- 'C:/Program Files/Khiva/v0/include/khiva/version.h'
   }else{
     pathFile <- '/usr/local/include/khiva/version.h'
   }
