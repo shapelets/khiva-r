@@ -5,6 +5,10 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+library(tidyverse)
+library(httr)
+library(jsonlite)
+
 testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
@@ -87,5 +91,13 @@ context("Khiva Version tests")
 
 test_that("Test Version", {
   out <- Version()
-  expect_equal(out$result, "0.1.0")
+  
+  tags <- GET(url = 'https://api.github.com/repos/shapelets/khiva/tags')
+  content <- content(tags)
+  tag <- content[length(content)]
+  version <- tag[[1]]$name
+  version <- str_replace(version, 'v', '')
+  version <- str_replace(version, '-RC', '')
+  
+  expect_equal(out$result, version)
 })
