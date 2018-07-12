@@ -40,7 +40,7 @@ before_build:
     - cd C:\khiva-r
     - start /wait choco install r.project
     - pip install codecov
-    - C:\Program Files\R\R-3.5.1\bin\x64\Rscript.exe .CI\appveyor\install.R
+    - ps: "C:\Program Files\R\R-3.5.1\bin\x64\Rscript.exe" .CI\appveyor\install.R
 build_script:
     - Rscript .CI\appveyor\build.R
 test_script:
