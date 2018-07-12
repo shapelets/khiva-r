@@ -48,6 +48,7 @@ else
         sudo pip3 install conan
      else
         brew upgrade python
+        pip3 install --upgrade pip setuptools wheel
         pip3 install conan
      fi
      conan remote add conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
