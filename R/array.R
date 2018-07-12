@@ -256,7 +256,7 @@ getDims <- function(a) {
 #' Makes data accesssible to the host.
 #'
 #' @param  a KHIVA array.
-#' @return a host accesible R array.
+#' @return a host accessible R array.
 #' @export
 getData <- function(a) {
   b <- a
