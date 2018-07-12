@@ -11,7 +11,7 @@ environment:
     BOOST_ROOT: C:\Libraries\boost_1_67_0
     AF_PATH: C:\Program Files\ArrayFire\v3
     KHIVA_PATH: C:\Program Files\Khiva\v0
-    PATH: $(AF_PATH)\lib;$(KHIVA_PATH)\lib;C:\Program Files\R\R-3.5.1\bin\x64;C:\Program Files\R\R-3.5.1\bin;C:\Python36-x64;C:\Python36-x64\Scripts;$(PATH)
+    PATH: $(AF_PATH)\lib;$(KHIVA_PATH)\lib;C:\Program Files\R\R-3.5.1\bin;C:\Python36-x64;C:\Python36-x64\Scripts;$(PATH)
 cache:
     - C:\tools\vcpkg\installed
     - C:\ProgramData\chocolatey\bin
@@ -40,7 +40,7 @@ before_build:
     - cd C:\khiva-r
     - start /wait choco install r.project
     - pip install codecov
-    - ps: Rscript .CI\appveyor\install.R
+    - C:\Program Files\R\R-3.5.1\bin\x64\Rscript.exe .CI\appveyor\install.R
 build_script:
     - Rscript .CI\appveyor\build.R
 test_script:
