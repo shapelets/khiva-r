@@ -7,8 +7,8 @@
 GetBackend()
 }
 \value{
-The active backend.
+An integer with the active backend.
 }
 \description{
-Get the active backend.
+Gets the active backend.
 }

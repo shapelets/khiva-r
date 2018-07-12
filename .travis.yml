@@ -19,26 +19,49 @@ matrix:
     - os: linux
       dist: trusty
       r: "3.5.0"
+      cache:
+        directories:
+          - ${TRAVIS_BUILD_DIR}/installers
+          - ${HOME}/.conan
+          - ${TRAVIS_BUILD_DIR}/cmake
       after_success:
        - mv ./cobertura.xml ./coverage.xml
        - bash <(curl -s https://codecov.io/bash) -cF Linux
     - os: linux
       dist: trusty
       r: "3.4.3"
+      cache:
+        directories:
+          - ${TRAVIS_BUILD_DIR}/installers
+          - ${HOME}/.conan
+          - ${TRAVIS_BUILD_DIR}/cmake
     - os: osx
       osx_image: xcode9.3
       r: "3.5.0"
+      cache:
+        directories:
+          - ${TRAVIS_BUILD_DIR}/installers
+          - ${HOME}/.pyenv
+          - ${HOME}/Library/Caches/Homebrew
+          - ${HOME}/.conan
+          - ${TRAVIS_BUILD_DIR}/cmake
       after_success:
        - mv ./cobertura.xml ./coverage.xml
        - bash <(curl -s https://codecov.io/bash) -cF MacOS
     - os: osx
       osx_image: xcode9.3
       r: "3.4.3"
-
-before_install:
-  - source .CI/travis/install-arrayfire.sh
-  - source .CI/travis/install-khiva.sh
+      cache:
+        directories:
+          - ${TRAVIS_BUILD_DIR}/installers
+          - ${HOME}/.pyenv
+          - ${HOME}/Library/Caches/Homebrew
+          - ${HOME}/.conan
+          - ${TRAVIS_BUILD_DIR}/cmake
+  
 install:
   - source .CI/travis/install.sh
+  - source .CI/travis/install-arrayfire.sh
+  - source .CI/travis/install-khiva.sh
 script:
   - source .CI/travis/build_and_test.sh

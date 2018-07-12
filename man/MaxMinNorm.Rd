@@ -21,6 +21,6 @@ operation between min and max values in the tss.}
 one as standard deviation.
 }
 \description{
-ormalizes the given time series according to its minimum and maximum value and adjusts each value within the
+Normalizes the given time series according to its minimum and maximum value and adjusts each value within the
 range [low, high].
 }

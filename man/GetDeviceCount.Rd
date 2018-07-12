@@ -7,8 +7,8 @@
 GetDeviceCount()
 }
 \value{
-The devices count.
+An integer with the number of devices.
 }
 \description{
-Get the devices count
+Gets the number of devices in the active backend.
 }

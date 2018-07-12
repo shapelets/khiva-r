@@ -62,7 +62,7 @@ package <- PackageName()
   LoadLibraries()
 }
 
-#' KHIVABAckend
+#' KHIVABackend
 #' 
 #' Defines the Khiva Backend values.
 #' 
@@ -98,20 +98,36 @@ KHIVABackendFromOrdinal <- function(number) {
   )
 }
 
-#' Info
+#' GetBackendInfo
 #'
-#' Get the device info.
+#' Returns a string with information from the active backend.
+#' 
+#' @return Information of the active backend.
+#' @export
+GetBackendInfo <- function() {
+  try(out <- .C("backend_info",
+                result = paste(rep(" ", 1000), collapse = ""),
+                PACKAGE = package))
+  newList <- list("result" = out$result)
+  
+  return(newList)
+}
+
+#' PrintBackendInfo
+#'
+#' Prints a string with information from the active backend.
 #'
 #' @export
-Info <- function() {
-  try(out <- .C("info",
-                PACKAGE = package))
+PrintBackendInfo <- function() {
+  out <- GetBackendInfo()  
+  writeLines(out$result)
 }
 
 #' SetBackend
 #'
-#' Set the backend.
-#' @param backend The desired backend.
+#' Sets the backend.
+#' 
+#' @param backend The selected backend.
 #' @export
 SetBackend <- function(backend) {
   try(out <- .C("set_backend",
@@ -121,9 +137,9 @@ SetBackend <- function(backend) {
 
 #' GetBackend
 #'
-#' Get the active backend.
+#' Gets the active backend.
 #'
-#' @return The active backend.
+#' @return An integer with the active backend.
 #' @export
 GetBackend <- function() {
   try(out <- .C("get_backend",
@@ -139,9 +155,9 @@ GetBackend <- function() {
 
 #' GetBackends
 #'
-#' Get the active available backends.
+#' Gets all available backends.
 #'
-#' @return The available backends.
+#' @return An integer with all available backends.
 #' @export
 GetBackends <- function() {
   try(out <- .C("get_backends",
@@ -159,7 +175,7 @@ GetBackends <- function() {
 
 #' SetDevice
 #'
-#' Set the device.
+#' Sets the given device as active.
 #'
 #' @param device The desired device.
 #' @export
@@ -171,9 +187,9 @@ SetDevice <- function(device) {
 
 #' GetDeviceID
 #'
-#' Get the device id.
+#' Gets the device ID from the active device.
 #'
-#' @return The active device.
+#' @return An integer with the active device ID.
 #' @export
 GetDeviceID <- function() {
   try(out <- .C("get_device_id",
@@ -190,9 +206,9 @@ GetDeviceID <- function() {
 
 #' GetDeviceCount
 #'
-#' Get the devices count
+#' Gets the number of devices in the active backend.
 #'
-#' @return The devices count.
+#' @return An integer with the number of devices.
 #' @export
 GetDeviceCount <- function() {
   try(out <- .C("get_device_count",

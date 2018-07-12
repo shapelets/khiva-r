@@ -78,7 +78,7 @@ getTypeID <- function(type) {
 #'
 #' Gets the type Name.
 #'
-#' @param  type KHIVA array id.
+#' @param  type KHIVA array ID.
 #' @return Type Name.
 #' @export
 getTypeName <- function(type) {
@@ -128,8 +128,8 @@ getTypeName <- function(type) {
 #' getBoolean
 #'
 #' Gets the logical R value from C++ Boolean data type.
-#' @param a Array of bits
-#' @return Logical R array with the  R logical equivalent of a.
+#' @param a Array of bits.
+#' @return Logical R array with the R logical equivalent to a.
 getBoolean <- function(a) {
   l <- length(a)
   iter <- (l / 8 - 1)
@@ -145,8 +145,8 @@ getBoolean <- function(a) {
 #' Creates a khiva Array from a R array.
 #'
 #' @param  a array which columns have same types and same dimensions.
-#' @param type Desired khiva Array type. By default: f32
-#' @return A KHIVA array created from the data stored in the array.
+#' @param type Desired khiva Array type. By default: f32.
+#' @return A new KHIVA array from the data stored in the array.
 #' @export
 Array <- function(a, type = "f32") {
   d <- as.integer64(dim(a))
@@ -253,10 +253,10 @@ getDims <- function(a) {
 
 #' getData
 #'
-#' Gets the data to the host.
+#' Makes data accesssible to the host.
 #'
-#' @param  a KHIVA array of interest.
-#' @return The data stored by the KHIVA array into a R array.
+#' @param  a KHIVA array.
+#' @return a host accessible R array.
 #' @export
 getData <- function(a) {
   b <- a

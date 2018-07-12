@@ -9,6 +9,22 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
+context("Khiva GetBackendInfo tests")
+
+test_that("Test GetBackendInfo", {
+  out <- GetBackendInfo()
+  info <- strsplit(out$result, " ")[[1]]
+  expect_equal(info[1], "ArrayFire")
+})
+
+context("Khiva PrintBackendInfo tests")
+
+test_that("Test PrintBackendInfo", {
+  out <- capture.output(PrintBackendInfo())[1]
+  info <- strsplit(out, " ")[[1]]
+  expect_equal(info[1], "ArrayFire")
+})
+
 context("Khiva SetBackend tests")
 
 test_that("Test SetBackend", {
@@ -85,7 +101,38 @@ test_that("Test GetDeviceID", {
 
 context("Khiva Version tests")
 
+getVersionFromGithub <- function(){
+  tags <- GET(url = 'https://api.github.com/repos/shapelets/khiva/tags')
+  content <- content(tags)
+  tag <- content[length(content)]
+  version <- tag[[1]]$name
+  version <- str_replace(version, 'v', '')
+  version <- str_replace(version, '-RC', '')
+  return(version)
+}
+
+getVersionFromFile <- function(){
+  platform <- Sys.info()['sysname']
+  
+  if (platform == 'Windows') {
+    pathFile <- 'C:/Program Files/Khiva/v0/include/khiva/version.h'
+  }else{
+    pathFile <- '/usr/local/include/khiva/version.h'
+  }
+  # Returns a vector with the matching pattern or NA otherwise 
+  candidates <- str_extract(readLines(pathFile), "[0-9]+\\.[0-9]+\\.[0-9]+")
+  
+  # Filtering candidates values
+  i <- 1
+  while (is.na(candidates[i])){
+    i=i+1;
+  }
+  version <- candidates[i]
+  return(version)
+}
+
 test_that("Test Version", {
   out <- Version()
-  expect_equal(out$result, "0.1.0")
+  version <- getVersionFromGithub()
+  expect_equal(out$result, version)
 })
