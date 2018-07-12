@@ -43,6 +43,8 @@ else
 
      #Installing conan and dependencies
      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        sudo apt-get update -y
+        sudo apt-get install -y python3 python3-pip
         pip install conan
      else
         brew install python3
