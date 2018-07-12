@@ -45,7 +45,8 @@ else
      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         pip install conan
      else
-        pip${PYTHON_VERSION} install conan
+        brew install python3
+        pip3 install conan
      fi
      conan remote add conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
 
