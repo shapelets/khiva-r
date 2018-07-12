@@ -48,14 +48,15 @@ else
         sudo pip3 install conan
      else
         brew upgrade pyenv
+        export TRAVIS_PYTHON_VERSION=3.6.5
         export PATH=$HOME/.pyenv/shims:$HOME/.pyenv/versions/${TRAVIS_PYTHON_VERSION}/bin:$PATH
         pyenv install 3.6.5 -s
         pyenv init -
         pyenv local 3.6.5
 
         # Installing conan
-        sudo pip3 install --upgrade pip
-        sudo pip3 install conan
+        sudo pip${TRAVIS_PYTHON_VERSION} install --upgrade pip
+        sudo pip${TRAVIS_PYTHON_VERSION} install conan
      fi
      conan remote add -f conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
 
