@@ -8,8 +8,6 @@ load('CIsession.RData')
 library("methods")
 library(devtools)
 install_github("git2r", "ropensci")
-
-
 devtools::document()
 devtools::install()
 devtools::test()
