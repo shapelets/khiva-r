@@ -34,11 +34,10 @@ matrix:
     - os: osx
       osx_image: xcode9.3
       r: "3.4.3"
-
-before_install:
-  - source .CI/travis/install-arrayfire.sh
-  - source .CI/travis/install-khiva.sh
+  
 install:
   - source .CI/travis/install.sh
+  - source .CI/travis/install-arrayfire.sh
+  - source .CI/travis/install-khiva.sh
 script:
   - source .CI/travis/build_and_test.sh
