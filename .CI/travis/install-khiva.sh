@@ -23,7 +23,7 @@ if [["$INSTALL_KHIVA_METHOD" == "installer"]]; then
         sudo ldconfig
     fi
 else
-       # GitHub method
+    # GitHub method
     # Install cmake in Linux, it is already installed in osx
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         # Check if the file already exists
@@ -49,7 +49,7 @@ else
         # Installing conan
         sudo pip install conan
      else
-        brew install fftw
+        #brew install fftw
         brew upgrade pyenv
         export TRAVIS_PYTHON_VERSION=3.6.5
         export PATH=$HOME/.pyenv/shims:$HOME/.pyenv/versions/${TRAVIS_PYTHON_VERSION}/bin:$PATH
