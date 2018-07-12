@@ -79,7 +79,6 @@ KHIVABackend <- function() {
 #' Gets the Backend from an ordinal.
 #' 
 #' @param number The backend ordinal.
-#' 
 #' @export
 KHIVABackendFromOrdinal <- function(number) {
   switch(
@@ -176,7 +175,7 @@ GetBackends <- function() {
 
 #' SetDevice
 #'
-#' Selects the given device as active.
+#' Sets the given device as active.
 #'
 #' @param device The desired device.
 #' @export

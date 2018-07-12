@@ -13,5 +13,5 @@ getData(a)
 a host accesible R array.
 }
 \description{
-Makes data accesible to the host.
+Makes data accesssible to the host.
 }

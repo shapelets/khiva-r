@@ -253,7 +253,7 @@ getDims <- function(a) {
 
 #' getData
 #'
-#' Makes data accesible to the host.
+#' Makes data accesssible to the host.
 #'
 #' @param  a KHIVA array.
 #' @return a host accesible R array.

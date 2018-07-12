@@ -10,5 +10,5 @@ SetDevice(device)
 \item{device}{The desired device.}
 }
 \description{
-Selects the given device as active.
+Sets the given device as active.
 }
