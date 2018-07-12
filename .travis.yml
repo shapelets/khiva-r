@@ -19,6 +19,7 @@ matrix:
           - ${TRAVIS_BUILD_DIR}/installers
           - /usr/local/lib/R/site-library
           - ${TRAVIS_BUILD_DIR}/cmake
+          - ${HOME}/.conan
       after_success:
        - mv ./cobertura.xml ./coverage.xml
        - bash <(curl -s https://codecov.io/bash) -cF Linux
@@ -30,12 +31,16 @@ matrix:
           - ${TRAVIS_BUILD_DIR}/installers
           - /usr/local/lib/R/site-library
           - ${TRAVIS_BUILD_DIR}/cmake
+          - ${HOME}/.conan
     - os: osx
       osx_image: xcode9.3
       r: "3.5.0"
       cache:
         directories:
           - ${TRAVIS_BUILD_DIR}/installers
+          - ${HOME}/.pyenv
+          - ${HOME}/Library/Caches/Homebrew
+          - ${HOME}/.conan
           - /usr/local/lib/R/site-library
       after_success:
        - mv ./cobertura.xml ./coverage.xml
@@ -46,6 +51,9 @@ matrix:
       cache:
         directories:
           - ${TRAVIS_BUILD_DIR}/installers
+          - ${HOME}/.pyenv
+          - ${HOME}/Library/Caches/Homebrew
+          - ${HOME}/.conan
           - /usr/local/lib/R/site-library
 
 before_install:
