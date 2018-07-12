@@ -45,10 +45,10 @@ else
      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         sudo apt-get update -y
         sudo apt-get install -y python3 python3-pip
-        pip install conan
-     else
-        brew install python3
         pip3 install conan
+     else
+        brew upgrade python
+        pip install conan
      fi
      conan remote add conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
 
