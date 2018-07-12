@@ -57,7 +57,7 @@ else
         sudo pip3 install --upgrade pip
         sudo pip3 install conan
      fi
-     conan remote add conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
+     conan remote add -f conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
 
     # Cloning Github repo into khiva-library folder
     git clone https://github.com/shapelets/khiva.git ../khiva-library
