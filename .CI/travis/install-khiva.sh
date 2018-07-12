@@ -60,8 +60,8 @@ else
      conan remote add conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
 
     # Cloning Github repo into khiva-library folder
-    git clone https://github.com/shapelets/khiva.git khiva-library
-    cd khiva-library
+    git clone https://github.com/shapelets/khiva.git ../khiva-library
+    cd ../khiva-library
     mkdir -p build && cd build
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         conan install .. -s compiler=apple-clang -s compiler.version=9.1 -s compiler.libcxx=libc++ --build missing
@@ -73,7 +73,6 @@ else
         sudo make install -j8
         sudo ldconfig
     fi
-    # Switching back to the khiva-python folder
-    cd ..
-    cd ..
+    # Switching back to the khiva-r folder
+    cd /home/travis/build/shapelets/khiva-r
 fi
