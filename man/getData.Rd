@@ -7,11 +7,11 @@
 getData(a)
 }
 \arguments{
-\item{a}{KHIVA array of interest.}
+\item{a}{KHIVA array.}
 }
 \value{
-The data stored by the KHIVA array into a R array.
+a host accesible R array.
 }
 \description{
-Gets the data to the host.
+Makes data accesible to the host.
 }

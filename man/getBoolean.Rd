@@ -7,10 +7,10 @@
 getBoolean(a)
 }
 \arguments{
-\item{a}{Array of bits}
+\item{a}{Array of bits.}
 }
 \value{
-Logical R array with the  R logical equivalent of a.
+Logical R array with the R logical equivalent to a.
 }
 \description{
 Gets the logical R value from C++ Boolean data type.

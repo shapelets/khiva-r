@@ -7,7 +7,7 @@
 getTypeName(type)
 }
 \arguments{
-\item{type}{KHIVA array id.}
+\item{type}{KHIVA array ID.}
 }
 \value{
 Type Name.

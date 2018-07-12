@@ -99,13 +99,13 @@ KHIVABackendFromOrdinal <- function(number) {
   )
 }
 
-#' BackendInfo
+#' GetBackendInfo
 #'
 #' Returns a string with information from the active backend.
 #' 
 #' @return Information of the active backend.
 #' @export
-BackendInfo <- function() {
+GetBackendInfo <- function() {
   try(out <- .C("backend_info",
                 result = paste(rep(" ", 1000), collapse = ""),
                 PACKAGE = package))
@@ -120,11 +120,7 @@ BackendInfo <- function() {
 #'
 #' @export
 PrintBackendInfo <- function() {
-  try(out <- .C("backend_info",
-                result = paste(rep(" ", 1000), collapse = ""),
-                PACKAGE = package))
-  newList <- list("result" = out$result)
-  
+  out <- GetBackendInfo()  
   writeLines(out$result)
 }
 

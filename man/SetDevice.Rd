@@ -10,5 +10,5 @@ SetDevice(device)
 \item{device}{The desired device.}
 }
 \description{
-Selects the device passed as argument for execution.
+Selects the given device as active.
 }

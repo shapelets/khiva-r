@@ -9,10 +9,10 @@ Array(a, type = "f32")
 \arguments{
 \item{a}{array which columns have same types and same dimensions.}
 
-\item{type}{Desired khiva Array type. By default: f32}
+\item{type}{Desired khiva Array type. By default: f32.}
 }
 \value{
-A KHIVA array created from the data stored in the array.
+A new KHIVA array from the data stored in the array.
 }
 \description{
 Creates a khiva Array from a R array.

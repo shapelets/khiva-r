@@ -13,6 +13,22 @@ testthat::setup(
   SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
 )
 
+context("Khiva GetBackendInfo tests")
+
+test_that("Test GetBackendInfo", {
+  out <- GetBackendInfo()
+  info <- strsplit(out$result, " ")[[1]]
+  expect_equal(info[1], "ArrayFire")
+})
+
+context("Khiva PrintBackendInfo tests")
+
+test_that("Test PrintBackendInfo", {
+  out <- capture.output(PrintBackendInfo())[1]
+  info <- strsplit(out, " ")[[1]]
+  expect_equal(info[1], "ArrayFire")
+})
+
 context("Khiva SetBackend tests")
 
 test_that("Test SetBackend", {
