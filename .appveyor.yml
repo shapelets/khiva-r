@@ -15,8 +15,8 @@ environment:
 cache:
     - C:\tools\vcpkg\installed
     - C:\Program Files\ArrayFire
-#   - C:\ProgramData\chocolatey\bin
-#   - C:\ProgramData\chocolatey\lib
+    - C:\ProgramData\chocolatey\bin
+    - C:\ProgramData\chocolatey\lib
 
 clone_folder: C:\khiva-r
 platform:
