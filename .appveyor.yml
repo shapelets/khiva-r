@@ -12,10 +12,12 @@ environment:
     AF_PATH: C:\Program Files\ArrayFire\v3
     KHIVA_PATH: C:\Program Files\Khiva\v0
     PATH: $(AF_PATH)\lib;$(KHIVA_PATH)\lib;C:\Program Files\R\R-3.5.1\bin;C:\Python36-x64;C:\Python36-x64\Scripts;$(PATH)
-# cache:
-#     - C:\ProgramData\chocolatey\bin
-#     - C:\ProgramData\chocolatey\lib
-#     - C:\Program Files\ArrayFire
+cache:
+    - C:\tools\vcpkg\installed
+    - C:\Program Files\ArrayFire
+#   - C:\ProgramData\chocolatey\bin
+#   - C:\ProgramData\chocolatey\lib
+
 clone_folder: C:\khiva-r
 platform:
     - x64
