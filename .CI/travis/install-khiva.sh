@@ -50,13 +50,15 @@ else
         brew upgrade pyenv
         export TRAVIS_PYTHON_VERSION=3.6.5
         export PATH=$HOME/.pyenv/shims:$HOME/.pyenv/versions/${TRAVIS_PYTHON_VERSION}/bin:$PATH
-        pyenv install 3.6.5 -s
+        export PYTHON_VERSION=$(echo $TRAVIS_PYTHON_VERSION | awk -F'.' '{print $1 "." $2}')
+
+        pyenv install ${TRAVIS_PYTHON_VERSION} -s
         pyenv init -
-        pyenv local 3.6.5
+        pyenv local ${TRAVIS_PYTHON_VERSION}
 
         # Installing conan
-        sudo pip${TRAVIS_PYTHON_VERSION} install --upgrade pip
-        sudo pip${TRAVIS_PYTHON_VERSION} install conan
+        sudo pip${PYTHON_VERSION} install --upgrade pip
+        sudo pip${PYTHON_VERSION} install conan
      fi
      conan remote add -f conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
 
@@ -75,5 +77,5 @@ else
         sudo ldconfig
     fi
     # Switching back to the khiva-r folder
-    cd /home/travis/build/shapelets/khiva-r
+    cd ${TRAVIS_BUILD_DIR}
 fi
