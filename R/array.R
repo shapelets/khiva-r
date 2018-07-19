@@ -228,7 +228,7 @@ getType <- function(arr) {
 #' @param a KHIVA array.
 #' @export
 display <- function(a) {
-  try(out <- .C("print", ptr = a@ptr, PACKAGE = package))
+  try(out <- .C("display", ptr = a@ptr, PACKAGE = package))
   eval.parent(substitute(a@ptr <- out$ptr))
 }
 
