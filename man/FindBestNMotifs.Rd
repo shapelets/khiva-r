@@ -4,7 +4,7 @@
 \alias{FindBestNMotifs}
 \title{FindBestNMotifs}
 \usage{
-FindBestNMotifs(profile, index, n)
+FindBestNMotifs(profile, index, m, n, self.join)
 }
 \arguments{
 \item{profile}{KHIVA Array with the matrix profile containing the minimum distance of each
@@ -12,7 +12,12 @@ subsequence.}
 
 \item{index}{KHIVA Array with the matrix profile index containing where each minimum occurs.}
 
+\item{m}{Subsequence length value used to calculate the input matrix profile.}
+
 \item{n}{Number of motifs to extract}
+
+\item{self.join}{Indicates whether the input profile comes from a self join operation or not. It determines 
+whether the mirror similar region is included in the output or not.}
 }
 \value{
 A list of KHIVA Arrays with the motif distance, the motif indices and the subsequence indices.
