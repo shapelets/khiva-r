@@ -4,7 +4,7 @@
 \alias{FindBestNDiscords}
 \title{FindBestNDiscords}
 \usage{
-FindBestNDiscords(profile, index, m, n, selfJoin)
+FindBestNDiscords(profile, index, m, n, self.join)
 }
 \arguments{
 \item{profile}{KHIVA Array with the matrix profile containing the minimum distance of each
@@ -16,7 +16,7 @@ subsequence.}
 
 \item{n}{Number of motifs to extract.}
 
-\item{selfJoin}{Indicates whether the input profile comes from a self join operation or not. It determines 
+\item{self.join}{Indicates whether the input profile comes from a self join operation or not. It determines 
 whether the mirror similar region is included in the output or not.}
 }
 \value{
