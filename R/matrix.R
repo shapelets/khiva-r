@@ -15,7 +15,6 @@
 #' @param subsequence.length Length of the subsequence.
 #' @return List of KHIVA Arrays with the matrix profile and the index profile
 #' @export
-
 Stomp <-
   function(first.time.series,
            second.time.series,
@@ -48,7 +47,6 @@ Stomp <-
 #' @param m KHIVA Array the time series.
 #' @return List of KHIVA Arrays with the matrix profile and the index profile
 #' @export
-
 StompSelfJoin <- function(t, m) {
   try(out <- .C(
     "stomp_self_join",
@@ -73,19 +71,23 @@ StompSelfJoin <- function(t, m) {
 #' @param profile KHIVA Array with the matrix profile containing the minimum distance of each
 #' subsequence.
 #' @param index KHIVA Array with the matrix profile index containing where each minimum occurs.
+#' @param m Subsequence length value used to calculate the input matrix profile.
 #' @param n Number of motifs to extract.
+#' @param selfJoin Indicates whether the input profile comes from a self join operation or not. It determines 
+#' whether the mirror similar region is included in the output or not.
 #' @return A list of KHIVA Arrays with the discord distances, the discord indices and the subsequences indices.
 #' @export
-
-FindBestNDiscords <- function(profile, index, n) {
+FindBestNDiscords <- function(profile, index, m, n, selfJoin) {
   try(out <- .C(
     "find_best_n_discords",
     p.ptr = profile@ptr,
     i.ptr = index@ptr,
+    as.integer64(m),
     as.integer64(n),
     discord.distance = as.integer64(0),
     discord.index = as.integer64(0),
     subsequence.index = as.integer64(0),
+    selfJoin,
     PACKAGE = package
   ))
   
@@ -107,18 +109,23 @@ FindBestNDiscords <- function(profile, index, n) {
 #' @param profile KHIVA Array with the matrix profile containing the minimum distance of each
 #' subsequence.
 #' @param index KHIVA Array with the matrix profile index containing where each minimum occurs.
+#' @param m Subsequence length value used to calculate the input matrix profile.
 #' @param n Number of motifs to extract
+#' @param selfJoin Indicates whether the input profile comes from a self join operation or not. It determines 
+#' whether the mirror similar region is included in the output or not.
 #' @return A list of KHIVA Arrays with the motif distance, the motif indices and the subsequence indices.
 #' @export
-FindBestNMotifs <- function(profile, index, n) {
+FindBestNMotifs <- function(profile, index, m, n, selfJoin) {
   try(out <- .C(
     "find_best_n_motifs",
     p.ptr = profile@ptr,
     i.ptr = index@ptr,
+    as.integer64(m),
     as.integer64(n),
     motif.distance = as.integer64(0),
     motif.index = as.integer64(0),
     subsequence.index = as.integer64(0),
+    selfJoin,
     PACKAGE = package
   ))
   
