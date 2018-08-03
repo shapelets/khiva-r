@@ -22,7 +22,7 @@ matrix:
           - ${HOME}/.conan
       after_success:
        - mv ./cobertura.xml ./coverage.xml
-       - bash <(curl -s https://codecov.io/bash) -cF Linux
+       - bash <(curl -s https://codecov.io/bash) -cF Linux -cf ./coverage.xml
     - os: linux
       dist: trusty
       r: "3.4.3"
