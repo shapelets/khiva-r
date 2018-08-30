@@ -5,7 +5,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-if [["$INSTALL_KHIVA_METHOD" == "installer"]]; then
+if [[ "$INSTALL_KHIVA_METHOD" == "installer" ]]; then
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         if [ ! -e "installers/khiva-v0.1.0-OnlyCPU.pkg" ]; then
             wget https://github.com/shapelets/khiva/releases/download/v0.1.0/khiva-v0.1.0-OnlyCPU.pkg -O installers/khiva-v0.1.0-OnlyCPU.pkg
@@ -45,7 +45,7 @@ else
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         sudo apt-get update -y
         sudo apt-get install -y python3 python3-pip
-        sudo pip3 install conan
+        sudo pip3 install conan==1.6.1
     else
         brew upgrade pyenv
         export TRAVIS_PYTHON_VERSION=3.6.5
