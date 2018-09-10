@@ -15,8 +15,8 @@ test_that("Test Real1D", {
   ta <- as.double(c(1, 2, 3, 4, 5, 6, 7, 8))
   expected <- array(ta, dim = c(8, 1, 1, 1))
   a <- Array(expected)
-  d <- getData(a)
-  expect_equal(d, expected, 1e-4)
+  b <- getData(a)
+  expect_equal(b, expected, 1e-4)
   deleteArray(a)
 })
 
