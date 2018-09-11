@@ -19,4 +19,7 @@ List of KHIVA Arrays with the matrix profile and the index profile
 \description{
 STOMP algorithm to calculate the matrix profile between 'first.time.series' and 'second.time.series' using a subsequence length
 of 'subsequence.length'.
+[1] Yan Zhu, Zachary Zimmerman, Nader Shakibay Senobari, Chin-Chia Michael Yeh, Gareth Funning, Abdullah Mueen, Philip Brisk and 
+Eamonn Keogh (2016). Matrix Profile II: Exploiting a Novel Algorithm and GPUs to break the one Hundred Million Barrier for 
+Time Series Motifs and Joins. IEEE ICDM 2016.
 }

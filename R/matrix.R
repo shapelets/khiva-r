@@ -9,6 +9,9 @@
 #'
 #' STOMP algorithm to calculate the matrix profile between 'first.time.series' and 'second.time.series' using a subsequence length
 #' of 'subsequence.length'.
+#' [1] Yan Zhu, Zachary Zimmerman, Nader Shakibay Senobari, Chin-Chia Michael Yeh, Gareth Funning, Abdullah Mueen, Philip Brisk and 
+#' Eamonn Keogh (2016). Matrix Profile II: Exploiting a Novel Algorithm and GPUs to break the one Hundred Million Barrier for 
+#' Time Series Motifs and Joins. IEEE ICDM 2016.
 #'
 #' @param first.time.series KHIVA Array the time series.
 #' @param second.time.series KHIVA Array time series.
@@ -43,6 +46,10 @@ Stomp <-
 #' STOMP algorithm to calculate the matrix profile between 't' and itself using a subsequence length
 #' of 'm'. This method filters the trivial matches.
 #'
+#' [1] Yan Zhu, Zachary Zimmerman, Nader Shakibay Senobari, Chin-Chia Michael Yeh, Gareth Funning, Abdullah Mueen, Philip Brisk and 
+#' Eamonn Keogh (2016). Matrix Profile II: Exploiting a Novel Algorithm and GPUs to break the one Hundred Million Barrier for 
+#' Time Series Motifs and Joins. IEEE ICDM 2016.
+#' 
 #' @param t KHIVA Array the time series.
 #' @param m KHIVA Array the time series.
 #' @return List of KHIVA Arrays with the matrix profile and the index profile
