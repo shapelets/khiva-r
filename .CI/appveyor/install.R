@@ -14,7 +14,7 @@ list.of.packages <- c("bit64", "testthat", "roxygen2", "shiny", "DT")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages, repos="https://cloud.r-project.org/")
 
-Packages <- c("bit64", "testthat", "roxygen2", "shiny", "DT", "covr")
+Packages <- c("devtools", "usethis", "bit64", "testthat", "roxygen2", "shiny", "DT", "covr")
 lapply(Packages, library, character.only = TRUE)
 
 save.image(file='CIsession.RData')
