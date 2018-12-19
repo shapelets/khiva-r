@@ -11,7 +11,7 @@ environment:
     BOOST_PATH: C:\Libraries\boost_1_67_0
     AF_PATH: C:\Program Files\ArrayFire\v3
     KHIVA_PATH: C:\Program Files\Khiva\v0
-    PATH: $(AF_PATH)\lib;$(KHIVA_PATH)\lib;C:\Program Files\R\R-3.5.1\bin;C:\Python36-x64;C:\Python36-x64\Scripts;$(PATH)
+    PATH: $(AF_PATH)\lib;$(KHIVA_PATH)\lib;C:\Program Files\R\R-3.5.1\bin;C:\Python36-x64;C:\Python36-x64\Scripts;C:\Rtools\bin;$(PATH)
 cache:
     - C:\tools\vcpkg\installed
     - C:\Program Files\ArrayFire
@@ -37,6 +37,8 @@ before_build:
           }
     - cd C:\khiva-r
     - start /wait choco install r.project
+    - ps: appveyor DownloadFile "https://cran.r-project.org/bin/windows/Rtools/Rtools35.exe" -FileName Rtools35.exe
+          .\Rtools33.exe /VERYSILENT /DIR="C:\Rtools\"
     - pip install codecov
     - Rscript .CI\appveyor\install.R
 build_script:
