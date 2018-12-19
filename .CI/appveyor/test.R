@@ -6,6 +6,7 @@
 
 load('CIsession.RData')
 options(testthat.output_file = "test-out.xml")
+devtools::use_appveyor()
 devtools::test(reporter = 'junit')
 covr::to_cobertura(covr::package_coverage())
 save.image(file='CIsession.RData')
