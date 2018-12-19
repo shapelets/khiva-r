@@ -8,7 +8,7 @@ install.packages("devtools", repos="https://cloud.r-project.org/")
 
 library(devtools)
 
-install_version("covr", version = "3.1.0")
+install_version("covr", version = "3.1.0", repos="https://cloud.r-project.org/")
 
 list.of.packages <- c("bit64", "testthat", "roxygen2", "shiny", "DT")
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
