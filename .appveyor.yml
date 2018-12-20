@@ -45,4 +45,4 @@ test_script:
     - Rscript .CI\appveyor\test.R
 on_finish:
     - codecov -F Windows -f cobertura.xml
-    - ps: (New-Object System.Net.WebClient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test-out.xml))
+#    - ps: (New-Object System.Net.WebClient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test-out.xml))
