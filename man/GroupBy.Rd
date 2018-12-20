@@ -4,8 +4,7 @@
 \alias{GroupBy}
 \title{GroupBy}
 \usage{
-GroupBy(arr, aggregation.function, n.columns.key = 1,
-  n.columns.value = 1)
+GroupBy(arr, aggregation.function, n.columns.key = 1, n.columns.value = 1)
 }
 \arguments{
 \item{arr}{KHIVA Array with the time series.}

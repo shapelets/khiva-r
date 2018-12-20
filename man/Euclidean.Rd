@@ -2,11 +2,17 @@
 % Please edit documentation in R/distances.R
 \name{Euclidean}
 \alias{Euclidean}
+\alias{Euclidean}
 \title{Euclidean}
 \usage{
 Euclidean(tss)
+
+Euclidean(tss)
 }
 \arguments{
+\item{tss}{Expects an input array whose dimension zero is the length of the time series (all the same) and
+dimension one indicates the number of time series.}
+
 \item{tss}{Expects an input array whose dimension zero is the length of the time series (all the same) and
 dimension one indicates the number of time series.}
 }
@@ -14,7 +20,13 @@ dimension one indicates the number of time series.}
 KHIVA array with an upper triangular matrix where each position corresponds to the distance between two
 time series. Diagonal elements will be zero. For example: Position row 0 column 1 records the distance
 between time series 0 and time series 1.
+
+KHIVA array with an upper triangular matrix where each position corresponds to the distance between two
+time series. Diagonal elements will be zero. For example: Position row 0 column 1 records the distance
+between time series 0 and time series 1.
 }
 \description{
+Calculates euclidean distances between time series.
+
 Calculates euclidean distances between time series.
 }
