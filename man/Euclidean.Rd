@@ -2,7 +2,6 @@
 % Please edit documentation in R/distances.R
 \name{Euclidean}
 \alias{Euclidean}
-\alias{Euclidean}
 \title{Euclidean}
 \usage{
 Euclidean(tss)

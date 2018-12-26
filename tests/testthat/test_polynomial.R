@@ -21,7 +21,7 @@ test_that("Test polyfit1", {
   
   out <- Polyfit(a, b, 1)
   c <- c(getData(out))
-  expect_equal(c, expected, 1e-6)
+  expect_equal(c, expected, 1e-5)
   deleteArray(a)
   deleteArray(b)
   deleteArray(out)
