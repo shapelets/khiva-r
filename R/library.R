@@ -28,12 +28,8 @@ LoadLibraries <- function() {
     shared.library <- '/usr/local/lib/libkhiva_c.dylib'
     if(!is.null(getLoadedDLLs()$libkhiva_c[[3]])){
       dyn.unload(shared.library)
-      dyn.unload('/usr/local/lib/libaf.3.dylib')
-      dyn.unload('/usr/local/lib/libafcpu.3.dylib')
     }
-    dyn.load('/usr/local/lib/libaf.3.dylib', local = FALSE)
-    dyn.load('/usr/local/lib/libafcpu.3.dylib', local = FALSE)
-    dyn.load(shared.library, local = FALSE)
+    dyn.load(shared.library, local = FALSE, now = FALSE)
   }
   else if (platform == 'Windows') {
     shared.library <- 'C:\\Program Files\\Khiva\\v0\\lib\\khiva_c.dll'

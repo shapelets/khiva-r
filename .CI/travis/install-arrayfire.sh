@@ -31,5 +31,6 @@ else
     sudo bash installers/arrayfire-no-gl.sh --prefix=/opt/arrayfire-3 --skip-license
     sudo ln -s /opt/arrayfire-3/lib64 /opt/arrayfire-3/lib
     echo "/opt/arrayfire-3/lib" | sudo tee /etc/ld.so.conf.d/arrayfire.conf
+    sudo ldconfig -p
     sudo ldconfig
 fi
