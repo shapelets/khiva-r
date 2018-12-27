@@ -28,7 +28,11 @@ LoadLibraries <- function() {
     shared.library <- '/usr/local/lib/libkhiva_c.dylib'
     if(!is.null(getLoadedDLLs()$libkhiva_c[[3]])){
       dyn.unload(shared.library)
+      dyn.unload('/usr/local/lib/libaf.3.dylib')
+      dyn.unload('/usr/local/lib/libafcpu.3.dylib')
     }
+    dyn.load('/usr/local/lib/libaf.3.dylib', local = FALSE)
+    dyn.load('/usr/local/lib/libafcpu.3.dylib', local = FALSE)
     dyn.load(shared.library, local = FALSE, now = FALSE)
   }
   else if (platform == 'Windows') {
@@ -44,11 +48,9 @@ LoadLibraries <- function() {
     shared.library <- '/usr/local/lib/libkhiva_c.so'
     if(!is.null(getLoadedDLLs()$libkhiva_c[[3]])){
       dyn.unload('/opt/arrayfire-3/lib/libaf.so.3')
-      dyn.unload('/opt/arrayfire-3/lib/libafcpu.so.3')
       dyn.unload(shared.library)
     }
     dyn.load('/opt/arrayfire-3/lib/libaf.so.3', local = FALSE)
-    dyn.load('/opt/arrayfire-3/lib/libafcpu.so.3', local = FALSE)
     dyn.load(shared.library, local = FALSE)
   }
   library("bit64")

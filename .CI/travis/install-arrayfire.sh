@@ -14,7 +14,7 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     # Installs arrayfire
     sudo installer -pkg ./installers/arrayfire-no-gl.pkg -target /
 else
-    sudo apt-get update && \
+    sudo apt-get update
     sudo apt-get install -y libboost-all-dev \
     libfftw3-dev \
     libfontconfig1-dev \
