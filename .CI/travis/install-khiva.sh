@@ -35,7 +35,6 @@ else
     fi
 
      #Installing conan and dependencies
-     #Installing conan and dependencies
      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
          sudo apt-get update -y
          sudo apt-get install -y python3 python3-pip
@@ -79,5 +78,4 @@ else
     cd ..
     cd ..
 fi
-
 
