@@ -33,7 +33,7 @@ LoadLibraries <- function() {
     }
     dyn.load('/usr/local/lib/libaf.3.dylib', local = FALSE)
     dyn.load('/usr/local/lib/libafcpu.3.dylib', local = FALSE)
-    dyn.load(shared.library, local = FALSE, now = FALSE)
+    dyn.load(shared.library, local = FALSE)
   }
   else if (platform == 'Windows') {
     shared.library <- 'C:\\Program Files\\Khiva\\v0\\lib\\khiva_c.dll'
