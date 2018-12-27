@@ -35,10 +35,24 @@ else
     fi
 
      #Installing conan and dependencies
+     #Installing conan and dependencies
      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        pip install conan
+         sudo apt-get update -y
+         sudo apt-get install -y python3 python3-pip
+         sudo pip3 install conan==1.6.1
      else
-        pip${PYTHON_VERSION} install conan==1.6.1
+         brew upgrade pyenv
+         export TRAVIS_PYTHON_VERSION=3.6.5
+         export PATH=$HOME/.pyenv/shims:$HOME/.pyenv/versions/${TRAVIS_PYTHON_VERSION}/bin:$PATH
+         export PYTHON_VERSION=$(echo $TRAVIS_PYTHON_VERSION | awk -F'.' '{print $1 "." $2}')
+ 
+         pyenv install ${TRAVIS_PYTHON_VERSION} -s
+         pyenv init -
+         pyenv local ${TRAVIS_PYTHON_VERSION}
+
+         # Installing conan
+         sudo pip${PYTHON_VERSION} install --upgrade pip
+         sudo pip${PYTHON_VERSION} install conan
      fi
 
      conan remote add conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
