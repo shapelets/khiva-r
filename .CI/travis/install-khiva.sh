@@ -39,6 +39,7 @@ else
      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
          sudo apt-get update -y
          sudo apt-get install -y python3 python3-pip
+         sudo pip3 install setuptools
          sudo pip3 install conan==1.6.1
      else
          brew upgrade pyenv
