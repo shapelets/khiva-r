@@ -47,10 +47,10 @@ LoadLibraries <- function() {
   else if (platform == 'Linux') {
     shared.library <- '/usr/local/lib/libkhiva_c.so'
     if(!is.null(getLoadedDLLs()$libkhiva_c[[3]])){
-      dyn.unload('/usr/local/lib/libaf.so.3')
+      dyn.unload('/opt/arrayfire-3/lib/libaf.so.3')
       dyn.unload(shared.library)
     }
-    dyn.load('/usr/local/lib/libaf.so.3', local = FALSE)
+    dyn.load('/opt/arrayfire-3/lib/libaf.so.3', local = FALSE)
     dyn.load(shared.library, local = FALSE)
   }
   library("bit64")

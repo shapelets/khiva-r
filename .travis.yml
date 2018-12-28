@@ -12,7 +12,7 @@ matrix:
   fast_finish: true
   include:
     - os: linux
-      dist: trusty
+      dist: xenial
       r: "3.5.0"
       cache:
         directories:
@@ -24,7 +24,7 @@ matrix:
        - mv ./cobertura.xml ./coverage.xml
        - bash <(curl -s https://codecov.io/bash) -cF Linux -cf ./coverage.xml
     - os: linux
-      dist: trusty
+      dist: xenial
       r: "3.4.3"
       cache:
         directories:
