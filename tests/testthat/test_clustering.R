@@ -5,9 +5,11 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-testthat::setup(SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU))
+testthat::setup(
+  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
+)
 
-context("Khiva clustering tests")
+context("Khiva kmeans tests")
 
 test_that("Test KMeans", {
   ta <- as.single(c(0.0,   1.0,  2.0,  3.0))
@@ -48,13 +50,15 @@ test_that("Test KMeans", {
   deleteArray(out[[2]])
 })
 
+context("Khiva kshape tests")
+
 test_that("Test KShape", {
   ta <- as.single(c(1.0,   2.0,   3.0,  4.0,  5.0,  6.0, 7.0))
   tb <- as.single(c(0.0,  10.0,   4.0,  5.0,  7.0,-3.0, 0.0))
   tc <- as.single(c(-1.0, 15.0,-12.0,  8.0,  9.0,  4.0, 5.0))
   td <- as.single(c(2.0,   8.0,   7.0,-6.0,-1.0,  2.0, 9.0))
   te <- as.single(c(-5.0,-5.0,-6.0,  7.0,  9.0,  9.0, 0.0))
-  a <- Array(array(c(ta, tb, tc, td, te, tf), dim = c(7, 5)))
+  a <- Array(array(c(ta, tb, tc, td, te), dim = c(7, 5)))
   
   expected.centroids <-
     array(as.double(
