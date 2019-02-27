@@ -21,7 +21,7 @@ test_that("Test KMeans", {
   a <- Array(array(c(ta, tb, tc, td, te, tf), dim = c(4, 6)))
   
   expected.centroids <-
-    array(as.double(
+    c(array(as.double(
       c(
         0.0,
         0.1667,
@@ -36,7 +36,7 @@ test_that("Test KMeans", {
         2.6667,
         1.6667
       )
-    ), dim = c(4, 3))
+    ), dim = c(4, 3)))
   
   out <- KMeans(a, 3)
   centroids <- c(getData(out$centroids))
@@ -61,7 +61,7 @@ test_that("Test KShape", {
   a <- Array(array(c(ta, tb, tc, td, te), dim = c(7, 5)))
   
   expected.centroids <-
-    array(as.double(
+    c(array(as.double(
       c(
         -0.5234,
         0.1560,
@@ -83,7 +83,7 @@ test_that("Test KShape", {
         0.0000,
         0.1256
       )
-    ), dim = c(7, 3))
+    ), dim = c(7, 3)))
   
   out <- KShape(a, 3)
   centroids <- c(getData(out$centroids))
