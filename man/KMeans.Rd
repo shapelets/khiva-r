@@ -22,3 +22,7 @@ List with the kMeans centroids as first element and kMeans labels as second elem
 \description{
 Calculates the K-Means algorithm.
 }
+\details{
+[1] S. Lloyd. 1982. Least squares quantization in PCM. IEEE Transactions on Information Theory, 28, 2,
+Pages 129-137.
+}
