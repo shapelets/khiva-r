@@ -8,7 +8,7 @@
 #' KMeans
 #'
 #' Calculates the K-Means algorithm.
-#' 
+#'
 #' [1] S. Lloyd. 1982. Least squares quantization in PCM. IEEE Transactions on Information Theory, 28, 2,
 #' Pages 129-137.
 #'

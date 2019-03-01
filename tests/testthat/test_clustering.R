@@ -5,9 +5,7 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-testthat::setup(
-  SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU)
-)
+testthat::setup(SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU))
 
 context("Khiva kmeans tests")
 
@@ -68,13 +66,15 @@ test_that("Test KShape", {
         -1.2764,
         -0.7781,
         0.9135,
-        1.8711,-0.7825,
+        1.8711,
+        -0.7825,
         1.5990,
         0.1701,
         0.4082,
         0.8845,
         -1.4969,
-        -0.7825,-0.6278,
+        -0.7825,
+        -0.6278,
         1.3812,
         -2.0090,
         0.5022,
