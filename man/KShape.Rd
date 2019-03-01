@@ -14,7 +14,7 @@ dimension one indicates the number of time series.}
 
 \item{tolerance}{The error tolerance to stop the computation of the centroids.}
 
-\item{max_iterations}{The maximum number of iterations allowed.}
+\item{maxIterations}{The maximum number of iterations allowed.}
 }
 \value{
 List with the k-shape centroids as first element and k-shape labels as second element.
