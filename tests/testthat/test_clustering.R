@@ -40,7 +40,6 @@ test_that("Test KMeans", {
   
   out <- KMeans(a, 3)
   centroids <- sort(c(getData(out$centroids)))
-  labels <- sort(c(getData(out$labels)))
   for (i in 1:length(expected.centroids)) {
     expect_equal(centroids[i], expected.centroids[i], 1e-2)
   }
@@ -87,9 +86,9 @@ test_that("Test KShape", {
   
   out <- KShape(a, 3)
   centroids <- sort(c(getData(out$centroids)))
-  labels <- sort(c(getData(out$labels)))
+  labels <- c(getData(out$labels))
   expected.labels <-
-    sort(as.integer(c(0, 1, 2, 0, 0)))
+    as.integer(c(0, 1, 2, 0, 0))
   for (i in 1:length(expected.labels)) {
     expect_equal(labels[i], expected.labels[i], 1e-2)
   }
