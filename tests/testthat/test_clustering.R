@@ -89,7 +89,7 @@ test_that("Test KShape", {
   centroids <- sort(c(getData(out$centroids)))
   labels <- sort(c(getData(out$labels)))
   expected.labels <-
-    as.integer(c(0, 1, 2, 0, 0))
+    sort(as.integer(c(0, 1, 2, 0, 0)))
   for (i in 1:length(expected.labels)) {
     expect_equal(labels[i], expected.labels[i], 1e-2)
   }
