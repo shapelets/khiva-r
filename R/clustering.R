@@ -16,7 +16,7 @@
 #' dimension one indicates the number of time series.
 #' @param k The number of means to be computed.
 #' @param tolerance The error tolerance to stop the computation of the centroids.
-#' @param max_iterations The maximum number of iterations allowed.
+#' @param maxIterations The maximum number of iterations allowed.
 #'
 #' @return List with the kMeans centroids as first element and kMeans labels as second element.
 #' @export
@@ -56,7 +56,7 @@ KMeans <-
 #' dimension one indicates the number of time series.
 #' @param k The number of means to be computed.
 #' @param tolerance The error tolerance to stop the computation of the centroids.
-#' @param max_iterations The maximum number of iterations allowed.
+#' @param maxIterations The maximum number of iterations allowed.
 #'
 #' @return List with the k-shape centroids as first element and k-shape labels as second element.
 #' @export
