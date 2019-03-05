@@ -11,7 +11,7 @@ environment:
     BOOST_PATH: C:\Libraries\boost_1_67_0
     AF_PATH: C:\Program Files\ArrayFire\v3
     KHIVA_PATH: C:\Program Files\Khiva\v0
-    PATH: $(AF_PATH)\lib;$(KHIVA_PATH)\lib;C:\Program Files\R\R-3.5.1\bin;C:\Python36-x64;C:\Python36-x64\Scripts;$(PATH)
+    PATH: $(AF_PATH)\lib;$(KHIVA_PATH)\lib;C:\Program Files\R\R-3.5.2\bin;C:\Python36-x64;C:\Python36-x64\Scripts;C:\Rtools\bin;$(PATH)
 cache:
     - C:\tools\vcpkg\installed
     - C:\Program Files\ArrayFire
@@ -20,8 +20,8 @@ clone_folder: C:\khiva-r
 platform:
     - x64
 before_build:
-    - ps: if(!(Test-Path -Path "C:\Program Files\ArrayFire" )){ appveyor DownloadFile "https://www.dropbox.com/s/ndt1eaouriiu4qi/ArrayFire-v3.5.1.zip?dl=1" -FileName ArrayFire-v3.5.1.zip }
-    - ps: if(!(Test-Path -Path "C:\Program Files\ArrayFire" )){ 7z x ArrayFire-v3.5.1.zip -o"C:\Program Files" }
+    - ps: if(!(Test-Path -Path "C:\Program Files\ArrayFire" )){ appveyor DownloadFile "https://www.dropbox.com/s/13wnbd1qynjmw0i/ArrayFire-v3.6.2.zip?dl=1" -FileName ArrayFire-v3.6.2.zip }
+    - ps: if(!(Test-Path -Path "C:\Program Files\ArrayFire" )){ 7z x ArrayFire-v3.6.2.zip -o"C:\Program Files" }
     - reg add HKCU\Software\Kitware\CMake\Packages\ArrayFire /v ArrayFire_CMake_DIR /d "C:\Program Files\ArrayFire\v3\cmake" /f
     - vcpkg install --triplet x64-windows gtest eigen3
     - ps: if ($env:INSTALL_KHIVA_METHOD -eq "installer"){
@@ -45,5 +45,4 @@ test_script:
     - Rscript .CI\appveyor\test.R
 on_finish:
     - codecov -F Windows -f cobertura.xml
-    - ps: (New-Object System.Net.WebClient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test-out.xml))
-
+#    - ps: (New-Object System.Net.WebClient).UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test-out.xml))

@@ -5,7 +5,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 load('CIsession.RData')
-options(testthat.output_file = "test-out.xml")
-devtools::test(reporter = 'junit')
+#options(testthat.output_file = "test-out.xml")
+#devtools::test(reporter="junit")
+devtools::test()
 covr::to_cobertura(covr::package_coverage())
 save.image(file='CIsession.RData')
