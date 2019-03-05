@@ -1,6 +1,6 @@
 Package: khiva
 Title: KHIVA-R library.
-Version: 0.1.0
+Version: 0.2.0
 Author: Shapelets.io <info@shapelets.io>
 Maintainer: Shapelets.io <info@shapelets.io>
 Description: This Package is the R wrapper of the original Khiva C++ Library.
