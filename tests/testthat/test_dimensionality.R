@@ -59,7 +59,7 @@ test_that("Test Paa", {
   deleteArray(out)
 })
 
-context("Khiva Sax tests")
+context("Khiva SAX tests")
 
 test_that("Test Sax", {
   ta <- as.single(c(0.0, 0.1, -0.1, 5.0, 6.0))
