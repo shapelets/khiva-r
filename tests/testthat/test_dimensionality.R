@@ -35,7 +35,7 @@ test_that("Test Visvalingam", {
   a <- Array(array(c(ta, tb), dim = c(10, 2)))
   out <- Visvalingam(a, 5)
   b <- c(getData(out))
-  expected <- as.double(c(0, 2, 5, 7, 9, 0, -0.1, 7.0, 9.0, 9.0))
+  expected <- as.double(c(0, 2, 3, 7, 9, 0, -0.1, 5.0, 9.0, 9.0))
   expect_equal(b, expected, 1e-6)
   deleteArray(a)
   deleteArray(out)
@@ -62,13 +62,13 @@ test_that("Test Paa", {
 context("Khiva Sax tests")
 
 test_that("Test Sax", {
-  ta <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
-  tb <- as.single(c(0.05, 2.45, 6.5, 8.55, 9.0))
+  ta <- as.single(c(0.0, 0.1, -0.1, 5.0, 6.0))
+  tb <- as.single(c(7.0, 8.1, 9.0, 9.0, 9.0))
 
   a <- Array(array(c(ta, tb), dim = c(5, 2)))
   out <- Sax(a, 3)
   b <- c(getData(out))
-  expected <- as.integer(c(0, 0, 1, 2, 2, 0, 0, 1, 2, 2))
+  expected <- as.double(c(0.0, 0.1, -0.1, 5.0, 6.0, 0.0, 1.0, 2.0, 2.0, 2.0))
   expect_equal(b, expected)
   deleteArray(a)
   deleteArray(out)
