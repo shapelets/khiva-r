@@ -5,6 +5,83 @@
 #License, v. 2.0. If a copy of the MPL was not distributed with this
 #file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+#' Mueen's Algorithm for Similarity Search.
+#' 
+#' The result has the following structure:
+#' - 1st dimension corresponds to the index of the subsequence in the time series.
+#' - 2nd dimension corresponds to the number of queries.
+#' - 3rd dimension corresponds to the number of time series.
+#' 
+#' For example, the distance in the position (1, 2, 3) correspond to the distance of the third query to the fourth time
+#' series for the second subsequence in the time series.
+#' 
+#' [1] Chin-Chia Michael Yeh, Yan Zhu, Liudmila Ulanova, Nurjahan Begum, Yifei Ding, Hoang Anh Dau, Diego Furtado Silva,
+#' Abdullah Mueen, Eamonn Keogh (2016). Matrix Profile I: All Pairs Similarity Joins for Time Series: A Unifying View
+#' that Includes Motifs, Discords and Shapelets. IEEE ICDM 2016.
+#'
+#' @param query KHIVA Array whose first dimension is the length of the query time series and the second dimension is the
+#'              number of queries.
+#' @param tss   KHIVA Array whose first dimension is the length of the time series and the second dimension is the number of
+#'              time series.
+#' @return KHIVA Array with the distances.
+#' @export
+Mass <-
+  function(query,
+           tss) {
+    try(out <- .C(
+      "mass",
+      q.ptr = query@ptr,
+      t.ptr = tss@ptr,
+      distances = as.integer64(0),
+      PACKAGE = package
+    ))
+    eval.parent(substitute(query@ptr <- out$q.ptr))
+    eval.parent(substitute(tss@ptr <- out$t.ptr))
+    
+    return(createArray(out$distances))
+  }
+
+#' Calculates the N best matches of several queries in several time series.
+#' 
+#' The result has the following structure:
+#' - 1st dimension corresponds to the nth best match.
+#' - 2nd dimension corresponds to the number of queries.
+#' - 3rd dimension corresponds to the number of time series.
+#' 
+#' For example, the distance in the position (1, 2, 3) corresponds to the second best distance of the third query in the
+#' fourth time series. The index in the position (1, 2, 3) is the is the index of the subsequence which leads to the
+#' second best distance of the third query in the fourth time series.
+#'
+#' @param query KHIVA Array whose first dimension is the length of the query time series and the second dimension is the
+#'              number of queries.
+#' @param tss   KHIVA Array whose first dimension is the length of the time series and the second dimension is the number of
+#'              time series.
+#' @param n     Number of matches to return.
+#' @return Array or KHIVA Arrays with the distances and indexes.
+#' @export
+FindBestNOccurrences <-
+  function(query,
+           tss,
+           n) {
+    try(out <- .C(
+      "find_best_n_occurrences",
+      q.ptr = query@ptr,
+      t.ptr = tss@ptr,
+      as.integer64(n),
+      distances = as.integer64(0),
+      indexes = as.integer64(0),
+      PACKAGE = package
+    ))
+    eval.parent(substitute(query@ptr <- out$q.ptr))
+    eval.parent(substitute(tss@ptr <- out$t.ptr))
+    
+    newList <-
+      list("distances" = createArray(out$distances),
+           "indexes" = createArray(out$indexes))
+    
+    return(newList)
+  }
+
 #' Stomp
 #'
 #' STOMP algorithm to calculate the matrix profile between 'first.time.series' and 'second.time.series' using a subsequence length
