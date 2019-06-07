@@ -83,9 +83,3 @@ test_that("Test GetDeviceID", {
   SetDevice(prev.device)
 })
 
-context("Khiva Version tests")
-
-test_that("Test Version", {
-  out <- Version()
-  expect_equal(out$result, "0.2.0")
-})

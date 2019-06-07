@@ -7,6 +7,92 @@
 
 testthat::setup(SetBackend(KHIVABackend()$KHIVA_BACKEND_CPU))
 
+context("Khiva mass tests")
+
+test_that("Test mass", {
+  tq <- as.single(c(4, 3, 8))
+  q <- Array(array(c(tq), dim = c(3, 1)))
+  
+  tt <- as.single(c(10, 10, 10, 11, 12, 11, 10, 10, 11, 12, 11, 14, 10, 10))
+  t <- Array(array(c(tt), dim = c(14, 1)))
+  
+  expected.distances <-
+    as.double(c(1.732051, 0.328954, 1.210135, 3.150851, 3.245858, 2.822044,
+                0.328954, 1.210135, 3.150851, 0.248097, 3.30187, 2.82205))
+  out <- Mass(q, t)
+  distances <- c(getData(out))
+  for (i in 1:length(expected.distances)) {
+    expect_equal(distances[i], expected.distances[i], 1e-2)
+  }
+  deleteArray(t)
+  deleteArray(q)
+  deleteArray(out)
+}) 
+
+test_that("Test mass multiple", {
+  tq <- as.double(c(10.0, 10.0, 11.0, 11.0, 10.0, 11.0, 10.0, 10.0))
+  q <- Array(array(c(tq), dim = c(4, 2)))
+  
+  tt <- as.double(c(10.0, 10.0, 10.0, 11.0, 12.0, 11.0, 10.0, 10.0, 11.0, 12.0, 11.0, 14.0, 10.0, 10.0))
+  t <- Array(array(c(tt), dim = c(7, 2)))
+  
+  expected.distances <-
+    as.double(c(1.8388, 0.8739, 1.5307, 3.6955, 3.2660, 3.4897, 2.8284, 1.2116,
+                1.5307, 2.1758, 2.5783, 3.7550, 2.8284, 2.8284, 3.2159, 0.5020))
+  out <- Mass(q, t)
+  distances <- c(getData(out))
+  for (i in 1:length(expected.distances)) {
+    expect_equal(distances[i], expected.distances[i], 1e-2)
+  }
+  deleteArray(t)
+  deleteArray(q)
+  deleteArray(out)
+})
+
+context("Khiva findBestNOccurrences tests")
+
+test_that("Test findBestNOccurrences", {
+  tq <- as.double(c(10.0, 11.0, 12.0))
+  q <- Array(array(c(tq), dim = c(3, 1)))
+  
+  tt <- as.double(c(10.0, 10.0, 11.0, 11.0, 12.0, 11.0, 10.0, 10.0, 11.0, 12.0, 11.0, 10.0, 10.0, 11.0, 
+                    10.0, 10.0, 11.0, 11.0, 12.0, 11.0, 10.0, 10.0, 11.0, 12.0, 11.0, 10.0, 10.0, 11.0))
+  t <- Array(array(c(tt), dim = c(28, 1)))
+  
+  out <- FindBestNOccurrences(q, t, 1)
+  distances <- c(getData(out$distances))
+  indexes <- c(getData(out$indexes))
+  
+  expect_equal(distances[1], 0, 1e-3)
+  expect_equal(indexes[1], 7)
+  
+  deleteArray(t)
+  deleteArray(q)
+  deleteArray(out$distances)
+  deleteArray(out$indexes)
+}) 
+
+test_that("Test findBestNOccurrences multiple", {
+  tq <- as.double(c(11.0, 11.0, 10.0, 11.0, 10.0, 11.0, 11.0, 12.0))
+  q <- Array(array(c(tq), dim = c(4, 2)))
+
+  tt <- as.double(c(10.0, 10.0, 11.0, 11.0, 10.0, 11.0, 10.0, 10.0, 11.0, 11.0, 10.0, 11.0, 10.0, 10.0,
+                    11.0, 10.0, 10.0, 11.0, 10.0, 11.0, 11.0, 10.0, 11.0, 11.0, 14.0, 10.0, 11.0, 10.0))
+  t <- Array(array(c(tt), dim = c(14, 2)))
+
+  out <- FindBestNOccurrences(q, t, 4)
+  distances <- c(getData(out$distances))
+  indexes <- c(getData(out$indexes))
+
+  expect_equal(distances[10], 1.8388, 1e-3)
+  expect_equal(indexes[8], 2)
+
+  deleteArray(t)
+  deleteArray(q)
+  deleteArray(out$distances)
+  deleteArray(out$indexes)
+}) 
+
 context("Khiva stomp tests")
 
 test_that("Test stomp", {
